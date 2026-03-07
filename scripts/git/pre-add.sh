@@ -91,9 +91,14 @@ if [[ "$all_mode" == "true" ]]; then
     collect_file "$f"
   done < <(git -C "$REPO_ROOT" ls-files --modified --others --exclude-standard)
 else
+  # git ls-files (used in all_mode) returns repo-root-relative paths.
+  # Single-file args are relative to CWD, which may be a subdirectory.
+  # Prepend the git prefix (CWD relative to repo root) so paths stay
+  # consistent after the later `cd "$REPO_ROOT"`.
+  GIT_PREFIX="$(git rev-parse --show-prefix 2>/dev/null || true)"
   for arg in "${args[@]:-}"; do
     [[ "${arg:-}" == -* ]] && continue
-    collect_file "$arg"
+    collect_file "${GIT_PREFIX}${arg}"
   done
 fi
 
@@ -102,16 +107,38 @@ if [[ ${#md_files[@]} -eq 0 && ${#java_files[@]} -eq 0 && ${#script_files[@]} -e
 fi
 
 failed=0
+fail_count=0
 cd "$REPO_ROOT"
+
+# ── Output helpers ────────────────────────────────────────────────────────────
+_RULE='  ────────────────────────────────────────────────────'
+_rule()   { printf '%s\n' "$_RULE"; }
+_step()   { printf '\n  %s\n' "$*"; }
+_pass()   { printf '  ✅  %s\n' "$*"; }
+_fail()   { printf '\n  ❌  %s\n' "$*"; failed=1; fail_count=$(( fail_count + 1 )); }
+_skip()   { printf '  ⏭   %s\n' "$*"; }
+_indent() { sed 's/^/    /'; }   # nest command output under its _step header
+
+# ── Header ────────────────────────────────────────────────────────────────────
+_label="pre-add"
+[[ ${#md_files[@]} -gt 0 ]]     && _label+="  ·  ${#md_files[@]} md"
+[[ ${#java_files[@]} -gt 0 ]]   && _label+="  ·  ${#java_files[@]} java/gradle"
+[[ ${#script_files[@]} -gt 0 ]] && _label+="  ·  ${#script_files[@]} script"
+
+printf '\n'
+_rule
+printf '  %s\n' "$_label"
+_rule
 
 # ── Markdown lint (markdownlint-cli2 on staged files only) ───────────────────
 # Runs only on the .md files being added — not the full repo — so unrelated
 # markdown violations never block an unrelated git add.
 if [[ ${#md_files[@]} -gt 0 ]]; then
-  log "pre-add: 📝 lint-docs…"
-  if ! "$REPO_ROOT/node_modules/.bin/markdownlint-cli2" "${md_files[@]}"; then
-    warn "pre-add: ❌ markdownlint failed — fix violations then re-run git add"
-    failed=1
+  _step "lint-docs"
+  if "$REPO_ROOT/node_modules/.bin/markdownlint-cli2" "${md_files[@]}" 2>&1 | _indent; then
+    _pass "lint-docs"
+  else
+    _fail "lint-docs failed — see errors above, then re-run git add"
   fi
 fi
 
@@ -120,12 +147,13 @@ fi
 # Adds ~10–15 s (Gradle startup). Disable via local-settings.json or env var.
 if [[ ${#java_files[@]} -gt 0 ]]; then
   if [[ "${SKIP_SPOTLESS_ON_ADD:-0}" == "1" || "$ls_spotless" == "false" ]]; then
-    log "pre-add: Spotless skipped (SKIP_SPOTLESS_ON_ADD or local-settings.json)."
+    _skip "format (spotlessApply skipped)"
   else
-    log "pre-add: ✨ format (spotlessApply — auto-fixing)…"
-    if ! make format; then
-      warn "pre-add: ❌ format failed — check errors above"
-      failed=1
+    _step "format (spotlessApply)"
+    if make format 2>&1 | _indent; then
+      _pass "format"
+    else
+      _fail "format failed — see errors above, then re-run git add"
     fi
   fi
 fi
@@ -133,11 +161,25 @@ fi
 # ── Executable bits (make exec-bits) ──────────────────────────────────────────
 # Auto-fixes chmod +x and stages the mode change (strict: 2, autoStage: true).
 if [[ ${#script_files[@]} -gt 0 ]]; then
-  log "pre-add: 🔧 exec-bits (${#script_files[@]} script file(s))…"
-  if ! make exec-bits; then
-    warn "pre-add: ❌ exec-bits failed — check errors above"
-    failed=1
+  _step "exec-bits (${#script_files[@]} script file(s))"
+  if make exec-bits 2>&1 | _indent; then
+    _pass "exec-bits"
+  else
+    _fail "exec-bits failed — see errors above, then re-run git add"
   fi
 fi
+
+# ── Footer ────────────────────────────────────────────────────────────────────
+printf '\n'
+_rule
+if [[ $failed -eq 0 ]]; then
+  printf '  ✅  all checks passed\n'
+elif [[ $fail_count -eq 1 ]]; then
+  printf '  ❌  1 check failed — see errors above, then re-run git add\n'
+else
+  printf '  ❌  %d checks failed — see errors above, then re-run git add\n' "$fail_count"
+fi
+_rule
+printf '\n'
 
 exit $failed
