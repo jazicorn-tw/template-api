@@ -12,6 +12,10 @@ It reflects **intent and design direction**, not a record of released changes.
 > **delivery milestone identifiers**, not git release tags. Git tags are managed
 > automatically by semantic-release from Conventional Commits and will not match
 > phase labels. See `CHANGELOG.md` for actual release history.
+>
+> **Breaking changes:** Phases marked ⚠️ introduce breaking changes. Commits for
+> those phases must include a `BREAKING CHANGE:` footer, which triggers a **major**
+> version bump in semantic-release (e.g. `0.x.x` → `1.0.0`).
 
 ---
 
@@ -87,7 +91,7 @@ It reflects **intent and design direction**, not a record of released changes.
 
 ---
 
-## 🔑 Phase 7 — Authentication & Authorization (v0.7.0)
+## 🔑 Phase 7 — Authentication & Authorization ⚠️ Breaking change (v0.7.0 → v1.0.0)
 
 - User account entity and repository
 - Authentication endpoints:
@@ -95,6 +99,10 @@ It reflects **intent and design direction**, not a record of released changes.
   - `POST /auth/login`
 - Token provider and request filter
 - Endpoint protection and security integration tests
+
+> Enforcing authentication on previously open endpoints is a **breaking change** —
+> unauthenticated clients will receive 401. Phase 7 commits must use the
+> `BREAKING CHANGE:` footer, which will trigger the `v1.0.0` release.
 
 ---
 
@@ -110,8 +118,8 @@ It reflects **intent and design direction**, not a record of released changes.
 ## 🚀 Future Milestones
 
 - **v0.9.0** — Audit & history
-- **v1.0.0** — Stable public API
-- **v2.0.0** — *(define your next milestone)*
+- **v1.0.0** — Stable public API *(triggered by Phase 7 breaking change)*
+- **v2.0.0** — *(define your next milestone — requires another breaking change)*
 
 ---
 

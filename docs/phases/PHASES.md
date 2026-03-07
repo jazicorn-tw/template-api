@@ -31,6 +31,10 @@ Each version introduces new functionality only after writing failing tests first
 > **delivery milestone identifiers**, not git release tags. Git tags are managed
 > automatically by semantic-release from Conventional Commits and will not match
 > phase labels. See `CHANGELOG.md` for actual release history.
+>
+> **Breaking changes:** Phases marked ⚠️ introduce breaking changes. Commits for
+> those phases must include a `BREAKING CHANGE:` footer, which triggers a **major**
+> version bump in semantic-release (e.g. `0.x.x` → `1.0.0`).
 
 ---
 
@@ -246,11 +250,15 @@ Introduce Spring Security infrastructure without enforcement.
 
 ---
 
-## 🛡 Phase 7 — JWT Authentication (v0.7.0)
+## 🛡 Phase 7 — JWT Authentication ⚠️ Breaking change (v0.7.0 → v1.0.0)
 
 ### Purpose
 
 Enforce authentication and authorization on protected routes.
+
+> Enforcing authentication on previously open endpoints is a **breaking change** —
+> unauthenticated clients will receive 401. Phase 7 commits must use the
+> `BREAKING CHANGE:` footer, which will trigger the `v1.0.0` release.
 
 ### Release Criteria
 
@@ -311,5 +319,5 @@ make run
 ## 🗺 Beyond v0.8.0
 
 * v0.9.0 — Audit & history
-* v1.0.0 — Stable public API
-* v2.0.0 — _define your next milestone_
+* v1.0.0 — Stable public API _(triggered by Phase 7 breaking change)_
+* v2.0.0 — _define your next milestone — requires another breaking change_

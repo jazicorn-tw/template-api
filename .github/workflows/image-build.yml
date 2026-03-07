@@ -2,9 +2,9 @@ name: Build Image
 
 on:
   pull_request:
-    branches: [ main, staging, dev ]
+    branches: [ main, staging, dev, canary ]
   push:
-    branches: [ main, staging, dev ]
+    branches: [ main, staging, dev, canary ]
     paths:
       - 'Dockerfile'
       - 'src/**'
@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           push: false
           platforms: linux/amd64
-          tags: {{project-name}}:ci
+          tags: ${{ github.repository }}:ci
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}

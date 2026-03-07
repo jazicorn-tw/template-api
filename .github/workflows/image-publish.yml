@@ -96,7 +96,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Derive Docker tags + labels from the Git tag created by semantic-release
-      # v1.2.3 → 1.2.3, 1.2, 1, latest
+      # Stable  v1.2.3          → 1.2.3, 1.2, 1, latest
+      # Canary  v1.2.3-canary.1 → 1.2.3-canary.1, canary
       - name: Extract Docker metadata (tags/labels)
         id: meta
         uses: docker/metadata-action@v5
@@ -104,9 +105,10 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=raw,value=latest
+            type=semver,pattern={{major}}.{{minor}},enable=${{ !contains(github.ref, '-') }}
+            type=semver,pattern={{major}},enable=${{ !contains(github.ref, '-') }}
+            type=raw,value=canary,enable=${{ contains(github.ref, '-canary') }}
+            type=raw,value=latest,enable=${{ !contains(github.ref, '-') }}
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}

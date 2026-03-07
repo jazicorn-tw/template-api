@@ -149,7 +149,10 @@ const githubWriterOpts = {
 };
 
 module.exports = {
-  branches: ['main'],
+  branches: [
+    'main',
+    { name: 'canary', channel: 'canary', prerelease: true },
+  ],
   tagFormat: 'v${version}',
   plugins: [
     // 1) Decide version bump based on commits

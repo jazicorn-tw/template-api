@@ -48,8 +48,9 @@ For this project (currently `0.x`):
 feat!: change API contract
 ```
 
-Breaking changes **do not** automatically bump to `1.0.0`.  
-Major version stability is an explicit, intentional decision.
+Breaking changes trigger a major version bump. The planned `v1.0.0` release
+is Phase 7 (JWT auth enforcement) — the first intentional, roadmap-defined breaking change.
+See [`docs/phases/ROADMAP.md`](../phases/ROADMAP.md) for details.
 
 ---
 

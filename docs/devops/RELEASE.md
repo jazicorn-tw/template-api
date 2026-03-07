@@ -241,7 +241,86 @@ to **bypass the `main` ruleset**:
 
 ---
 
+## 🐤 Canary releases
+
+The `canary` branch is a pre-release staging channel for **features and breaking
+changes** before they are promoted to stable. Patches (`fix:`) go directly to `main`
+by convention.
+
+### Version format
+
+| Branch | Commit | Version |
+| --- | --- | --- |
+| `canary` | `feat:` | `v0.1.0-canary.1` |
+| `canary` | `BREAKING CHANGE:` | `v1.0.0-canary.1` |
+| `main` | merge from canary | `v0.1.0` or `v1.0.0` |
+
+### Docker image
+
+Canary releases are tagged `:canary` (not `:latest`):
+
+```bash
+docker pull ghcr.io/<owner>/<repo>:canary
+```
+
+Stable releases continue to use `:latest`.
+
+### GitHub Release
+
+Canary releases appear as **pre-releases** in GitHub Releases (marked automatically
+by semantic-release).
+
+### Promotion to stable
+
+```text
+feature branch → canary (pre-release) → main (stable)
+                  v0.1.0-canary.1        v0.1.0
+```
+
+Merge `canary` into `main` and push — semantic-release promotes the canary version
+to the full stable release.
+
+### Release gate
+
+The same `ENABLE_SEMANTIC_RELEASE` gate applies to both `main` and `canary`.
+
+---
+
 ## 🆘 Troubleshooting
+
+### First release creates v1.0.0 instead of v0.0.1 or v0.1.0
+
+**Cause:** semantic-release defaults to `1.0.0` when no git tags exist —
+regardless of whether the triggering commit is `fix:` (patch) or `feat:` (minor).
+This is hardcoded in semantic-release v22 and cannot be changed via configuration.
+
+**Fix:** A `v0.0.0` tag must exist at the initial commit before the first release runs.
+This gives semantic-release a baseline to increment from correctly.
+
+Create it manually (one-time setup per repository):
+
+```bash
+git tag v0.0.0 $(git rev-list --max-parents=0 HEAD)
+git push origin v0.0.0
+```
+
+After that, versioning works as expected:
+
+| Commit type | Next version |
+| --- | --- |
+| `fix:` | `v0.0.1` |
+| `feat:` | `v0.1.0` |
+| `BREAKING CHANGE:` | `v1.0.0` |
+
+The release workflow in this template automatically creates this baseline tag
+if none exists. If you are using a fork or a new repository from this template,
+the tag is created on the first release run.
+
+**If v1.0.0 was already created accidentally**, see
+[`UNDO_ACCIDENTAL_RELEASE.md`](./UNDO_ACCIDENTAL_RELEASE.md) for the recovery steps,
+which also covers this exact scenario.
+
+---
 
 ### Nothing was released
 

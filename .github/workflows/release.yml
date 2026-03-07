@@ -1,10 +1,11 @@
 name: Release (semantic-release)
 
 on:
-  # Automatic releases from main *only* when explicitly enabled.
+  # Automatic releases from main and canary when explicitly enabled.
   push:
     branches:
       - main
+      - canary
 
   # Manual run (useful for one-off releases)
   workflow_dispatch:
@@ -96,6 +97,20 @@ jobs:
           # Also rewrite any ssh-style GitHub URLs that tools might use
           git config --global url."https://github.com/".insteadOf "git@github.com:"
           git config --global url."https://github.com/".insteadOf "ssh://git@github.com/"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Ensure baseline v0.0.0 tag (pre-1.0 versioning)
+        run: |
+          set -euo pipefail
+          if git tag | grep -q .; then
+            echo "Tags exist — skipping baseline creation"
+          else
+            initial_sha="$(git rev-list --max-parents=0 HEAD)"
+            echo "No tags found — creating v0.0.0 at $initial_sha"
+            git tag v0.0.0 "$initial_sha"
+            git push origin v0.0.0
+          fi
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
 
@@ -362,8 +377,8 @@ jobs:
           push: true
           platforms: linux/amd64
           tags: |
-            ghcr.io/${{ github.repository_owner }}/{{project-name}}:${{ needs.release.outputs.published_version }}
-            ghcr.io/${{ github.repository_owner }}/{{project-name}}:latest
+            ghcr.io/${{ github.repository }}:${{ needs.release.outputs.published_version }}
+            ghcr.io/${{ github.repository }}:${{ github.ref_name == 'main' && 'latest' || 'canary' }}
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.revision=${{ github.sha }}
@@ -389,8 +404,9 @@ jobs:
         run: |
           set -euo pipefail
           VERSION="${{ needs.release.outputs.published_version }}"
+          CHART_NAME="$(helm show chart helm/app | grep '^name:' | awk '{print $2}')"
           helm package helm/app \
             --version "$VERSION" \
             --app-version "$VERSION"
-          helm push "{{project-name}}-${VERSION}.tgz" \
+          helm push "${CHART_NAME}-${VERSION}.tgz" \
             oci://ghcr.io/${{ github.repository_owner }}/charts

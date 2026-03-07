@@ -80,7 +80,9 @@ Or add a footer (also counts as breaking):
 BREAKING CHANGE: describe what changed and why
 ```
 
-> Note: breaking changes won’t automatically jump to `1.0.0` unless you decide to stabilize the API.
+> Note: breaking changes trigger a major version bump. The planned `v1.0.0` release
+> is Phase 7 (JWT auth enforcement) — the first intentional, roadmap-defined breaking change.
+> See [`docs/phases/ROADMAP.md`](../phases/ROADMAP.md) for details.
 
 ---
 
