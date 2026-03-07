@@ -14,7 +14,7 @@
 .PHONY: help help-short help-auto help-ci explain debug
 
 help: ## 🧰 Show developer help (curated)
-	$(call section,🧰  {{project-name}} — Make Targets)
+	$(call section,🧰  template-api-java — Make Targets)
 
 	$(call println,$(YELLOW)🚀 Recommended flow$(RESET))
 	@printf "  $(BOLD)%-22s$(RESET) %s\n" "make help-categories" "→ discover help by category"

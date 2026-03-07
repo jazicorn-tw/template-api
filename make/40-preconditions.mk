@@ -11,7 +11,15 @@
 # ENV (baseline) — local development (non-act)
 # -------------------------------------------------------------------
 
-.PHONY: env-help env-init env-init-force check-env check-all
+.PHONY: init-project env-help env-init env-init-force check-env check-all
+
+init-project: ## 🏗️  Rename template to your project (run once after cloning): make init-project name=my-api owner=acme-corp
+	$(call section,🏗️   Init project)
+	@if [[ -z "$(name)" || -z "$(owner)" ]]; then \
+	  printf "%b\n" "$(RED)Usage: make init-project name=<project-name> owner=<github-owner>$(RESET)"; \
+	  exit 1; \
+	fi
+	@scripts/setup/init-project.sh --name "$(name)" --owner "$(owner)" $(if $(filter true,$(dry-run)),--dry-run,)
 
 env-help: ## 📖 Environment setup docs
 	$(call section,📖  Environment setup)

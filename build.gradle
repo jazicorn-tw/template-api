@@ -30,7 +30,7 @@ ext['flyway.version'] = '11.2.0'
 
 group = 'com.example'
 version = (findProperty('releaseVersion') ?: '0.0.1-SNAPSHOT')
-description = '{{project-name}} — Spring Boot 4 backend API scaffold'
+description = 'template-api-java — Spring Boot 4 backend API scaffold'
 
 java {
   toolchain {
@@ -163,7 +163,7 @@ tasks.named("check") { dependsOn("spotlessCheck") }
 
 sonar {
   properties {
-    property 'sonar.projectKey', 'your-org_{{project-name}}'
+    property 'sonar.projectKey', 'your-org_template-api-java'
     property 'sonar.organization', 'your-org'
     property 'sonar.host.url', 'https://sonarcloud.io'
     property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'

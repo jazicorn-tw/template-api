@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file MD009 -->
-# 🗺️ Roadmap — {{project-name}}
+# 🗺️ Roadmap — template-api-java
 
-This document describes the **planned, phased roadmap** for {{project-name}}.
+This document describes the **planned, phased roadmap** for template-api-java.
 
 It reflects **intent and design direction**, not a record of released changes.
 

@@ -11,7 +11,8 @@ on:
 
 permissions:
   contents: read
-  security-events: write  # required to upload SARIF results to the Security tab
+  security-events: write   # required to upload SARIF results to the Security tab
+  pull-requests: write     # required to post PR summary comment
 
 concurrency:
   group: codeql-${{ github.ref }}
@@ -47,3 +48,29 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:java-kotlin"
+          output: sarif-results
+
+      - name: Post CodeQL summary to PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SARIF_FILE=$(find sarif-results -name '*.sarif' -print -quit 2>/dev/null || true)
+          if [[ -z "$SARIF_FILE" ]]; then exit 0; fi
+          COUNT=$(jq '[ .runs[].results // [] | .[] ] | length' "$SARIF_FILE")
+          if [[ "$COUNT" -eq 0 ]]; then
+            BODY="<!-- codeql-pr-summary -->
+          ✅ **CodeQL**: no issues found."
+          else
+            BODY="<!-- codeql-pr-summary -->
+          ⚠️ **CodeQL**: found **${COUNT}** issue(s). [View in Security tab](https://github.com/${{ github.repository }}/security/code-scanning)"
+          fi
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          EXISTING_ID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUMBER}/comments" \
+            --jq '.[] | select(.body | contains("<!-- codeql-pr-summary -->")) | .id' | head -1)
+          if [[ -n "$EXISTING_ID" ]]; then
+            gh api "repos/${{ github.repository }}/issues/comments/${EXISTING_ID}" \
+              --method PATCH --field body="$BODY"
+          else
+            gh pr comment "$PR_NUMBER" --body "$BODY"
+          fi
