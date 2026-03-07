@@ -38,7 +38,7 @@ DEPLOY_ENABLED            # true|false — global deploy kill switch (future)
 
 ## 🧠 How CI feature flags work (enabled-by-default)
 
-`ENABLE_STATIC_ANALYSIS`, `ENABLE_SONAR`, `ENABLE_MD_LINT`, and `ENABLE_DOCTOR_SNAPSHOT` use an **enabled-by-default** pattern:
+The four `ENABLE_*` CI flags above use an **enabled-by-default** pattern:
 
 - **Unset** (no variable configured) → step/job **runs**
 - **Set to `false`** → step/job is **skipped**

@@ -37,16 +37,25 @@ These variables control **whether CI performs irreversible actions** such as
 publishing artifacts, cutting releases, or deploying infrastructure.
 
 ```text
-# Release control
+# Release control (disabled by default — must opt in)
 ENABLE_SEMANTIC_RELEASE   # true|false — allow semantic-release execution on main
                           # (manual workflow_dispatch may override per run)
 
-# Artifact publishing
+# Artifact publishing (disabled by default — must opt in)
 PUBLISH_DOCKER_IMAGE      # true|false — allow Docker image publishing
-PUBLISH_HELM_CHART        # true|false — allow Helm chart publishing (future)
+PUBLISH_HELM_CHART        # true|false — allow Helm chart publishing
 
 # Safety / scope
 CANONICAL_REPOSITORY      # <owner>/<repo> — only repo allowed to publish artifacts
+
+# Release artifact guard (enabled by default — set to 'false' to disable)
+GUARD_RELEASE_ARTIFACTS   # true|false — enforce CHANGELOG.md authorship rules
+
+# CI job/step feature flags (enabled by default — set to 'false' to skip)
+ENABLE_STATIC_ANALYSIS    # false — skip Checkstyle/PMD/SpotBugs in CI Quality
+ENABLE_SONAR              # false — skip Sonar cache + analysis in CI Quality
+ENABLE_MD_LINT            # false — skip markdown-lint job in CI Quality
+ENABLE_DOCTOR_SNAPSHOT    # false — skip doctor snapshot job
 
 # Deployment (future)
 DEPLOY_ENABLED            # true|false — global deployment kill switch
@@ -54,8 +63,8 @@ DEPLOY_ENABLED            # true|false — global deployment kill switch
 
 ### Rules
 
-- Publishing, releasing, or deployment **must be explicitly enabled**
-- If a flag is unset or false, the behavior is **disabled**
+- **Release and publishing flags** are disabled by default — must be explicitly set to `true`
+- **CI job/step flags** are enabled by default — set to `false` to opt out
 - Artifact publishing is **never allowed** from non-canonical repositories
 - Forks may run CI safely but can never publish
 

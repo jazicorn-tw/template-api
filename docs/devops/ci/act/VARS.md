@@ -60,13 +60,35 @@ vars.PUBLISH_DOCKER_IMAGE
 
 ## 🔀 Common Variables
 
-| Variable | Type | Description |
+### Release & publishing (disabled by default — must opt in)
+
+| Variable | Default | Description |
 |------|------|------------|
-| `ENABLE_SEMANTIC_RELEASE` | boolean | Gate semantic-release execution |
-| `PUBLISH_DOCKER_IMAGE` | boolean | Allow Docker image publishing |
-| `CANONICAL_REPOSITORY` | string | Repo allowed to publish artifacts |
-| `PUBLISH_HELM_CHART` | boolean | (Future) Helm publishing |
-| `DEPLOY_ENABLED` | boolean | (Future) Global deploy kill-switch |
+| `ENABLE_SEMANTIC_RELEASE` | `false` | Gate semantic-release execution |
+| `PUBLISH_DOCKER_IMAGE` | `false` | Allow Docker image publishing |
+| `PUBLISH_HELM_CHART` | `false` | Allow Helm chart publishing |
+| `CANONICAL_REPOSITORY` | _(unset)_ | `owner/repo` allowed to publish artifacts |
+
+### Release artifact guard (enabled by default — opt out with `false`)
+
+| Variable | Default | Description |
+|------|------|------------|
+| `GUARD_RELEASE_ARTIFACTS` | `true` | Enforce release artifact rules (CHANGELOG.md guard) |
+
+### CI job/step feature flags (enabled by default — opt out with `false`)
+
+| Variable | Default | Description |
+|------|------|------------|
+| `ENABLE_STATIC_ANALYSIS` | enabled | Checkstyle/PMD/SpotBugs step in CI Quality |
+| `ENABLE_SONAR` | enabled | Sonar cache + analysis steps in CI Quality |
+| `ENABLE_MD_LINT` | enabled | Markdown-lint job in CI Quality |
+| `ENABLE_DOCTOR_SNAPSHOT` | enabled | Doctor snapshot job |
+
+### Future / reserved
+
+| Variable | Default | Description |
+|------|------|------------|
+| `DEPLOY_ENABLED` | `false` | Global deploy kill-switch |
 
 ---
 

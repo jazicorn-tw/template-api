@@ -7,8 +7,8 @@ auditable, and easy to evolve over time.
 
 ## Files
 
-- **CI_FEATURE_FLAGS.md**  
-  GitHub Actions feature flags that control publishing, releases, and deployments.
+- **CI_FEATURE_FLAGS.md**
+  GitHub Actions feature flags that control publishing, releases, deployments, and CI job/step toggles.
 
 - **RUNTIME_APPLICATION.md**  
   Core Spring Boot runtime variables shared across all environments.

@@ -107,6 +107,23 @@ If gates pass, the `release` job will execute exactly as in CI.
 
 ---
 
+## 3️⃣ CI job/step feature flags
+
+Individual CI jobs and steps can be disabled via repository variables without
+touching workflow files. All flags are **enabled by default** (unset = runs).
+Set to `'false'` to skip.
+
+| Variable | Skips |
+| --- | --- |
+| `ENABLE_STATIC_ANALYSIS` | Checkstyle/PMD/SpotBugs step in CI Quality |
+| `ENABLE_SONAR` | Sonar cache + analysis steps in CI Quality |
+| `ENABLE_MD_LINT` | Entire markdown-lint job in CI Quality |
+| `ENABLE_DOCTOR_SNAPSHOT` | Entire doctor job in Doctor Snapshot |
+
+See `docs/environment/ci/CI_FEATURE_FLAGS.md` for full details.
+
+---
+
 ## ✅ Expected behavior matrix
 
 | Scenario | Release | Publish |
@@ -121,7 +138,7 @@ If gates pass, the `release` job will execute exactly as in CI.
 
 ## 🧭 Related docs
 
-- `docs/devops/CI_FEATURE_FLAGS.md`
+- `docs/environment/ci/CI_FEATURE_FLAGS.md`
 - `docs/adr/ADR-008-ci-managed-releases.md`
 - `.github/workflows/release.yml`
 

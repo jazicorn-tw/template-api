@@ -209,12 +209,24 @@ Every release workflow includes a dry-run preview step for visibility.
 
 Releases authenticate using a **GitHub App**, not `GITHUB_TOKEN`.
 
+#### Step 1 — Create the App and add secrets
+
 Required secrets:
 
 - `GH_APP_ID`
 - `GH_APP_PRIVATE_KEY`
 
-### Branch protection
+#### Step 2 — Install the App on this repository
+
+> ⚠️ Adding the secrets is **not enough**. The App must also be **installed** on
+> this specific repository. Skipping this step produces a 404 error:
+> `Could not retrieve installation`.
+
+Go to your GitHub App → **Install App** → select this repository.
+If already installed at the org level, confirm this repo is included
+(Apps can be scoped to selected repos).
+
+#### Step 3 — Allow the App to bypass branch protection
 
 Because the changelog commit is pushed to `main`, the GitHub App must be allowed
 to **bypass the `main` ruleset**.
@@ -233,6 +245,16 @@ to **bypass the `main` ruleset**.
 - Non-canonical repo
 - Feature flag disabled
 - No release version
+
+### Release workflow fails at "Generate GitHub App token"
+
+Symptom: `Could not create installation access token` / `Could not retrieve installation` (404)
+
+Causes (check in order):
+
+1. `GH_APP_ID` or `GH_APP_PRIVATE_KEY` secret not set → add them in repo Settings → Secrets
+2. **App not installed on this repository** → go to GitHub App → Install App → select this repo
+3. App installed org-wide but this repo excluded → update the App's repo access
 
 ### Changelog commit failed
 
