@@ -36,7 +36,6 @@ It reflects **intent and design direction**, not a record of released changes.
 **Status:** TODO — define your domain
 
 - Primary entity (CRUD): create, read, update, delete
-- Secondary entity (inventory/items): add, list, update, remove
 - Validation + global structured error handling (RFC 7807 ProblemDetail or equivalent)
 - Comprehensive TDD coverage: unit, controller slice, and integration tests
 

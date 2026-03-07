@@ -133,7 +133,6 @@ Introduce the primary domain entities and their full CRUD API, built test-first.
 Replace the placeholders below with your actual entities:
 
 * **Primary entity** — _e.g. User, Order, Product, Author_
-* **Secondary entity** — _e.g. Item, LineItem, Comment, Book_
 
 ### TDD Steps
 

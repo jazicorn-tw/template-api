@@ -205,15 +205,14 @@ Go to your GitHub repo → **Settings → Secrets and variables → Actions**.
 
 ## 8. Define your domain
 
-The scaffold ships with two generic example entities:
+The scaffold ships with one generic example entity:
 
 - `resource/` — primary entity (rename to e.g. `user/`, `order/`, `product/`)
-- `item/` — secondary entity (rename to e.g. `lineitem/`, `photo/`, `tag/`)
 
-To adapt them:
+To adapt it:
 
-- **Schema:** Edit `src/main/resources/db/migration/V1__init.sql` — replace the sample `user` table with your schema
-- **Source:** Rename `src/main/java/com/acme/platform/resource/` and `item/` to your entity names
+- **Schema:** Edit `src/main/resources/db/migration/V1__init.sql` — replace the sample `resource` table with your schema
+- **Source:** Rename `src/main/java/com/acme/platform/resource/` to your entity name
 - **Seed data:** Edit `scripts/db/seed-db.sh` — add sample rows for local development
 - **Tracking:** Add your first tasks to `docs/planning/TODO.md`
 

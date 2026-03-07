@@ -12,6 +12,10 @@ Get the API running and make your first requests in under 2 minutes.
 - `.env` exists (run `make env-init` if not)
 - Docker is running (`make docker-up`)
 
+> **Switching between projects?** If you were running another project that uses port 5432,
+> run `make env-down` in that project first. Only one Postgres container can hold port 5432 at a time.
+> When you're done here, run `make env-down` so the port is free for other projects.
+
 ## Start the app
 
 ```bash
@@ -48,24 +52,4 @@ curl -s -X PUT http://localhost:8080/resources/$RESOURCE_ID \
 
 curl -s -X DELETE http://localhost:8080/resources/$RESOURCE_ID \
   -o /dev/null -w "%{http_code}"                                       # delete → 204
-```
-
-## {{resource}} endpoints
-
-```bash
-# (assumes $RESOURCE_ID is set from above)
-
-{{RESOURCE}}_ID=$(curl -s -X POST http://localhost:8080/resources/$RESOURCE_ID/{{resource}} \
-  -H "Content-Type: application/json" \
-  -d '{"itemName":"example-item","level":1}' | jq -r .id)
-
-curl -s http://localhost:8080/resources/$RESOURCE_ID/{{resource}} | jq .                   # list
-curl -s http://localhost:8080/resources/$RESOURCE_ID/{{resource}}/${{RESOURCE}}_ID | jq .  # get
-
-curl -s -X PUT http://localhost:8080/resources/$RESOURCE_ID/{{resource}}/${{RESOURCE}}_ID \
-  -H "Content-Type: application/json" \
-  -d '{"label":"updated","level":2}' | jq .                                               # update
-
-curl -s -X DELETE http://localhost:8080/resources/$RESOURCE_ID/{{resource}}/${{RESOURCE}}_ID \
-  -o /dev/null -w "%{http_code}"                                                           # delete → 204
 ```

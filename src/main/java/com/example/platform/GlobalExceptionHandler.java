@@ -1,6 +1,5 @@
 package com.example.platform;
 
-import com.example.platform.item.exception.ItemNotFoundException;
 import com.example.platform.resource.exception.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +18,6 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(ResourceNotFoundException.class)
   ResponseEntity<ProblemDetail> handleNotFound(ResourceNotFoundException ex) {
-    ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
-    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problem);
-  }
-
-  @ExceptionHandler(ItemNotFoundException.class)
-  ResponseEntity<ProblemDetail> handleItemNotFound(ItemNotFoundException ex) {
     ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problem);
   }

@@ -123,7 +123,59 @@ docker volume rm <volume_name>
 
 ---
 
-## 8. Golden rules for PostgreSQL in tests
+## 8. Port 5432 already allocated (local dev)
+
+**Symptoms**
+
+```bash
+Bind for 0.0.0.0:5432 failed: port is already allocated
+```
+
+**Cause**
+
+- Another project's Docker Postgres container is still running
+- A native PostgreSQL installation (e.g. Homebrew) is running on the host
+- An SSH tunnel is forwarding port 5432 from a remote machine
+
+**Diagnose**
+
+```bash
+lsof -i :5432
+```
+
+**Fix — stop the other project's container**
+
+```bash
+docker ps                        # find the container using 5432
+make env-down                    # run from the other project's directory
+```
+
+Then re-run `make env-up` here.
+
+**Fix — stop the native Postgres**
+
+```bash
+brew services stop postgresql
+# or for a versioned install:
+brew services stop postgresql@16
+```
+
+Then re-run `make env-up`.
+
+**Fix — change the Docker compose port**
+
+If you need the native Postgres running, map a different host port in `docker-compose.yml`:
+
+```yaml
+ports:
+  - "5433:5432"
+```
+
+Then update `DB_PORT` (or equivalent) in your `.env` to `5433`.
+
+---
+
+## 9. Golden rules for PostgreSQL in tests
 
 - ❌ Never hardcode JDBC URLs
 - ❌ Never rely on persistent DB state

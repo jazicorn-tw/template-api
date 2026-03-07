@@ -1,4 +1,4 @@
-CREATE TABLE "user" (
+CREATE TABLE resource (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     username VARCHAR(50) NOT NULL UNIQUE,
     display_name VARCHAR(100),
