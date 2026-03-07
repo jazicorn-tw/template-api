@@ -4,7 +4,7 @@ set -euo pipefail
 # pre-add.sh — lint, format, and exec-bit check before files are staged
 #
 # Called by the shell-level git() wrapper (not a native Git hook).
-# .md files              → make lint-docs  (markdownlint-cli2, check-only, aborts on error)
+# .md files              → markdownlint-cli2 on staged files only (aborts on error)
 # .java/.gradle          → make format     (spotlessApply, auto-fixes in place)
 # scripts/ / .githooks/  → make exec-bits  (chmod +x + stage, auto-fixes in place)
 #
@@ -104,11 +104,12 @@ fi
 failed=0
 cd "$REPO_ROOT"
 
-# ── Markdown lint (make lint-docs) ────────────────────────────────────────────
-# Runs markdownlint-cli2 on all .md files (not just staged ones — fast enough).
+# ── Markdown lint (markdownlint-cli2 on staged files only) ───────────────────
+# Runs only on the .md files being added — not the full repo — so unrelated
+# markdown violations never block an unrelated git add.
 if [[ ${#md_files[@]} -gt 0 ]]; then
   log "pre-add: 📝 lint-docs…"
-  if ! make lint-docs; then
+  if ! "$REPO_ROOT/node_modules/.bin/markdownlint-cli2" "${md_files[@]}"; then
     warn "pre-add: ❌ markdownlint failed — fix violations then re-run git add"
     failed=1
   fi
