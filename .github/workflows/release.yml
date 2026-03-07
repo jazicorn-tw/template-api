@@ -478,6 +478,7 @@ jobs:
       - name: Log in to GHCR (Helm)
         if: ${{ vars.PUBLISH_HELM_CHART == 'true' }}
         run: |
+          set -euo pipefail
           echo "${{ github.token }}" | helm registry login ghcr.io \
             --username "${{ github.repository_owner }}" \
             --password-stdin
