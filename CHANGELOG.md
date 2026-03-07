@@ -1,5 +1,21 @@
 # 📦 Release History
 
+## 📦 Release 0.1.1
+
+### 🐛 Fixes
+
+- **ci:** publish only on tag push (b645f00)
+- **dx:** fix pre-add hook skipping single-file git add (aa44a00)
+
+
+
+## 0.1.1
+
+### 🐛 Fixes
+
+- **ci:** publish only on tag push
+- **dx:** fix pre-add hook skipping single-file git add
+
 ## 📦 Release 0.1.0
 
 ### ✨ Features
