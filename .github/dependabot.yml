@@ -6,7 +6,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    target-branch: dev
+    target-branch: staging
     open-pull-requests-limit: 10
     commit-message:
       prefix: "chore(ci)"
@@ -20,7 +20,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    target-branch: dev
+    target-branch: staging
     open-pull-requests-limit: 10
     commit-message:
       prefix: "chore(deps)"
@@ -34,7 +34,7 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    target-branch: dev
+    target-branch: staging
     open-pull-requests-limit: 10
     commit-message:
       prefix: "chore(deps)"

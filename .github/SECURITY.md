@@ -41,6 +41,6 @@ for the full security design and rationale.
 - **Dependabot** — weekly scans for GitHub Actions, Gradle, and npm
   dependencies. CVE alerts are reviewed and patched promptly.
 - **CodeQL** — static analysis for security vulnerabilities runs on every pull
-  request, every push to `main`/`staging`/`dev`, and on a weekly schedule.
+  request, every push to `main`/`staging`, and on a weekly schedule.
   Results appear in the Security → Code scanning tab. Can be disabled via the
   `ENABLE_CODEQL` repository variable.

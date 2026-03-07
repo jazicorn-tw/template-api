@@ -8,9 +8,9 @@ name: Release
 
 on:
   pull_request:
-    branches: [ main, staging, dev, canary ]
+    branches: [ main, staging, canary ]
   push:
-    branches: [ main, staging, dev, canary ]
+    branches: [ main, staging, canary ]
     tags: [ 'v*.*.*' ]
   workflow_dispatch:
     inputs:
@@ -113,6 +113,20 @@ jobs:
 
   # ── Semantic release ──────────────────────────────────────────────────────────
   release:
+    needs: [docker-build, helm-lint]
+    # Run only on push to main/canary or manual dispatch — not PRs or tag pushes.
+    # always() lets this job evaluate even when docker-build/helm-lint are skipped
+    # (tag pushes skip those jobs). The needs-result checks guard against failures.
+    # Gate releases behind ENABLE_SEMANTIC_RELEASE=true (repo variable) or
+    # enable_release=true (manual input).
+    if: >-
+      always() &&
+      (needs.docker-build.result == 'success' || needs.docker-build.result == 'skipped') &&
+      (needs.helm-lint.result == 'success' || needs.helm-lint.result == 'skipped') &&
+      (inputs.enable_release == 'true' || vars.ENABLE_SEMANTIC_RELEASE == 'true') &&
+      (github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' &&
+      (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/canary')))
     runs-on: ubuntu-latest
 
     permissions:
@@ -124,21 +138,6 @@ jobs:
     outputs:
       published_version: ${{ steps.semrel-publish.outputs.published_version }}
       preview_next_version: ${{ steps.semrel-preview.outputs.next_version }}
-
-    # Only run on push to main/canary or manual dispatch — not on PRs or tag pushes.
-    # Gate releases behind an explicit boolean.
-    #
-    # Set repo variable ENABLE_SEMANTIC_RELEASE=true to allow push-based releases.
-    # For manual runs, set workflow input enable_release=true.
-    if: >-
-      ${{
-        (inputs.enable_release == 'true' || vars.ENABLE_SEMANTIC_RELEASE == 'true') &&
-        (
-          github.event_name == 'workflow_dispatch' ||
-          (github.event_name == 'push' &&
-            (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/canary'))
-        )
-      }}
 
     steps:
       - name: Checkout
@@ -416,14 +415,10 @@ jobs:
     # successfully publishes a version.
     # Canonical repository check prevents fork-triggered publishes.
     if: >-
-      ${{
-        always() &&
-        github.repository == vars.CANONICAL_REPOSITORY &&
-        (
-          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
-          (needs.release.result == 'success' && needs.release.outputs.published_version != '')
-        )
-      }}
+      always() &&
+      github.repository == vars.CANONICAL_REPOSITORY &&
+      ((github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')) ||
+      (needs.release.result == 'success' && needs.release.outputs.published_version != ''))
 
     steps:
       - name: Checkout repository

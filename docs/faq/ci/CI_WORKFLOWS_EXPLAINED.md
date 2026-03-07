@@ -9,9 +9,9 @@ runs, what it checks, and what can skip or gate it.
 
 | Workflow file | Name | Trigger |
 | --- | --- | --- |
-| `ci.yml` | CI | All PRs, push to `main`/`staging`/`dev`, manual |
-| `release.yml` | Release | All PRs and pushes to `main`/`staging`/`dev`/`canary`, tag push, manual |
-| `security.yml` | Security | All PRs, push to `main`/`staging`/`dev`, weekly schedule, manual |
+| `ci.yml` | CI | All PRs, push to `main`/`staging`, manual |
+| `release.yml` | Release | All PRs and pushes to `main`/`staging`/`canary`, tag push, manual |
+| `security.yml` | Security | All PRs, push to `main`/`staging`, weekly schedule, manual |
 | `changelog-guard.yml` | Changelog Guard | All PRs and pushes |
 | `pr-helper.yml` | PR Helper | After CI run completes with failure |
 | `doctor.yml` | Doctor | All PRs, push to `main`, manual |
@@ -20,7 +20,7 @@ runs, what it checks, and what can skip or gate it.
 
 ## ci.yml — CI
 
-**Triggers:** all PRs, push to `main`/`staging`/`dev`, `workflow_dispatch`
+**Triggers:** all PRs, push to `main`/`staging`, `workflow_dispatch`
 
 Four parallel / sequenced jobs:
 
@@ -50,7 +50,7 @@ correctly receives failure events and posts helper comments on PRs.
 
 ## release.yml — Release
 
-**Triggers:** PRs targeting `main`/`staging`/`dev`/`canary`, push to those
+**Triggers:** PRs targeting `main`/`staging`/`canary`, push to those
 branches, tag push `v*.*.*`, `workflow_dispatch`
 
 Four jobs, each with its own `if:` condition and minimal `permissions:`:
@@ -82,7 +82,7 @@ guide.
 
 ## security.yml — Security
 
-**Triggers:** all PRs, push to `main`/`staging`/`dev`, weekly schedule (Monday
+**Triggers:** all PRs, push to `main`/`staging`, weekly schedule (Monday
 03:00 UTC), `workflow_dispatch`
 
 **Gated:** skipped when `ENABLE_CODEQL=false` or when running under `act`.
