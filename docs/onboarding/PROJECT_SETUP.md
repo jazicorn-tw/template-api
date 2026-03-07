@@ -62,7 +62,7 @@ Run these from the repo root (macOS/Linux):
 ```bash
 # {{project-name}}
 grep -rl '{{project-name}}' . \
-  --include='*.yml' --include='*.md' --include='*.json' --include='*.toml' \
+  --include='*.yml' --include='*.md' --include='*.json' --include='*.toml' --include='*.properties' \
   | xargs sed -i '' 's/{{project-name}}/my-api/g'
 
 # your-org
