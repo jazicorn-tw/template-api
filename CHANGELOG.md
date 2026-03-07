@@ -1,5 +1,19 @@
 # 📦 Release History
 
+## 📦 Release 0.1.2
+
+### 🐛 Fixes
+
+- **ci:** fail fast on helm registry login error (0f1d27f)
+
+
+
+## 0.1.2
+
+### 🐛 Fixes
+
+- **ci:** fail fast on helm registry login error
+
 ## 📦 Release 0.1.1
 
 ### 🐛 Fixes
