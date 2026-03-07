@@ -135,7 +135,9 @@ _rule
 # markdown violations never block an unrelated git add.
 if [[ ${#md_files[@]} -gt 0 ]]; then
   _step "lint-docs"
-  if "$REPO_ROOT/node_modules/.bin/markdownlint-cli2" "${md_files[@]}" 2>&1 | _indent; then
+  printf '    %s\n' "${md_files[@]}"
+  if "$REPO_ROOT/node_modules/.bin/markdownlint-cli2" "${md_files[@]}" 2>&1 \
+      | sed '/^Finding:/d' | _indent; then
     _pass "lint-docs"
   else
     _fail "lint-docs failed — see errors above, then re-run git add"
