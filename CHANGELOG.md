@@ -1,5 +1,19 @@
 # 📦 Release History
 
+## 📦 Release 0.1.3
+
+### 🐛 Fixes
+
+- **ci:** fix publish job skipped on tag push (b94f571)
+
+
+
+## 0.1.3
+
+### 🐛 Fixes
+
+- **ci:** fix publish job skipped on tag push
+
 ## 📦 Release 0.1.2
 
 ### 🐛 Fixes
