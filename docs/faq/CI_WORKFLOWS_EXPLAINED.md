@@ -12,6 +12,7 @@ runs, what it checks, and what can skip or gate it.
 | `ci-fast.yml` | CI Fast | All PRs, manual |
 | `ci-quality.yml` | CI Quality | All PRs, push to `main`/`staging`/`dev`, manual |
 | `ci-test.yml` | CI Test | All PRs, push to `main`/`staging`/`dev`, manual |
+| `codeql.yml` | CodeQL | All PRs, push to `main`/`staging`/`dev`, weekly schedule, manual |
 | `image-build.yml` | Build Image | PRs and push to `main`/`staging`/`dev`/`canary` (path-filtered) |
 | `release.yml` | Release | Push to `main`/`canary` (gated), manual |
 | `ci-guard-release-artifacts.yml` | CI Guard Release Artifacts | All PRs and pushes |
@@ -70,6 +71,38 @@ Single job:
 This is the authoritative test run for branches. `ci-fast` also runs tests,
 but `ci-test` is the dedicated job with Docker availability confirmed and
 failure artifacts uploaded.
+
+---
+
+## codeql — Security analysis
+
+**Triggers:** all PRs, push to `main`/`staging`/`dev`, weekly schedule (Monday
+03:00 UTC), `workflow_dispatch`
+
+**Gated:** skipped when `ENABLE_CODEQL=false` or when running under `act`.
+
+Single job:
+
+- Initializes CodeQL for `java-kotlin` with the `security-and-quality` query
+  suite
+- Builds the project via CodeQL autobuild (no Docker required)
+- Uploads results as SARIF to the **Security → Code scanning** tab
+
+On PRs, CodeQL posts inline annotations on changed lines where issues are found
+— similar to SonarCloud PR decoration but native to GitHub with no external
+service required.
+
+The weekly schedule catches new vulnerability rules published between pushes.
+
+**To enable:** no variables need to be set — CodeQL runs by default. Requires
+`security-events: write` permission, which is already declared in the workflow.
+For private repositories, GitHub Advanced Security must be enabled on the repo.
+
+**To disable:**
+
+```text
+Settings → Variables → Actions → ENABLE_CODEQL = false
+```
 
 ---
 
@@ -172,6 +205,7 @@ for the complete list.
 
 | Variable | Default | Controls |
 | -------- | ------- | -------- |
+| `ENABLE_CODEQL` | on | CodeQL analysis job in `codeql` |
 | `ENABLE_STATIC_ANALYSIS` | on | Checkstyle/PMD/SpotBugs in `ci-quality` |
 | `ENABLE_SONAR` | on | SonarCloud analysis in `ci-quality` |
 | `ENABLE_MD_LINT` | on | markdownlint job in `ci-quality` |

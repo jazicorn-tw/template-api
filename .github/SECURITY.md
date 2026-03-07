@@ -36,7 +36,11 @@ See [`docs/devops/SECURITY.md`](../docs/devops/SECURITY.md) and
 [`docs/adr/ADR-005-security-phased.md`](../docs/adr/ADR-005-security-phased.md)
 for the full security design and rationale.
 
-## Dependency updates
+## Automated scanning
 
-Dependencies are monitored automatically via Dependabot (weekly scans for
-GitHub Actions, Gradle, and npm). CVE alerts are reviewed and patched promptly.
+- **Dependabot** — weekly scans for GitHub Actions, Gradle, and npm
+  dependencies. CVE alerts are reviewed and patched promptly.
+- **CodeQL** — static analysis for security vulnerabilities runs on every pull
+  request, every push to `main`/`staging`/`dev`, and on a weekly schedule.
+  Results appear in the Security → Code scanning tab. Can be disabled via the
+  `ENABLE_CODEQL` repository variable.

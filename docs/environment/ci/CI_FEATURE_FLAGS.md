@@ -29,6 +29,7 @@ ENABLE_STATIC_ANALYSIS    # false — skip Checkstyle/PMD/SpotBugs step in CI Qu
 ENABLE_SONAR              # false — skip Sonar cache + analysis steps in CI Quality
 ENABLE_MD_LINT            # false — skip the entire markdown-lint job in CI Quality
 ENABLE_DOCTOR_SNAPSHOT    # false — skip the entire doctor job in Doctor Snapshot
+ENABLE_CODEQL             # false — skip the entire CodeQL analysis job
 
 # Future / reserved
 DEPLOY_ENABLED            # true|false — global deploy kill switch (future)
@@ -38,7 +39,7 @@ DEPLOY_ENABLED            # true|false — global deploy kill switch (future)
 
 ## 🧠 How CI feature flags work (enabled-by-default)
 
-The four `ENABLE_*` CI flags above use an **enabled-by-default** pattern:
+The five `ENABLE_*` CI flags above use an **enabled-by-default** pattern:
 
 - **Unset** (no variable configured) → step/job **runs**
 - **Set to `false`** → step/job is **skipped**

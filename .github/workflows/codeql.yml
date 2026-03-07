@@ -1,0 +1,49 @@
+name: CodeQL
+
+on:
+  pull_request:
+  push:
+    branches: [ main, staging, dev ]
+  schedule:
+    # Weekly scan on Monday at 03:00 UTC — catches new CVEs between pushes
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write  # required to upload SARIF results to the Security tab
+
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: CodeQL analysis (Java)
+    runs-on: ubuntu-latest
+
+    # Skip when explicitly disabled or when running under act (no SARIF upload support)
+    if: ${{ vars.ENABLE_CODEQL != 'false' && github.actor != 'nektos/act' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: ./.github/actions/setup-java-gradle
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          # Use the extended security-and-quality query suite for broader coverage.
+          # Switch to 'security-extended' if build times become a concern.
+          queries: security-and-quality
+
+      - name: Build (CodeQL autobuild)
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Perform CodeQL analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:java-kotlin"
