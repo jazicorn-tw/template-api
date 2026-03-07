@@ -54,7 +54,7 @@ doctor too slow for a temporary branch).
 
 The Release workflow runs on:
 
-- `push` to `main`
+- `push` to `main` or `canary`
 - manual `workflow_dispatch`
 
 But the **release job only executes** when **either** condition is true:

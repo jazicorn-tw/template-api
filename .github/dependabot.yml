@@ -1,0 +1,44 @@
+version: 2
+
+updates:
+  # GitHub Actions — pin action versions and keep them updated
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(ci)"
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  # Gradle — Java dependencies
+  - package-ecosystem: gradle
+    directory: /
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      gradle-dependencies:
+        patterns:
+          - "*"
+
+  # npm — Node.js dev tools (markdownlint-cli2, semantic-release, commitizen, etc.)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    target-branch: dev
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      npm-dev-dependencies:
+        patterns:
+          - "*"
