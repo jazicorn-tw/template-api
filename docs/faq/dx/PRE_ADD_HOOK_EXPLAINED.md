@@ -132,16 +132,16 @@ pre-add: ❌ markdownlint failed — fix violations then re-run git add
 2. Fix the violation (wrap the line, add a language tag, etc.)
 3. Re-run `git add <file>`
 
-See [`QUALITY_GATE_EXPLAINED.md`](./QUALITY_GATE_EXPLAINED.md) for a full
+See [`QUALITY_GATE_EXPLAINED.md`](../ci/QUALITY_GATE_EXPLAINED.md) for a full
 reference of markdownlint rule codes and how to resolve them.
 
 ---
 
 ## Related
 
-- [`QUALITY_GATE_EXPLAINED.md`](./QUALITY_GATE_EXPLAINED.md) —
+- [`QUALITY_GATE_EXPLAINED.md`](../ci/QUALITY_GATE_EXPLAINED.md) —
   Spotless, Checkstyle, PMD, SpotBugs, and markdownlint error reference
-- [`docs/tooling/PRE_ADD_LINT.md`](../tooling/PRE_ADD_LINT.md) —
+- [`docs/tooling/PRE_ADD_LINT.md`](../../tooling/PRE_ADD_LINT.md) —
   Shell function setup, full configuration reference, and CI comparison
-- [`scripts/git/pre-add.sh`](../../scripts/git/pre-add.sh) —
+- [`scripts/git/pre-add.sh`](../../../scripts/git/pre-add.sh) —
   The script itself

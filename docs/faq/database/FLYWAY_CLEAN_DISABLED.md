@@ -104,7 +104,7 @@ Or pass it directly to Gradle:
 
 - [`FLYWAY_MIGRATIONS_EXPLAINED.md`](./FLYWAY_MIGRATIONS_EXPLAINED.md) —
   How migrations work, versioning rules, and adding new ones
-- [`docs/adr/ADR-002-testcontainers.md`](../adr/ADR-002-testcontainers.md) —
+- [`docs/adr/ADR-002-testcontainers.md`](../../adr/ADR-002-testcontainers.md) —
   Why Testcontainers is used instead of a shared test database
-- [`docs/devops/UNDO_ACCIDENTAL_RELEASE.md`](../devops/UNDO_ACCIDENTAL_RELEASE.md) —
+- [`docs/devops/UNDO_ACCIDENTAL_RELEASE.md`](../../devops/UNDO_ACCIDENTAL_RELEASE.md) —
   Recovery steps for other irreversible operations

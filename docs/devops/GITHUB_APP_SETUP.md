@@ -49,6 +49,26 @@ This is a **one-time setup per repository**.
 | `GH_APP_ID` | The App ID from Step 1 |
 | `GH_APP_PRIVATE_KEY` | The full contents of the `.pem` file |
 
+The workflow passes `GH_APP_PRIVATE_KEY` through `fromJSON(format(...))` to
+handle the multiline PEM value — paste the raw `.pem` file contents as-is,
+including the `-----BEGIN RSA PRIVATE KEY-----` header and footer.
+
+### Local `act` use: generate `.tmp_key.b64`
+
+`act` does not support multiline secret values in `.secrets`. Base64-encode the
+key into a single line before adding it:
+
+```bash
+# Run once — save alongside your .pem file, outside the repo
+base64 github-app.pem | tr -d '\n' > .tmp_key.b64
+
+# Append the encoded key to your .secrets file
+echo "GH_APP_PRIVATE_KEY=$(cat .tmp_key.b64)" >> .secrets
+```
+
+> ⚠️ `.tmp_key.b64` is still a secret — base64 is encoding, not encryption.
+> Delete it after use and never commit it.
+
 ---
 
 ## Step 3 — Install the App on this repository

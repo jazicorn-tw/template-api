@@ -300,4 +300,4 @@ Suppressions in production code (outside `src/test/`) require justification.
 
 ---
 
-📄 Related: [`COMMON_FIRST_DAY_FAILURES.md`](../onboarding/COMMON_FIRST_DAY_FAILURES.md)
+📄 Related: [`COMMON_FIRST_DAY_FAILURES.md`](../../onboarding/COMMON_FIRST_DAY_FAILURES.md)

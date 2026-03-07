@@ -173,4 +173,4 @@ variables — useful in CI or when you need a specific Postgres version:
 
 - `docs/adr/ADR-002-testcontainers.md` — why Testcontainers, not H2
 - `docs/testing/LOCAL_TESTING.md` — full local test setup guide
-- [`COMMON_FIRST_DAY_FAILURES.md`](../onboarding/COMMON_FIRST_DAY_FAILURES.md) — Docker failure fixes
+- [`COMMON_FIRST_DAY_FAILURES.md`](../../onboarding/COMMON_FIRST_DAY_FAILURES.md) — Docker failure fixes

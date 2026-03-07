@@ -124,7 +124,7 @@ make release-dry-run
 
 ## Related
 
-- [`docs/devops/RELEASE.md`](../devops/RELEASE.md) — Full release system design and gating
-- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../environment/ci/CI_FEATURE_FLAGS.md) —
+- [`docs/devops/RELEASE.md`](../../devops/RELEASE.md) — Full release system design and gating
+- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../../environment/ci/CI_FEATURE_FLAGS.md) —
   Feature flags for release and publishing gates
-- [`docs/commit/COMMITIZEN.md`](../commit/COMMITIZEN.md) — Conventional Commits reference
+- [`docs/commit/COMMITIZEN.md`](../../commit/COMMITIZEN.md) — Conventional Commits reference

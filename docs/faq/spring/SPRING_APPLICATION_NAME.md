@@ -33,7 +33,7 @@ grep -rl '{{project-name}}' . \
 ```
 
 Including `*.properties` in that command is what ensures `application.properties` is
-covered. See [`docs/onboarding/PROJECT_SETUP.md`](../onboarding/PROJECT_SETUP.md) for
+covered. See [`docs/onboarding/PROJECT_SETUP.md`](../../onboarding/PROJECT_SETUP.md) for
 the full setup checklist.
 
 ---
@@ -64,6 +64,7 @@ grep spring.application.name src/main/resources/application.properties
 
 ## Related
 
-- [`docs/onboarding/PROJECT_SETUP.md`](../onboarding/PROJECT_SETUP.md) — Full placeholder replacement checklist (Step 2)
-- [`docs/environment/runtime/OBSERVABILITY_LOGGING.md`](../environment/runtime/OBSERVABILITY_LOGGING.md) —
+- [`docs/onboarding/PROJECT_SETUP.md`](../../onboarding/PROJECT_SETUP.md) —
+  Full placeholder replacement checklist (Step 2)
+- [`docs/environment/runtime/OBSERVABILITY_LOGGING.md`](../../environment/runtime/OBSERVABILITY_LOGGING.md) —
   Logging and metrics configuration reference

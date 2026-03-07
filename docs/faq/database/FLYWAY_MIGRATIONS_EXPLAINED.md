@@ -179,4 +179,4 @@ against a fresh container.
 - `src/main/resources/db/migration/V1__init.sql` — full schema
 - `docs/adr/ADR-001-database-postgresql.md` — why PostgreSQL everywhere
 - `docs/adr/ADR-002-testcontainers.md` — why Testcontainers, not H2
-- [`TESTCONTAINERS_EXPLAINED.md`](./TESTCONTAINERS_EXPLAINED.md) — container lifecycle detail
+- [`TESTCONTAINERS_EXPLAINED.md`](../testing/TESTCONTAINERS_EXPLAINED.md) — container lifecycle detail

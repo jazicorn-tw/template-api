@@ -100,7 +100,7 @@ docker ps
 * Re-run the commit
 
 📄 Per-tool error messages and exact fixes:
-[`QUALITY_GATE_EXPLAINED.md`](../faq/QUALITY_GATE_EXPLAINED.md)
+[`QUALITY_GATE_EXPLAINED.md`](../faq/ci/QUALITY_GATE_EXPLAINED.md)
 
 📄 Hook behaviour details: `docs/commit/PRECOMMIT.md`
 

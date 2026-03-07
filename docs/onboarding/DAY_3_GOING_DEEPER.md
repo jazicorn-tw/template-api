@@ -178,8 +178,8 @@ ResourceController
 | Commit format | [`docs/commit/COMMITIZEN.md`](../commit/COMMITIZEN.md) |
 | Quality gates | [`docs/adr/ADR-000-linting.md`](../adr/ADR-000-linting.md) |
 | Testcontainers setup | [`docs/testing/LOCAL_TESTING.md`](../testing/LOCAL_TESTING.md) |
-| Testcontainers deep dive | [`docs/faq/TESTCONTAINERS_EXPLAINED.md`](../faq/TESTCONTAINERS_EXPLAINED.md) |
-| Flyway migrations | [`docs/faq/FLYWAY_MIGRATIONS_EXPLAINED.md`](../faq/FLYWAY_MIGRATIONS_EXPLAINED.md) |
+| Testcontainers deep dive | [`docs/faq/testing/TESTCONTAINERS_EXPLAINED.md`](../faq/testing/TESTCONTAINERS_EXPLAINED.md) |
+| Flyway migrations | [`docs/faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md`](../faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md) |
 | CI troubleshooting | [`docs/testing/CI_TROUBLESHOOTING.md`](../testing/CI_TROUBLESHOOTING.md) |
 | act setup | [`docs/tooling/ACTRC.md`](../tooling/ACTRC.md) |
 | act secrets | [`docs/devops/ci/act/SECRETS.md`](../devops/ci/act/SECRETS.md) |

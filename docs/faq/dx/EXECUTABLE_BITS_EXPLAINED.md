@@ -47,10 +47,10 @@ Git separately tracks whether a file *should be executable* when checked out.
 
 Git file modes:
 
-| Mode     | Meaning        |
-| -------- | -------------- |
+| Mode | Meaning |
+| --- | --- |
 | `100644` | Not executable |
-| `100755` | Executable     |
+| `100755` | Executable |
 
 You can inspect this with:
 
@@ -158,12 +158,12 @@ After the commit:
 
 Think of it like this:
 
-| Responsibility           | Tool                       |
-| ------------------------ | -------------------------- |
-| Fix my machine right now | Bootstrap scripts          |
-| Define repo guarantees   | Git commit                 |
-| Enforce correctness      | `check-executable-bits.sh` |
-| Decide what fails        | CI                         |
+| Responsibility | Tool |
+| --- | --- |
+| Fix my machine right now | Bootstrap scripts |
+| Define repo guarantees | Git commit |
+| Enforce correctness | `check-executable-bits.sh` |
+| Decide what fails | CI |
 
 Each layer does **one job**.
 

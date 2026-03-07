@@ -164,7 +164,7 @@ Most common causes:
 - The tag didn't match `v*.*.*`
 - The `release` job was skipped (check `ENABLE_SEMANTIC_RELEASE`)
 
-See [`docs/faq/WHY_NO_RELEASE.md`](../../faq/WHY_NO_RELEASE.md) for the full
+See [`docs/faq/ci/WHY_NO_RELEASE.md`](../../faq/ci/WHY_NO_RELEASE.md) for the full
 release diagnosis guide.
 
 ### Login to GHCR fails

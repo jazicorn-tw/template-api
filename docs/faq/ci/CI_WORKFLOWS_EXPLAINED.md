@@ -153,7 +153,7 @@ Can be disabled via `ENABLE_DOCTOR_SNAPSHOT=false` (repo variable).
 
 Most workflows respect repository variables that let you disable expensive or
 optional steps. See
-[`docs/environment/ci/CI_FEATURE_FLAGS.md`](../environment/ci/CI_FEATURE_FLAGS.md)
+[`docs/environment/ci/CI_FEATURE_FLAGS.md`](../../environment/ci/CI_FEATURE_FLAGS.md)
 for the complete list.
 
 | Variable | Default | Controls |
@@ -176,7 +176,7 @@ for the complete list.
   Diagnosing why a release was not created
 - [`SONARCLOUD_EXPLAINED.md`](./SONARCLOUD_EXPLAINED.md) —
   SonarCloud setup and quality gate details
-- [`docs/devops/BRANCH_FLOW.md`](../devops/BRANCH_FLOW.md) —
+- [`docs/devops/BRANCH_FLOW.md`](../../devops/BRANCH_FLOW.md) —
   Which workflows trigger on which branches
-- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../environment/ci/CI_FEATURE_FLAGS.md) —
+- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../../environment/ci/CI_FEATURE_FLAGS.md) —
   Full feature flag reference

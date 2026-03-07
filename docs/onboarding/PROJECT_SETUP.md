@@ -124,6 +124,17 @@ CANONICAL_REPOSITORY=acme/my-api
 ```
 
 Edit `.secrets` only if you need to run release workflows locally (requires a GitHub App).
+`act` does not support multiline secret values — the PEM key must be base64-encoded first:
+
+```bash
+# Run once, outside the repo
+base64 github-app.pem | tr -d '\n' > .tmp_key.b64
+echo "GH_APP_PRIVATE_KEY=$(cat .tmp_key.b64)" >> .secrets
+# Delete the temp file after use
+rm .tmp_key.b64
+```
+
+Full GitHub App setup: [`docs/devops/GITHUB_APP_SETUP.md`](../devops/GITHUB_APP_SETUP.md)
 
 ---
 
@@ -189,7 +200,7 @@ Go to your GitHub repo → **Settings → Secrets and variables → Actions**.
 | Secret | Description |
 | ------ | ----------- |
 | `GH_APP_ID` | GitHub App ID |
-| `GH_APP_PRIVATE_KEY` | GitHub App private key (PEM) |
+| `GH_APP_PRIVATE_KEY` | Full contents of the `.pem` file (paste as-is, multiline is fine) |
 
 ### Repository variables (required for CI gate and release)
 
@@ -241,4 +252,4 @@ To adapt it:
 1. Re-run `make doctor` — it explains most environment issues
 2. Check [`docs/testing/TESTING.md`](../testing/TESTING.md) for test failures
 3. Check [`docs/testing/CI_TROUBLESHOOTING.md`](../testing/CI_TROUBLESHOOTING.md) for CI issues
-4. Check [`docs/faq/QUALITY_GATE_EXPLAINED.md`](../faq/QUALITY_GATE_EXPLAINED.md) for linting failures
+4. Check [`docs/faq/ci/QUALITY_GATE_EXPLAINED.md`](../faq/ci/QUALITY_GATE_EXPLAINED.md) for linting failures

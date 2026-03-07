@@ -144,7 +144,7 @@ Checkstyle, PMD, SpotBugs, markdownlint) continue to run.
 
 - [`QUALITY_GATE_EXPLAINED.md`](./QUALITY_GATE_EXPLAINED.md) —
   Local quality checks (Spotless, Checkstyle, PMD, SpotBugs)
-- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../environment/ci/CI_FEATURE_FLAGS.md) —
+- [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../../environment/ci/CI_FEATURE_FLAGS.md) —
   Full list of CI feature flags including `ENABLE_SONAR`
 - [`CI_WORKFLOWS_EXPLAINED.md`](./CI_WORKFLOWS_EXPLAINED.md) —
   When each workflow runs and what it checks

@@ -106,11 +106,11 @@ Then re-run:
 
 ## Related
 
-- [`TESTCONTAINERS_EXPLAINED.md`](./TESTCONTAINERS_EXPLAINED.md) —
+- [`TESTCONTAINERS_EXPLAINED.md`](../testing/TESTCONTAINERS_EXPLAINED.md) —
   How Testcontainers works, lifecycle, and BaseIntegrationTest
 - [`FLYWAY_MIGRATIONS_EXPLAINED.md`](./FLYWAY_MIGRATIONS_EXPLAINED.md) —
   How schema migrations run against the real PostgreSQL engine
-- [`docs/adr/ADR-001-database-postgresql.md`](../adr/ADR-001-database-postgresql.md) —
+- [`docs/adr/ADR-001-database-postgresql.md`](../../adr/ADR-001-database-postgresql.md) —
   Decision record explaining the PostgreSQL-everywhere policy
-- [`docs/adr/ADR-002-testcontainers.md`](../adr/ADR-002-testcontainers.md) —
+- [`docs/adr/ADR-002-testcontainers.md`](../../adr/ADR-002-testcontainers.md) —
   Decision record for Testcontainers as the integration test strategy

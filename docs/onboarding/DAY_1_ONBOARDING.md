@@ -193,7 +193,7 @@ You may run **tests only**:
 > PostgreSQL image and takes 1–3 minutes. A hanging test almost always means
 > Docker is not running or the wrong context is active.
 >
-> 📄 [`docs/faq/TESTCONTAINERS_EXPLAINED.md`](../faq/TESTCONTAINERS_EXPLAINED.md)
+> 📄 [`docs/faq/testing/TESTCONTAINERS_EXPLAINED.md`](../faq/testing/TESTCONTAINERS_EXPLAINED.md)
 
 This validates behavior, but **does not** run formatting or static analysis.
 

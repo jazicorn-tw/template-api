@@ -114,8 +114,8 @@ needed — `when-authorized` handles it automatically.
 
 ## Related
 
-- [`docs/devops/SECURITY.md`](../devops/SECURITY.md) — Security model and endpoint protection overview
-- [`docs/devops/HEALTH.md`](../devops/HEALTH.md) — How actuator health is used for container healthchecks
-- [`docs/phases/PHASES.md`](../phases/PHASES.md) — Phase 6/7 security rollout plan
-- [`docs/adr/ADR-003-actuator-health.md`](../adr/ADR-003-actuator-health.md) —
+- [`docs/devops/SECURITY.md`](../../devops/SECURITY.md) — Security model and endpoint protection overview
+- [`docs/devops/HEALTH.md`](../../devops/HEALTH.md) — How actuator health is used for container healthchecks
+- [`docs/phases/PHASES.md`](../../phases/PHASES.md) — Phase 6/7 security rollout plan
+- [`docs/adr/ADR-003-actuator-health.md`](../../adr/ADR-003-actuator-health.md) —
   Decision record for actuator health endpoint exposure

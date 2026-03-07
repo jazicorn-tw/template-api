@@ -84,16 +84,22 @@ Typical examples:
 
 ### 🔧 How to convert the key to Base64
 
-Given a private key file (for example `github-app.pem`):
+`act` does not support multiline secret values in `.secrets`. The PEM file has
+newlines, so it must be base64-encoded to a single line before storing it.
+
+**Recommended: write to `.tmp_key.b64` then append to `.secrets`**
 
 ```bash
-base64 github-app.pem
+# Run once — store .pem and .tmp_key.b64 outside the repo
+base64 github-app.pem | tr -d '\n' > .tmp_key.b64
+echo "GH_APP_PRIVATE_KEY=$(cat .tmp_key.b64)" >> .secrets
+rm .tmp_key.b64   # delete the temp file after use
 ```
 
-To produce a **single-line** Base64 value (recommended):
+Or inline (no temp file):
 
 ```bash
-base64 github-app.pem | tr -d '\n'
+echo "GH_APP_PRIVATE_KEY=$(base64 github-app.pem | tr -d '\n')" >> .secrets
 ```
 
 ⚠️ **Security warning**
@@ -104,7 +110,7 @@ base64 github-app.pem | tr -d '\n'
 - Do **not** paste it into documentation or examples
 - Do **not** check in generated files containing decoded keys
 
-Store the resulting value as `GH_APP_PRIVATE_KEY`.
+Store the resulting value as `GH_APP_PRIVATE_KEY` in `.secrets`.
 
 ---
 
@@ -144,12 +150,11 @@ In CI:
 - Values may be **Base64-encoded** depending on platform constraints
 - `.secrets` is **not used**
 
-Locally:
+Locally (with `act`):
 
-- `.secrets` may contain:
-  - Multiline PEM keys (preferred)
-  - Or Base64 values if testing CI parity
-- Scripts may source and decode as needed
+- `act` does **not** support multiline secret values in `.secrets`
+- `GH_APP_PRIVATE_KEY` must be **Base64-encoded** (single line) in `.secrets`
+- GitHub Actions secrets support multiline — the raw PEM is used there
 
 ---
 
