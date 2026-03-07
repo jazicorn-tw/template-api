@@ -36,7 +36,7 @@ By the end of Phase 0 you will have:
 ## 📄 Sub-documents
 
 | Doc | Covers |
-| --- | ------ |
+| --- | --- |
 | [`PHASE_0_1.md`](PHASE_0_1.md) | Spring Boot skeleton — ping, health, Testcontainers, config, runbook |
 | [`PHASE_0_2.md`](PHASE_0_2.md) | CI/CD pipelines, semantic-release, Docker image publishing, Helm |
 | [`PHASE_0_3.md`](PHASE_0_3.md) | Quality gates, Make system, developer scripts, local DX (act, Colima) |

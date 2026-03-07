@@ -79,7 +79,7 @@ Onboarding docs are intentionally **progressive**. You don’t need to read ever
 ### Day-based flow
 
 | When | What to read |
-| ---- | ---- |
+| --- | --- |
 | First time | [`PROJECT_SETUP.md`](./PROJECT_SETUP.md) — **single setup checklist** (template → running app) |
 | Day 0 | [`DAY_0_MACHINE_SETUP.md`](./DAY_0_MACHINE_SETUP.md) — machine prerequisites, shell setup |
 | Day 1 | [`DAY_1_ONBOARDING.md`](./DAY_1_ONBOARDING.md) — local setup, expectations |

@@ -119,12 +119,12 @@ feature/* → dev → staging → main
 
 Every PR **must include appropriate tests**:
 
-| Layer       | Required Tests                       |
-| ----------- | ------------------------------------ |
-| Services    | Unit (Mockito)                       |
-| Controllers | `@WebMvcTest` + `@MockitoBean`       |
-| Integration | Testcontainers (PostgreSQL)          |
-| Security    | `spring-security-test`               |
+| Layer | Required Tests |
+| --- | --- |
+| Services | Unit (Mockito) |
+| Controllers | `@WebMvcTest` + `@MockitoBean` |
+| Integration | Testcontainers (PostgreSQL) |
+| Security | `spring-security-test` |
 
 PRs without tests or with reduced coverage **will not be merged**.
 

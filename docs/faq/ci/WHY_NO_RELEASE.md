@@ -44,7 +44,7 @@ semantic-release only bumps the version for specific commit types.
 ### Releasable (trigger a version bump)
 
 | Commit type | Version bump |
-| ----------- | ------------ |
+| --- | --- |
 | `feat:` | Minor (`0.1.0` → `0.2.0`) |
 | `fix:` | Patch (`0.1.0` → `0.1.1`) |
 | `perf:` | Patch (`0.1.0` → `0.1.1`) |
@@ -53,7 +53,7 @@ semantic-release only bumps the version for specific commit types.
 ### Non-releasable (no version bump)
 
 | Commit type | Result |
-| ----------- | ------ |
+| --- | --- |
 | `docs:` | No release |
 | `chore:` | No release |
 | `refactor:` | No release |

@@ -83,7 +83,7 @@ semantic-release reacts only to **commit types**, not scopes.
 ### Releasable types
 
 | Type | Result |
-|---|---|
+| --- | --- |
 | `feat` | Minor release |
 | `fix` | Patch release |
 | `perf` | Patch release |
@@ -92,7 +92,7 @@ semantic-release reacts only to **commit types**, not scopes.
 ### Non-releasing types
 
 | Type | Result |
-|---|---|
+| --- | --- |
 | `docs` | No release |
 | `chore` | No release |
 | `test` | No release |

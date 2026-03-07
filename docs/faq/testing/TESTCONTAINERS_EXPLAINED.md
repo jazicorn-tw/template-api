@@ -126,7 +126,7 @@ shared lifecycle guarantee.
 ## Allowed and banned patterns
 
 | Pattern | Status | Reason |
-| ------- | ------ | ------ |
+| --- | --- | --- |
 | `static PostgreSQLContainer<?>` field | ✅ Allowed | Deterministic shared lifecycle |
 | `@DynamicPropertySource` | ✅ Allowed | Required for datasource wiring |
 | `extends BaseIntegrationTest` | ✅ Required | All integration tests must use it |
@@ -161,7 +161,7 @@ The container image and credentials are configurable via environment
 variables — useful in CI or when you need a specific Postgres version:
 
 | Variable | Default | Purpose |
-| -------- | ------- | ------- |
+| --- | --- | --- |
 | `TEST_DATASOURCE_IMAGE` | `postgres:16-alpine` | PostgreSQL image tag |
 | `TEST_DATASOURCE_DB` | `{{app-name}}_test` | Database name |
 | `TEST_DATASOURCE_USER` | `test` | Database user |

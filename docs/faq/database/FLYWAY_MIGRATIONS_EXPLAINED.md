@@ -52,7 +52,7 @@ A Phase 2 contributor adds business logic, not new tables.
 ## Flyway versioning rules
 
 | Rule | Detail |
-| ---- | ------ |
+| --- | --- |
 | Filename format | `V{number}__{description}.sql` (two underscores) |
 | Version number | Integers only — `V2`, `V3`, not `V1.1` |
 | Order | Applied in ascending version order |

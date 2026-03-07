@@ -8,7 +8,7 @@ runs, what it checks, and what can skip or gate it.
 ## Workflow overview
 
 | Workflow file | Name | Trigger |
-| ------------- | ---- | ------- |
+| --- | --- | --- |
 | `ci.yml` | CI | All PRs, push to `main`/`staging`/`dev`, manual |
 | `release.yml` | Release | All PRs and pushes to `main`/`staging`/`dev`/`canary`, tag push, manual |
 | `security.yml` | Security | All PRs, push to `main`/`staging`/`dev`, weekly schedule, manual |
@@ -157,7 +157,7 @@ optional steps. See
 for the complete list.
 
 | Variable | Default | Controls |
-| -------- | ------- | -------- |
+| --- | --- | --- |
 | `ENABLE_CODEQL` | on | CodeQL analysis job in `security` |
 | `ENABLE_STATIC_ANALYSIS` | on | Checkstyle/PMD/SpotBugs in `ci` |
 | `ENABLE_SONAR` | on | SonarCloud analysis in `ci` |

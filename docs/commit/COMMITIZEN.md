@@ -29,16 +29,16 @@ All commit messages must follow this format:
 
 ### Common types
 
-| Type        | Purpose                             |
-|-------------|-------------------------------------|
-| `feat`      | New feature (minor version signal)  |
-| `fix`       | Bug fix (patch signal)              |
-| `refactor`  | Code change with no behavior change |
-| `test`      | Tests only                          |
-| `docs`      | Documentation only                  |
-| `chore`     | Tooling, config, housekeeping       |
-| `build`     | Build system or dependency changes  |
-| `ci`        | CI configuration changes            |
+| Type | Purpose |
+| --- | --- |
+| `feat` | New feature (minor version signal) |
+| `fix` | Bug fix (patch signal) |
+| `refactor` | Code change with no behavior change |
+| `test` | Tests only |
+| `docs` | Documentation only |
+| `chore` | Tooling, config, housekeeping |
+| `build` | Build system or dependency changes |
+| `ci` | CI configuration changes |
 
 ### Breaking changes (pre-1.0)
 

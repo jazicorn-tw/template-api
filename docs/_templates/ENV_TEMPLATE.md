@@ -55,17 +55,17 @@ MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED  # optional
 
 Legend: ✅ required, ⚪ optional, — not applicable
 
-| Variable                                    | Local | CI | Prod (Platform A) | Prod (Platform B) | Notes  |
-|---------------------------------------------|------:|---:|------------------:|------------------:|-------:|
-| `SPRING_PROFILES_ACTIVE`                    | ✅    | ✅ | ✅                 | ✅                |        |
-| `SERVER_PORT`                               | ⚪    | —  | ⚪                 | ⚪                |        |
-| `SPRING_DATASOURCE_URL`                     | ✅    | ✅ | ✅                 | ✅                |        |
-| `SPRING_DATASOURCE_USERNAME`                | ✅    | ✅ | ✅                 | ✅                |        |
-| `SPRING_DATASOURCE_PASSWORD`                | ✅    | ✅ | ✅                 | ✅                | secret |
-| `JWT_SECRET`                                | ✅    | ✅ | ✅                 | ✅                | secret |
-| `JWT_EXPIRATION_SECONDS`                    | ⚪    | ⚪ | ⚪                 | ⚪                |        |
-| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ⚪    | ⚪ | ⚪                 | ⚪                |        |
-| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ⚪    | ⚪ | ⚪                 | ✅                |        |
+| Variable | Local | CI | Prod (Platform A) | Prod (Platform B) | Notes |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `SPRING_PROFILES_ACTIVE` | ✅ | ✅ | ✅ | ✅ |  |
+| `SERVER_PORT` | ⚪ | — | ⚪ | ⚪ |  |
+| `SPRING_DATASOURCE_URL` | ✅ | ✅ | ✅ | ✅ |  |
+| `SPRING_DATASOURCE_USERNAME` | ✅ | ✅ | ✅ | ✅ |  |
+| `SPRING_DATASOURCE_PASSWORD` | ✅ | ✅ | ✅ | ✅ | secret |
+| `JWT_SECRET` | ✅ | ✅ | ✅ | ✅ | secret |
+| `JWT_EXPIRATION_SECONDS` | ⚪ | ⚪ | ⚪ | ⚪ |  |
+| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ⚪ | ⚪ | ⚪ | ⚪ |  |
+| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ⚪ | ⚪ | ⚪ | ✅ |  |
 
 ---
 
@@ -96,14 +96,14 @@ Used by:
 ### Application runtime
 
 | Variable | Required | Description |
-|---|---:|---|
+| --- | ---: | --- |
 | `SPRING_PROFILES_ACTIVE` | ✅ | Active profile |
 | `SERVER_PORT` | ❌ | Port override |
 
 ### Database
 
 | Variable | Required | Description |
-|---|---:|---|
+| --- | ---: | --- |
 | `SPRING_DATASOURCE_URL` | ✅ | JDBC URL |
 | `SPRING_DATASOURCE_USERNAME` | ✅ | DB user |
 | `SPRING_DATASOURCE_PASSWORD` | ✅ | DB password (secret) |
@@ -111,14 +111,14 @@ Used by:
 ### Security
 
 | Variable | Required | Description |
-|---|---:|---|
+| --- | ---: | --- |
 | `JWT_SECRET` | ✅ | JWT signing secret (secret) |
 | `JWT_EXPIRATION_SECONDS` | ❌ | Token lifetime override |
 
 ### Observability
 
 | Variable | Required | Description |
-|---|---:|---|
+| --- | ---: | --- |
 | `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ❌ | Exposed actuator endpoints |
 | `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ❌ | readiness/liveness probes |
 

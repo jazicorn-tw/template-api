@@ -10,7 +10,7 @@ Day-1 assumes everything here is done. If `make doctor` fails, come back here fi
 ## 1. Required tools
 
 | Tool | Required version | Check |
-| ---- | ---------------- | ----- |
+| --- | --- | --- |
 | Java | 21 | `java -version` |
 | Git | any recent | `git --version` |
 | Docker | Desktop or Colima | `docker ps` |

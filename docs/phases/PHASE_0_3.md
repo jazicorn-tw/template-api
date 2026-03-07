@@ -31,7 +31,7 @@ make quality
 Both run identical checks. CI and local environments are the same gate (ADR-000).
 
 | Tool | What it checks |
-| ---- | -------------- |
+| --- | --- |
 | **Spotless** | Code formatting (Google Java Format) — fails on any diff |
 | **Checkstyle** | Style rules (method names, Javadoc placement, structure) |
 | **PMD** | Static analysis (complexity, test assertions, log guarding) |
@@ -50,7 +50,7 @@ make hooks
 ```
 
 | Hook | Enforces |
-| ---- | -------- |
+| --- | --- |
 | `commit-msg` | Conventional Commits format (via commitizen); prompts to reformat if invalid |
 | `pre-commit` | Executable bits on all scripts in `scripts/` and `.githooks/` |
 
@@ -69,7 +69,7 @@ git commit
 The `Makefile` delegates to modular `.mk` files in `make/` (decade-based naming):
 
 | File | Responsibility |
-| ---- | -------------- |
+| --- | --- |
 | `10-env.mk` | Variable declarations and shared constants |
 | `20-help.mk` | `make help` role-based output |
 | `30-bootstrap.mk` | First-time contributor setup |
@@ -102,7 +102,7 @@ make release-dry-run # preview next semantic-release version
 Scripts are organised into subfolders under `scripts/`:
 
 | Folder | Scripts |
-| ------ | ------- |
+| --- | --- |
 | `scripts/bootstrap/` | `bootstrap-macos.sh`, `bootstrap-linux.sh`, `bootstrap-common.sh`, `install-hooks.sh` |
 | `scripts/check/` | `check-all.sh`, `check-required-files.sh`, `check-executable-bits.sh`, `check-colima.sh`, `check-required-files-act.sh` |
 | `scripts/db/` | `clean-db-flyway.sh`, `seed-db.sh` |

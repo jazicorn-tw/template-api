@@ -134,7 +134,7 @@ Legend: ✅ required, ⚪ optional, — not used / not applicable
 ### Runtime variables
 
 | Variable | Local (dev) | CI (tests) | Render (prod) | K8s (prod) | Notes |
-|---|---:|---:|---:|---:|---|
+| --- | ---: | ---: | ---: | ---: | --- |
 | `SPRING_PROFILES_ACTIVE` | ✅ | ✅ | ✅ | ✅ | Usually `dev` / `test` / `prod` |
 | `SERVER_PORT` | ⚪ | — | ⚪ | ⚪ | Often provided by platform; override only if needed |
 | `APP_NAME` | ⚪ | ⚪ | ⚪ | ⚪ | Useful for logs/metrics |
@@ -165,7 +165,7 @@ Legend: ✅ required, ⚪ optional, — not used / not applicable
 ### CI feature flags (workflow-level)
 
 | Variable | Local | CI | Render | K8s | Notes |
-|---|---:|---:|---:|---:|---|
+| --- | ---: | ---: | ---: | ---: | --- |
 | `PUBLISH_DOCKER_IMAGE` | — | ⚪ | — | — | GitHub Actions Variable |
 | `CANONICAL_REPOSITORY` | — | ✅* | — | — | Required only when publishing is enabled |
 | `PUBLISH_HELM_CHART` | — | ⚪ | — | — | Reserved |
@@ -325,7 +325,7 @@ These variables control **application behavior**, not delivery.
 They are stable across local dev, CI, Render, and Kubernetes.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `SPRING_PROFILES_ACTIVE` | ✅ | Active Spring profile (`dev`, `test`, `prod`) |
 | `SERVER_PORT` | ❌ | Override default server port (often injected by platform) |
 | `APP_NAME` | ❌ | App identity used in logs/metrics |
@@ -338,7 +338,7 @@ They are stable across local dev, CI, Render, and Kubernetes.
 Used by the application and Flyway migrations in **all environments**.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `SPRING_DATASOURCE_URL` | ✅ | JDBC connection URL |
 | `SPRING_DATASOURCE_USERNAME` | ✅ | Database username |
 | `SPRING_DATASOURCE_PASSWORD` | ✅ | Database password (**secret**) |
@@ -348,7 +348,7 @@ Used by the application and Flyway migrations in **all environments**.
 Connection pool tuning knobs. Defaults are usually fine for dev/test.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE` | ❌ | Upper bound on DB connections |
 | `SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE` | ❌ | Idle connections to keep |
 | `SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT` | ❌ | How long to wait for a connection |
@@ -376,7 +376,7 @@ Common approaches:
 Controls schema migration behavior per environment.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `SPRING_FLYWAY_ENABLED` | ❌ | Enable/disable migrations at startup |
 | `SPRING_FLYWAY_BASELINE_ON_MIGRATE` | ❌ | Baseline existing schema before migrate |
 | `SPRING_FLYWAY_LOCATIONS` | ❌ | Override migration locations |
@@ -393,7 +393,7 @@ Notes:
 JWT configuration for authentication.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `JWT_SECRET` | ✅ | Secret used to sign JWTs |
 | `JWT_EXPIRATION_SECONDS` | ❌ | Token lifetime override |
 | `JWT_ISSUER` | ❌ | Expected issuer (if validated) |
@@ -412,7 +412,7 @@ Notes:
 Used by platforms and orchestrators for health checks.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ❌ | Actuator endpoints to expose |
 | `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ❌ | Enable readiness/liveness probes |
 | `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS` | ❌ | Health details: `never`, `when_authorized`, `always` |
@@ -431,7 +431,7 @@ Used by:
 Logging behavior tuning without rebuilds.
 
 | Variable | Required | Description |
-|--------|----------|-------------|
+| --- | --- | --- |
 | `LOGGING_LEVEL_ROOT` | ❌ | Root log level |
 | `LOGGING_LEVEL_COM_EXAMPLE` | ❌ | Package-level override (example) |
 | `LOGGING_PATTERN_CONSOLE` | ❌ | Customize console output |

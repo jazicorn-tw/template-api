@@ -11,7 +11,7 @@ The `management.endpoint.health.show-details` property determines how much infor
 the `/actuator/health` endpoint returns to callers.
 
 | Value | Who sees details |
-| ----- | ---------------- |
+| --- | --- |
 | `never` | No one — always returns `{"status":"UP"}` only |
 | `when-authorized` | Only authenticated + authorized users |
 | `always` | Everyone, including unauthenticated callers |

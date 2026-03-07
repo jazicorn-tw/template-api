@@ -32,7 +32,7 @@ It is designed to mirror **GitHub Repository Variables** (`Settings → Variable
 ## 📂 Files
 
 | File | Purpose |
-|----|----|
+| --- | --- |
 | `.vars.example` | Template documenting all supported variables |
 | `.vars` | Local developer override (gitignored) |
 
@@ -63,7 +63,7 @@ vars.PUBLISH_DOCKER_IMAGE
 ### Release & publishing (disabled by default — must opt in)
 
 | Variable | Default | Description |
-|------|------|------------|
+| --- | --- | --- |
 | `ENABLE_SEMANTIC_RELEASE` | `false` | Gate semantic-release execution |
 | `PUBLISH_DOCKER_IMAGE` | `false` | Allow Docker image publishing |
 | `PUBLISH_HELM_CHART` | `false` | Allow Helm chart publishing |
@@ -72,13 +72,13 @@ vars.PUBLISH_DOCKER_IMAGE
 ### Release artifact guard (enabled by default — opt out with `false`)
 
 | Variable | Default | Description |
-|------|------|------------|
+| --- | --- | --- |
 | `GUARD_RELEASE_ARTIFACTS` | `true` | Enforce release artifact rules (CHANGELOG.md guard) |
 
 ### CI job/step feature flags (enabled by default — opt out with `false`)
 
 | Variable | Default | Description |
-|------|------|------------|
+| --- | --- | --- |
 | `ENABLE_STATIC_ANALYSIS` | enabled | Checkstyle/PMD/SpotBugs step in CI Quality |
 | `ENABLE_SONAR` | enabled | Sonar cache + analysis steps in CI Quality |
 | `ENABLE_MD_LINT` | enabled | Markdown-lint job in CI Quality |
@@ -87,7 +87,7 @@ vars.PUBLISH_DOCKER_IMAGE
 ### Future / reserved
 
 | Variable | Default | Description |
-|------|------|------------|
+| --- | --- | --- |
 | `DEPLOY_ENABLED` | `false` | Global deploy kill-switch |
 
 ---

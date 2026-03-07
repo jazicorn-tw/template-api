@@ -29,7 +29,7 @@ As the Makefile system grows, it becomes harder to answer questions like:
 This repository uses a **numeric decade convention** for Make modules:
 
 | Decade | Purpose |
-| ------ | -------- |
+| --- | --- |
 | 00s | Kernel / Make bootstrapping |
 | 10s | Presentation (UX, colors, formatting) |
 | 20s | Configuration & feature flags |

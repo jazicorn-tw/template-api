@@ -71,7 +71,7 @@ vars.ENABLE_SEMANTIC_RELEASE
 ## ⚙️ Built-in `act` Environment Variables
 
 | Variable | Description |
-|------|-------------|
+| --- | --- |
 | `ACT` | Always `true` when running under act |
 | `GITHUB_ACTIONS` | `true` (CI parity) |
 | `CI` | `true` |

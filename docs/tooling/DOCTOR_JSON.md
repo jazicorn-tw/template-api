@@ -30,18 +30,18 @@ Doctor reports both **status** and **exit code**.
 
 ### Status values
 
-| Status | Meaning                            |
-| ------ | ---------------------------------- |
-| `pass` | All required checks passed         |
+| Status | Meaning |
+| --- | --- |
+| `pass` | All required checks passed |
 | `fail` | One or more required checks failed |
-| `skip` | Doctor was skipped (e.g. CI=true)  |
+| `skip` | Doctor was skipped (e.g. CI=true) |
 
 ### Exit codes
 
-| Exit code | Meaning      |
-| --------- | ------------ |
-| `0`       | pass or skip |
-| `1`       | fail         |
+| Exit code | Meaning |
+| --- | --- |
+| `0` | pass or skip |
+| `1` | fail |
 
 ---
 

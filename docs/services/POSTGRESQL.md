@@ -23,7 +23,7 @@ This document explains:
 ## 🧩 Service overview
 
 | Item | Value |
-|----|----|
+| --- | --- |
 | Service name (Docker Compose) | `postgres` |
 | Default port | `5432` |
 | Database name | Defined in `.env` |

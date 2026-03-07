@@ -21,9 +21,9 @@ These settings **must never be relied on in CI**.
 
 ### Configuration files
 
-| File                                | Purpose                    |
-| ------------------------------------| -------------------------- |
-| `.config/local-settings.json`       | Base local defaults        |
+| File | Purpose |
+| --- | --- |
+| `.config/local-settings.json` | Base local defaults |
 | `.config/local-settings.macos.json` | macOS overrides (optional) |
 | `.config/local-settings.linux.json` | Linux overrides (optional) |
 
@@ -86,11 +86,11 @@ From `local-settings.json`:
 
 #### `strict` values
 
-| Value | Behavior                                          |
-| ----- |-------------------------------------------------- |
-| `0`   | Warn only                                         |
-| `1`   | Fail immediately                                  |
-| `2`   | Auto-fix (`chmod +x`), then fail if still broken  |
+| Value | Behavior |
+| --- | --- |
+| `0` | Warn only |
+| `1` | Fail immediately |
+| `2` | Auto-fix (`chmod +x`), then fail if still broken |
 
 #### `autoStage`
 
@@ -106,7 +106,7 @@ All keys, their defaults, and which scripts read them:
 ### `local.*` — host and port defaults
 
 | Key | Default | Read by |
-| --- | ------- | ------- |
+| --- | --- | --- |
 | `local.host` | `"localhost"` | _(reference value, available for future scripts)_ |
 | `local.app.port` | `8080` | _(reference value)_ |
 | `local.db.host` | `"localhost"` | `scripts/db/clean-db-flyway.sh` |
@@ -116,7 +116,7 @@ All keys, their defaults, and which scripts read them:
 ### `colima.*` — Colima resource requirements
 
 | Key | Default | Read by |
-| --- | ------- | ------- |
+| --- | --- | --- |
 | `colima.profile` | `"default"` | `scripts/check/check-colima.sh` |
 | `colima.required.memGib` | `8` | `scripts/check/check-colima.sh`, `scripts/doctor.sh` |
 | `colima.required.cpu` | `6` | `scripts/check/check-colima.sh`, `scripts/doctor.sh` |
@@ -125,14 +125,14 @@ All keys, their defaults, and which scripts read them:
 ### `doctor.*` — doctor.sh thresholds
 
 | Key | Default | Read by |
-| --- | ------- | ------- |
+| --- | --- | --- |
 | `doctor.minDockerMemGb` | `4` | `scripts/doctor.sh` |
 | `doctor.minDockerCpus` | `2` | `scripts/doctor.sh` |
 
 ### `docker.*` — Docker image overrides
 
 | Key | Default | Read by |
-| --- | ------- | ------- |
+| --- | --- | --- |
 | `docker.postgres.image` | `"postgres:16-alpine"` | `make/70-runtime.mk` → `docker compose up` |
 
 > Changing `docker.postgres.image` takes effect on the next `make docker-up` or `make docker-reset`.

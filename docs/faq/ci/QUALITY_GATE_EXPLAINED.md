@@ -290,7 +290,7 @@ Some output here
 ## Quick-reference suppression patterns
 
 | Tool | Suppression syntax |
-| ---- | ------------------ |
+| --- | --- |
 | PMD | `@SuppressWarnings("PMD.RuleName")` on the class |
 | Checkstyle | `@SuppressWarnings("checkstyle:RuleName")` on the method |
 | SpotBugs | Covered by global exclusions for DTOs/models/config |

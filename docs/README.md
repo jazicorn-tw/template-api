@@ -213,7 +213,7 @@ If the question starts with:
 Use this decision table:
 
 | Question | Put it in |
-|--------|-----------|
+| --- | --- |
 | Why was a technical decision made? | `adr/` |
 | How do I get started or unstuck? | `onboarding/` |
 | How do I use local tooling? | `tooling/` |

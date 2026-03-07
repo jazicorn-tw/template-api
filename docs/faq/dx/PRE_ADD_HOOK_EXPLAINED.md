@@ -21,7 +21,7 @@ at `git add` time — so formatting is applied before a commit is even attempted
 ## What it checks
 
 | Files staged | Check | Behavior |
-| ------------ | ----- | -------- |
+| --- | --- | --- |
 | `*.md` | markdownlint-cli2 | Aborts on error — fix violations, then re-run `git add` |
 | `*.java`, `*.gradle` | Spotless (`make format`) | Auto-fixes in place — just re-run `git add` |
 | `scripts/`, `.githooks/`, `*.sh` | Exec-bits (`make exec-bits`) | Auto-fixes `chmod +x` and stages the mode change |

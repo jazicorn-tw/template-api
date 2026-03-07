@@ -31,7 +31,7 @@ if: ${{ vars.ENABLE_SONAR != 'false' && github.actor != 'nektos/act' }}
 ```
 
 | Condition | Effect |
-| --------- | ------ |
+| --- | --- |
 | `ENABLE_SONAR` unset or `'true'` | Analysis runs |
 | `ENABLE_SONAR=false` | Analysis is skipped (no error) |
 | Running under `act` (local CI) | Analysis is always skipped |
@@ -115,7 +115,7 @@ SonarCloud enforces a **quality gate** — a set of conditions that new code
 must meet to pass. The default Sonar Way gate checks:
 
 | Metric | Threshold |
-| ------ | --------- |
+| --- | --- |
 | Coverage on new code | ≥ 80 % |
 | Duplicated lines on new code | ≤ 3 % |
 | Maintainability rating on new code | A |

@@ -21,7 +21,7 @@ Phase 0.2 wires the full delivery pipeline before domain work begins:
 Six GitHub Actions workflows live in `.github/workflows/`:
 
 | Workflow | Trigger | Purpose |
-| -------- | ------- | ------- |
+| --- | --- | --- |
 | `ci` | push / PR | Compile, tests, Spotless, static analysis, SonarCloud, markdown lint |
 | `release` | push / PR / tag push | Docker build check, Helm lint, semantic-release, Docker + Helm publish |
 | `security` | push / PR / weekly | CodeQL static security analysis |
@@ -88,7 +88,7 @@ PR and branch push to catch `Dockerfile` issues before a release tag is created.
 The `helm/` directory provides a production-ready Kubernetes deployment:
 
 | Template | Purpose |
-| -------- | ------- |
+| --- | --- |
 | `deployment.yaml` | `Deployment` with configurable replicas and resource limits |
 | `service.yaml` | `ClusterIP` / `LoadBalancer` service |
 | `hpa.yaml` | `HorizontalPodAutoscaler` |

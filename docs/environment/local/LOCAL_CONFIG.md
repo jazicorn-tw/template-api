@@ -14,7 +14,7 @@ development, CI simulation, and tooling such as `doctor`.
 ## ✅ Required files
 
 | File | Location | Committed? | Purpose |
-|-----|---------|---------|---------|
+| --- | --- | --- | --- |
 | `.env` | Project root | No | Local runtime configuration |
 | `.actrc` | `$HOME/.actrc` | No | Configuration for `act` (local GitHub Actions runner) |
 | `.config/local-settings.json` | Project root | Yes | Tooling defaults (Colima, doctor, DB, postgres image) |

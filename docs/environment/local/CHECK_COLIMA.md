@@ -17,7 +17,7 @@ It is designed to be **safe for local developer use** and **non-blocking** by de
 ## Requirements Enforced
 
 | Resource | Default | Notes |
-| -------- | ------- | ----- |
+| --- | --- | --- |
 | Memory | 8 GiB | Docker may report slightly less due to VM overhead |
 | CPUs | 6 | Required for parallel Gradle + containers |
 

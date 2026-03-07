@@ -86,7 +86,7 @@ merge to `main`. You do not trigger releases manually.
 ### Commit type → version bump
 
 | Commit prefix | Example | Bump |
-| ------------- | ------- | ---- |
+| --- | --- | --- |
 | `fix:` | `fix(resource): handle null username` | patch (0.0.x) |
 | `feat:` | `feat({{resource}}): add nickname field` | minor (0.x.0) |
 | `feat!:` / `BREAKING CHANGE:` | `feat!: rename resource endpoint` | major (x.0.0) |
@@ -115,7 +115,7 @@ what the release notes would look like, without creating a tag or publishing.
 Reach for the lowest layer that covers the behaviour you are testing.
 
 | What you are testing | Layer | Tooling |
-| -------------------- | ----- | ------- |
+| --- | --- | --- |
 | Business rules, no I/O | Service unit | JUnit 5 + Mockito |
 | HTTP request/response contract | Controller slice | `@WebMvcTest` + `@MockitoBean` |
 | Database persistence | Integration | `AbstractIntegrationTest` (Testcontainers) |
@@ -172,7 +172,7 @@ ResourceController
 ## 5. Useful references for daily work
 
 | Topic | Doc |
-| ----- | --- |
+| --- | --- |
 | Architecture layers | [`docs/ARCHITECTURE.md`](../ARCHITECTURE.md) |
 | All ADRs | [`docs/adr/README.md`](../adr/README.md) |
 | Commit format | [`docs/commit/COMMITIZEN.md`](../commit/COMMITIZEN.md) |

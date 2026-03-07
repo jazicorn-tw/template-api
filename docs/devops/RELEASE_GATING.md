@@ -127,7 +127,7 @@ See `docs/environment/ci/CI_FEATURE_FLAGS.md` for full details.
 ## ✅ Expected behavior matrix
 
 | Scenario | Release | Publish |
-|--------|--------|---------|
+| --- | --- | --- |
 | No `.vars`, local act | ❌ | ❌ |
 | `.vars` with ENABLE_SEMANTIC_RELEASE | ✅ | ❌ |
 | Canonical repo + published version | ✅ | ✅ |

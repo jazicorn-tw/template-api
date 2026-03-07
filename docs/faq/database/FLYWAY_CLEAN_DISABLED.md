@@ -9,7 +9,7 @@ deciding to change it.
 ## What `spring.flyway.clean-disabled` controls
 
 | Value | Effect |
-| ----- | ------ |
+| --- | --- |
 | `true` | `flyway:clean` is **blocked** — running it throws an error |
 | `false` | `flyway:clean` is **allowed** — running it drops everything |
 

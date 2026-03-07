@@ -31,13 +31,13 @@ action. Version bumps, tags, GitHub Releases, and changelog commits are created
 
 ## What to use instead
 
-| Intent                          | Commit pattern             |
-|---------------------------------|----------------------------|
-| CI / workflow wiring            | `chore(ci): ...`           |
-| Release documentation / policy  | `docs(release-notes): ...` |
-| Internal refactors              | `refactor: ...`            |
-| Bug fixes                       | `fix: ...`                 |
-| Features                        | `feat: ...`                |
+| Intent | Commit pattern |
+| --- | --- |
+| CI / workflow wiring | `chore(ci): ...` |
+| Release documentation / policy | `docs(release-notes): ...` |
+| Internal refactors | `refactor: ...` |
+| Bug fixes | `fix: ...` |
+| Features | `feat: ...` |
 
 ---
 
