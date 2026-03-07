@@ -1,5 +1,29 @@
 # 📦 Release History
 
+## 📦 Release 0.1.4
+
+### 🐛 Fixes
+
+- **ci:** extract Docker and Helm publishing to publish.yml (c819a07)
+- **dx:** list lint-docs files one per line in pre-add output (a22f1f8)
+
+### 📝 Docs
+
+- **ci:** update docs to reflect publish.yml extraction (73fc1fd)
+
+
+
+## 0.1.4
+
+### 🐛 Fixes
+
+- **ci:** extract Docker and Helm publishing to publish.yml
+- **dx:** list lint-docs files one per line in pre-add output
+
+### 📝 Docs
+
+- **ci:** update docs to reflect publish.yml extraction
+
 ## 📦 Release 0.1.3
 
 ### 🐛 Fixes
