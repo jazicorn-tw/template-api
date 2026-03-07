@@ -12,6 +12,7 @@ permissions:
 jobs:
   doctor:
     runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_DOCTOR_SNAPSHOT != 'false' }}
 
     steps:
       - name: Checkout

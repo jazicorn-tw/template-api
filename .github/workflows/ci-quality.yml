@@ -36,10 +36,11 @@ jobs:
         run: ./gradlew spotlessCheck --no-daemon --stacktrace
 
       - name: Static analysis (Checkstyle/PMD/SpotBugs)
+        if: ${{ vars.ENABLE_STATIC_ANALYSIS != 'false' }}
         run: ./gradlew checkstyleMain checkstyleTest pmdMain pmdTest spotbugsMain spotbugsTest --no-daemon --stacktrace
 
       - name: Cache SonarCloud packages
-        if: ${{ github.actor != 'nektos/act' }}
+        if: ${{ vars.ENABLE_SONAR != 'false' && github.actor != 'nektos/act' }}
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
@@ -47,7 +48,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Sonar analysis
-        if: ${{ github.actor != 'nektos/act' }}
+        if: ${{ vars.ENABLE_SONAR != 'false' && github.actor != 'nektos/act' }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,6 +65,7 @@ jobs:
   markdown-lint:
     name: Markdown lint (markdownlint-cli2)
     runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_MD_LINT != 'false' }}
 
     steps:
       - name: Checkout

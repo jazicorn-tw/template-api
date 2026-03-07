@@ -24,9 +24,29 @@ PUBLISH_HELM_CHART        # true|false — enable Helm publishing step (called a
 # Canonical publishing guard
 CANONICAL_REPOSITORY      # <owner>/<repo> — only repo allowed to publish artifacts
 
+# CI job/step feature flags (enabled when unset; set to 'false' to disable)
+ENABLE_STATIC_ANALYSIS    # false — skip Checkstyle/PMD/SpotBugs step in CI Quality
+ENABLE_SONAR              # false — skip Sonar cache + analysis steps in CI Quality
+ENABLE_MD_LINT            # false — skip the entire markdown-lint job in CI Quality
+ENABLE_DOCTOR_SNAPSHOT    # false — skip the entire doctor job in Doctor Snapshot
+
 # Future / reserved
 DEPLOY_ENABLED            # true|false — global deploy kill switch (future)
 ```
+
+---
+
+## 🧠 How CI feature flags work (enabled-by-default)
+
+`ENABLE_STATIC_ANALYSIS`, `ENABLE_SONAR`, `ENABLE_MD_LINT`, and `ENABLE_DOCTOR_SNAPSHOT` use an **enabled-by-default** pattern:
+
+- **Unset** (no variable configured) → step/job **runs**
+- **Set to `false`** → step/job is **skipped**
+- **Set to any other value** (`true`, `1`, etc.) → step/job **runs**
+
+This means a fresh repo with no variables configured behaves identically to one with all flags explicitly set to
+`true`. Set a flag to `false` only when you want to opt out of that check (e.g., Sonar not yet configured, or
+doctor too slow for a temporary branch).
 
 ---
 
