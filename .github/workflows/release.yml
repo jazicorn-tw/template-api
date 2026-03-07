@@ -1,10 +1,11 @@
 name: Release
 
-# Handles the full delivery pipeline:
+# Handles the CI and release pipeline:
 #   docker-build  — build check on PRs and branch pushes (no push)
 #   helm-lint     — Helm chart validation on PRs and branch pushes
 #   release       — semantic-release on main/canary (gated)
-#   publish       — Docker + Helm publish on tag push or after release
+#
+# Docker + Helm publishing lives in publish.yml (triggered by tag push).
 
 on:
   pull_request:
@@ -386,113 +387,3 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-  # ── Publish Docker + Helm (on tag push) ──────────────────────────────────────
-  publish:
-    name: Publish Docker + Helm
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      packages: write
-
-    # Run only on tag pushes (vX.Y.Z). Semantic-release always pushes the tag
-    # it creates, which triggers this job in its own workflow run with the
-    # correct ref. No needs: dependency — the release job is skipped on tag
-    # pushes, and depending on it caused GitHub Actions to skip this job too.
-    # Canonical repository check prevents fork-triggered publishes.
-    if: >-
-      github.repository == vars.CANONICAL_REPOSITORY &&
-      github.event_name == 'push' &&
-      startsWith(github.ref, 'refs/tags/v')
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Publish summary
-        run: |
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "📦 Artifact publishing"
-          echo ""
-          echo "repo=${{ github.repository }}"
-          echo "ref=${{ github.ref_name }}"
-          echo "docker_flag=${{ vars.PUBLISH_DOCKER_IMAGE || 'unset' }}"
-          echo "helm_flag=${{ vars.PUBLISH_HELM_CHART || 'unset' }}"
-          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-
-      - name: Set up Docker Buildx
-        if: ${{ vars.PUBLISH_DOCKER_IMAGE == 'true' }}
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to GHCR
-        if: ${{ vars.PUBLISH_DOCKER_IMAGE == 'true' }}
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      # Stable  v1.2.3          → 1.2.3, 1.2, 1, latest
-      # Canary  v1.2.3-canary.1 → 1.2.3-canary.1, canary
-      - name: Extract Docker metadata (tags/labels)
-        id: meta
-        if: ${{ vars.PUBLISH_DOCKER_IMAGE == 'true' }}
-        uses: docker/metadata-action@v5
-        with:
-          images: ghcr.io/${{ github.repository }}
-          tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}},enable=${{ !contains(github.ref, '-') }}
-            type=semver,pattern={{major}},enable=${{ !contains(github.ref, '-') }}
-            type=raw,value=canary,enable=${{ contains(github.ref, '-canary') }}
-            type=raw,value=latest,enable=${{ !contains(github.ref, '-') }}
-          labels: |
-            org.opencontainers.image.source=${{ github.repository }}
-            org.opencontainers.image.revision=${{ github.sha }}
-
-      - name: Build and push Docker image
-        if: ${{ vars.PUBLISH_DOCKER_IMAGE == 'true' }}
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          platforms: linux/amd64
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Set up Helm (chart publish)
-        if: ${{ vars.PUBLISH_HELM_CHART == 'true' }}
-        uses: azure/setup-helm@v4
-        with:
-          version: v3.14.4
-
-      - name: Log in to GHCR (Helm)
-        if: ${{ vars.PUBLISH_HELM_CHART == 'true' }}
-        run: |
-          set -euo pipefail
-          echo "${{ github.token }}" | helm registry login ghcr.io \
-            --username "${{ github.repository_owner }}" \
-            --password-stdin
-
-      - name: Publish Helm chart
-        if: ${{ vars.PUBLISH_HELM_CHART == 'true' }}
-        run: |
-          set -euo pipefail
-          VERSION="${{ github.ref_name }}"
-          VERSION="${VERSION#v}"
-          echo "ref_name : ${{ github.ref_name }}"
-          echo "VERSION  : $VERSION"
-          CHART_NAME="$(helm show chart helm/app | grep '^name:' | awk '{print $2}')"
-          echo "CHART_NAME: $CHART_NAME"
-          helm package helm/app \
-            --version "$VERSION" \
-            --app-version "$VERSION"
-          echo "Package created: ${CHART_NAME}-${VERSION}.tgz"
-          helm push "${CHART_NAME}-${VERSION}.tgz" \
-            oci://ghcr.io/${{ github.repository_owner }}/charts
-          echo "Push complete"
