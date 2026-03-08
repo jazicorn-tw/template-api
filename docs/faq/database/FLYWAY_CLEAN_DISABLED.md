@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, db]
+description:  "Why `spring.flyway.clean-disabled=true`"
+---
 # Why `spring.flyway.clean-disabled=true`
 
 This article explains what `flyway:clean` does, why Spring Boot enables it by default,
@@ -8,9 +17,9 @@ deciding to change it.
 
 ## What `spring.flyway.clean-disabled` controls
 
-| Value | Effect |
-| --- | --- |
-| `true` | `flyway:clean` is **blocked** — running it throws an error |
+| Value   | Effect                                                      |
+| ------- | ----------------------------------------------------------- |
+| `true`  | `flyway:clean` is **blocked** — running it throws an error  |
 | `false` | `flyway:clean` is **allowed** — running it drops everything |
 
 Spring Boot's default is `false` (clean is allowed). This template overrides it to `true`.

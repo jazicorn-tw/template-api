@@ -1,5 +1,12 @@
-<!-- markdownlint-disable MD036 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling, make]
+description:  "Makefile Decades & Layering Guide"
+---
 # Makefile Decades & Layering Guide
 
 This document defines the **decade-based structure** used by this repository’s Makefile system.
@@ -26,7 +33,7 @@ If a target feels ambiguous, this document is the source of truth.
 
 **Purpose:** Make the Makefile itself possible.
 
-**Includes**
+Includes:
 
 - Shell flags (`.ONESHELL`, `pipefail`)
 - Global variables and constants
@@ -43,7 +50,7 @@ If this decade breaks, *nothing* else can run.
 
 **Purpose:** Standardize how Make communicates with humans and CI logs.
 
-**Includes**
+Includes:
 
 - Colors, separators, formatting helpers
 - `step`, `group`, logging macros
@@ -58,7 +65,7 @@ No business logic. No side effects. UX only.
 
 **Purpose:** Decide *what* should happen, not *how*.
 
-**Includes**
+Includes:
 
 - Feature flags and toggles
 - Derived variables
@@ -75,7 +82,7 @@ Must be safe to evaluate (`make -pn`) with zero side effects.
 
 **Purpose:** Define the **public API** of the Makefile.
 
-**Includes**
+Includes:
 
 - Help system
 - Categories and roles
@@ -92,7 +99,7 @@ This is a CLI contract. Keep it stable and intentional.
 
 **Purpose:** Verify the workstation is *capable*.
 
-**Includes**
+Includes:
 
 - Tool existence checks
 - Required file presence
@@ -108,7 +115,7 @@ Checks only. **No starting or stopping services.**
 
 **Purpose:** Shared plumbing and reusable helpers.
 
-**Includes**
+Includes:
 
 - Generic macros and functions
 - Wrappers around `docker`, `gradle`, `git`, etc.
@@ -124,7 +131,7 @@ Prefer no user-facing targets unless they are purely internal helpers.
 
 **Purpose:** Prove the artifact is correct.
 
-**Includes**
+Includes:
 
 - Formatting
 - Linting
@@ -143,7 +150,7 @@ Should not mutate machine state.
 
 **Purpose:** Make the **local development runtime exist**.
 
-**Includes**
+Includes:
 
 - `make dev-up / dev-down / dev-status`
 - Container runtimes (Docker, Colima)
@@ -161,7 +168,7 @@ Targets must be idempotent and safe to re-run.
 
 **Purpose:** Run project workflows the way CI/CD would.
 
-**Includes**
+Includes:
 
 - `act`
 - Local pipeline simulation
@@ -177,7 +184,7 @@ Assumes Runtime is ready (or explicitly calls it).
 
 **Purpose:** Package, release, and ship.
 
-**Includes**
+Includes:
 
 - Image builds and publishing
 - Helm

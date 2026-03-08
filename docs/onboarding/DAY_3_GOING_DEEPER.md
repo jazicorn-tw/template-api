@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [onboarding]
+description:  "Day-3 / Going Deeper"
+---
 # Day-3 / Going Deeper
 
 You have a merged PR. Day-3 is about working confidently at full speed:
@@ -85,12 +94,12 @@ merge to `main`. You do not trigger releases manually.
 
 ### Commit type → version bump
 
-| Commit prefix | Example | Bump |
-| --- | --- | --- |
-| `fix:` | `fix(resource): handle null username` | patch (0.0.x) |
-| `feat:` | `feat({{resource}}): add nickname field` | minor (0.x.0) |
-| `feat!:` / `BREAKING CHANGE:` | `feat!: rename resource endpoint` | major (x.0.0) |
-| `chore:`, `docs:`, `test:` | `docs(onboarding): fix broken link` | no release |
+| Commit prefix                 | Example                                  | Bump          |
+| ----------------------------- | ---------------------------------------- | ------------- |
+| `fix:`                        | `fix(resource): handle null username`    | patch (0.0.x) |
+| `feat:`                       | `feat({{resource}}): add nickname field` | minor (0.x.0) |
+| `feat!:` / `BREAKING CHANGE:` | `feat!: rename resource endpoint`        | major (x.0.0) |
+| `chore:`, `docs:`, `test:`    | `docs(onboarding): fix broken link`      | no release    |
 
 ### What a release produces
 
@@ -114,12 +123,12 @@ what the release notes would look like, without creating a tag or publishing.
 
 Reach for the lowest layer that covers the behaviour you are testing.
 
-| What you are testing | Layer | Tooling |
-| --- | --- | --- |
-| Business rules, no I/O | Service unit | JUnit 5 + Mockito |
-| HTTP request/response contract | Controller slice | `@WebMvcTest` + `@MockitoBean` |
-| Database persistence | Integration | `AbstractIntegrationTest` (Testcontainers) |
-| External HTTP client (Phase 2+) | Client unit | WireMock stubs |
+| What you are testing            | Layer            | Tooling                                    |
+| ------------------------------- | ---------------- | ------------------------------------------ |
+| Business rules, no I/O          | Service unit     | JUnit 5 + Mockito                          |
+| HTTP request/response contract  | Controller slice | `@WebMvcTest` + `@MockitoBean`             |
+| Database persistence            | Integration      | `AbstractIntegrationTest` (Testcontainers) |
+| External HTTP client (Phase 2+) | Client unit      | WireMock stubs                             |
 
 ### Rules
 
@@ -171,20 +180,20 @@ ResourceController
 
 ## 5. Useful references for daily work
 
-| Topic | Doc |
-| --- | --- |
-| Architecture layers | [`docs/ARCHITECTURE.md`](../ARCHITECTURE.md) |
-| All ADRs | [`docs/adr/README.md`](../adr/README.md) |
-| Commit format | [`docs/commit/COMMITIZEN.md`](../commit/COMMITIZEN.md) |
-| Quality gates | [`docs/adr/ADR-000-linting.md`](../adr/ADR-000-linting.md) |
-| Testcontainers setup | [`docs/testing/LOCAL_TESTING.md`](../testing/LOCAL_TESTING.md) |
-| Testcontainers deep dive | [`docs/faq/testing/TESTCONTAINERS_EXPLAINED.md`](../faq/testing/TESTCONTAINERS_EXPLAINED.md) |
-| Flyway migrations | [`docs/faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md`](../faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md) |
-| CI troubleshooting | [`docs/testing/CI_TROUBLESHOOTING.md`](../testing/CI_TROUBLESHOOTING.md) |
-| act setup | [`docs/tooling/ACTRC.md`](../tooling/ACTRC.md) |
-| act secrets | [`docs/devops/ci/act/SECRETS.md`](../devops/ci/act/SECRETS.md) |
-| Contributing guide | [`CONTRIBUTING.md`](../../CONTRIBUTING.md) |
-| Phase roadmap | [`docs/phases/ROADMAP.md`](../phases/ROADMAP.md) |
+| Topic                    | Doc                                                                                                  |
+| ------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Architecture layers      | [`docs/ARCHITECTURE.md`](../ARCHITECTURE.md)                                                         |
+| All ADRs                 | [`docs/adr/README.md`](../adr/README.md)                                                             |
+| Commit format            | [`docs/commit/COMMITIZEN.md`](../commit/COMMITIZEN.md)                                               |
+| Quality gates            | [`docs/adr/ADR-000-linting.md`](../adr/ADR-000-linting.md)                                           |
+| Testcontainers setup     | [`docs/testing/LOCAL_TESTING.md`](../testing/LOCAL_TESTING.md)                                       |
+| Testcontainers deep dive | [`docs/faq/testing/TESTCONTAINERS_EXPLAINED.md`](../faq/testing/TESTCONTAINERS_EXPLAINED.md)         |
+| Flyway migrations        | [`docs/faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md`](../faq/database/FLYWAY_MIGRATIONS_EXPLAINED.md) |
+| CI troubleshooting       | [`docs/testing/CI_TROUBLESHOOTING.md`](../testing/CI_TROUBLESHOOTING.md)                             |
+| act setup                | [`docs/tooling/ACTRC.md`](../tooling/ACTRC.md)                                                       |
+| act secrets              | [`docs/devops/ci/act/SECRETS.md`](../devops/ci/act/SECRETS.md)                                       |
+| Contributing guide       | [`CONTRIBUTING.md`](../../CONTRIBUTING.md)                                                           |
+| Phase roadmap            | [`docs/phases/ROADMAP.md`](../phases/ROADMAP.md)                                                     |
 
 ---
 

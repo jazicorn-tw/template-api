@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [phases]
+description:  "Delivery Phases & Roadmap"
+---
 <!-- markdownlint-disable-file MD024 -->
 # 📦 Delivery Phases & Roadmap
 
@@ -40,16 +49,16 @@ Each version introduces new functionality only after writing failing tests first
 
 ## 🧩 Tech Stack
 
-| Area | Technology |
-| --- | --- |
-| Language | Java 21 |
-| Framework | Spring Boot 4.0.x |
-| Database | PostgreSQL (local/dev/prod), Testcontainers (tests) |
-| HTTP Client | WebClient (Spring WebFlux) |
-| Auth | Spring Security + JWT _(planned — phased rollout)_ |
-| Testing | JUnit 5, AssertJ, Mockito, Spring Test, Testcontainers |
-| Migration | Flyway |
-| Build | Gradle 9 |
+| Area        | Technology                                             |
+| ----------- | ------------------------------------------------------ |
+| Language    | Java 21                                                |
+| Framework   | Spring Boot 4.0.x                                      |
+| Database    | PostgreSQL (local/dev/prod), Testcontainers (tests)    |
+| HTTP Client | WebClient (Spring WebFlux)                             |
+| Auth        | Spring Security + JWT _(planned — phased rollout)_     |
+| Testing     | JUnit 5, AssertJ, Mockito, Spring Test, Testcontainers |
+| Migration   | Flyway                                                 |
+| Build       | Gradle 9                                               |
 
 ---
 

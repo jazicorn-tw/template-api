@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops]
+description:  "GitHub App Setup (Branch Bypass for CI)"
+---
 # GitHub App Setup (Branch Bypass for CI)
 
 The release workflow pushes a changelog commit directly to `main`. Because `main` has branch
@@ -10,12 +19,12 @@ This is a **one-time setup per repository**.
 
 ## Overview
 
-| Step | What you do |
-| --- | --- |
-| 1 | Create a GitHub App (or reuse an existing one) |
-| 2 | Generate and store a private key as a repo secret |
-| 3 | Install the App on this repository |
-| 4 | Add the App to the `main` ruleset bypass list |
+| Step | What you do                                       |
+| ---- | ------------------------------------------------- |
+| 1    | Create a GitHub App (or reuse an existing one)    |
+| 2    | Generate and store a private key as a repo secret |
+| 3    | Install the App on this repository                |
+| 4    | Add the App to the `main` ruleset bypass list     |
 
 ---
 
@@ -46,9 +55,9 @@ This is a **one-time setup per repository**.
 3. In your repository, go to **Settings → Secrets and variables → Actions**
 4. Add two secrets:
 
-| Secret name | Value |
-| --- | --- |
-| `GH_APP_ID` | The App ID from Step 1 |
+| Secret name          | Value                                |
+| -------------------- | ------------------------------------ |
+| `GH_APP_ID`          | The App ID from Step 1               |
 | `GH_APP_PRIVATE_KEY` | The full contents of the `.pem` file |
 
 The workflow passes `GH_APP_PRIVATE_KEY` through `fromJSON(format(...))` to
@@ -110,11 +119,11 @@ succeed and the changelog commit should land on `main` without errors.
 
 **Common failure messages and causes:**
 
-| Error | Cause |
-| --- | --- |
+| Error                                        | Cause                                                           |
+| -------------------------------------------- | --------------------------------------------------------------- |
 | `Could not create installation access token` | `GH_APP_ID` or `GH_APP_PRIVATE_KEY` secret missing or malformed |
-| `Could not retrieve installation` (404) | App not installed on this repo (Step 3 skipped) |
-| `Changelog commit failed` | App not in the ruleset bypass list (Step 4 skipped) |
+| `Could not retrieve installation` (404)      | App not installed on this repo (Step 3 skipped)                 |
+| `Changelog commit failed`                    | App not in the ruleset bypass list (Step 4 skipped)             |
 
 ---
 

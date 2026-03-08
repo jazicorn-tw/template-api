@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, ci]
+description:  "How does SonarCloud work in this project?"
+---
 # How does SonarCloud work in this project?
 
 This article explains what SonarCloud does, when it runs, what it reports,
@@ -30,11 +39,11 @@ SonarCloud analysis is part of the `CI` workflow
 if: ${{ vars.ENABLE_SONAR != 'false' && github.actor != 'nektos/act' }}
 ```
 
-| Condition | Effect |
-| --- | --- |
-| `ENABLE_SONAR` unset or `'true'` | Analysis runs |
-| `ENABLE_SONAR=false` | Analysis is skipped (no error) |
-| Running under `act` (local CI) | Analysis is always skipped |
+| Condition                        | Effect                         |
+| -------------------------------- | ------------------------------ |
+| `ENABLE_SONAR` unset or `'true'` | Analysis runs                  |
+| `ENABLE_SONAR=false`             | Analysis is skipped (no error) |
+| Running under `act` (local CI)   | Analysis is always skipped     |
 
 If `SONAR_TOKEN` is not set, the step emits a warning and exits cleanly — it
 does not block the build.
@@ -114,13 +123,13 @@ reason.
 SonarCloud enforces a **quality gate** — a set of conditions that new code
 must meet to pass. The default Sonar Way gate checks:
 
-| Metric | Threshold |
-| --- | --- |
-| Coverage on new code | ≥ 80 % |
-| Duplicated lines on new code | ≤ 3 % |
-| Maintainability rating on new code | A |
-| Reliability rating on new code | A |
-| Security rating on new code | A |
+| Metric                             | Threshold |
+| ---------------------------------- | --------- |
+| Coverage on new code               | ≥ 80 %    |
+| Duplicated lines on new code       | ≤ 3 %     |
+| Maintainability rating on new code | A         |
+| Reliability rating on new code     | A         |
+| Security rating on new code        | A         |
 
 A failing quality gate marks the PR check as failed but does not block merging
 by default unless branch protection requires it.

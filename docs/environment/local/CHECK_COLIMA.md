@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [env, local]
+description:  "Colima Resource Check Script"
+---
 # Colima Resource Check Script
 
 ## Purpose
@@ -16,10 +25,10 @@ It is designed to be **safe for local developer use** and **non-blocking** by de
 
 ## Requirements Enforced
 
-| Resource | Default | Notes |
-| --- | --- | --- |
-| Memory | 8 GiB | Docker may report slightly less due to VM overhead |
-| CPUs | 6 | Required for parallel Gradle + containers |
+| Resource | Default | Notes                                              |
+| -------- | ------- | -------------------------------------------------- |
+| Memory   | 8 GiB   | Docker may report slightly less due to VM overhead |
+| CPUs     | 6       | Required for parallel Gradle + containers          |
 
 A small tolerance (0.25 GiB) is applied to memory checks to account for virtualization overhead.
 

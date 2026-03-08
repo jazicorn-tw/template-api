@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops]
+description:  "Release Gating & Local Simulation"
+---
 <!-- markdownlint-disable-file MD036 -->
 <!-- markdownlint-disable-file MD060 -->
 
@@ -119,12 +128,12 @@ Individual CI jobs and steps can be disabled via repository variables without
 touching workflow files. All flags are **enabled by default** (unset = runs).
 Set to `'false'` to skip.
 
-| Variable | Skips |
-| --- | --- |
+| Variable                 | Skips                                      |
+| ------------------------ | ------------------------------------------ |
 | `ENABLE_STATIC_ANALYSIS` | Checkstyle/PMD/SpotBugs step in CI Quality |
-| `ENABLE_SONAR` | Sonar cache + analysis steps in CI Quality |
-| `ENABLE_MD_LINT` | Entire markdown-lint job in CI Quality |
-| `ENABLE_DOCTOR_SNAPSHOT` | Entire doctor job in Doctor Snapshot |
+| `ENABLE_SONAR`           | Sonar cache + analysis steps in CI Quality |
+| `ENABLE_MD_LINT`         | Entire markdown-lint job in CI Quality     |
+| `ENABLE_DOCTOR_SNAPSHOT` | Entire doctor job in Doctor Snapshot       |
 
 See `docs/environment/ci/CI_FEATURE_FLAGS.md` for full details.
 
@@ -132,13 +141,13 @@ See `docs/environment/ci/CI_FEATURE_FLAGS.md` for full details.
 
 ## ✅ Expected behavior matrix
 
-| Scenario | Release | Publish |
-| --- | --- | --- |
-| No `.vars`, local act | ❌ | ❌ |
-| `.vars` with ENABLE_SEMANTIC_RELEASE | ✅ | ❌ |
-| Canonical repo + published version | ✅ | ✅ |
-| Forked repo | ✅ | ❌ |
-| GitHub repo vars disabled | ❌ | ❌ |
+| Scenario                             | Release | Publish |
+| ------------------------------------ | ------- | ------- |
+| No `.vars`, local act                | ❌      | ❌      |
+| `.vars` with ENABLE_SEMANTIC_RELEASE | ✅      | ❌      |
+| Canonical repo + published version   | ✅      | ✅      |
+| Forked repo                          | ✅      | ❌      |
+| GitHub repo vars disabled            | ❌      | ❌      |
 
 ---
 

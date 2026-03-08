@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [adr]
+description:  "ADR-006: Local Developer Experience – Makefile Commands, Doctor Checks, and Verification"
+---
 # ADR-006: Local Developer Experience – Makefile Commands, Doctor Checks, and Verification
 
 - **Status:** Accepted
@@ -69,10 +78,10 @@ This script is a **local convenience tool** and is not used directly by CI.
 
 The following Make targets are defined for environment readiness:
 
-| Target | Purpose |
-| --- | --- |
+| Target   | Purpose                                          |
+| -------- | ------------------------------------------------ |
 | `doctor` | Runs `scripts/doctor.sh` to validate local setup |
-| `help` | Lists common Make targets |
+| `help`   | Lists common Make targets                        |
 
 Rationale:
 
@@ -88,13 +97,13 @@ Make is used as a **thin orchestration layer** over Gradle and scripts.
 
 Key targets:
 
-| Target | Meaning |
-| --- | --- |
-| `lint` | Static analysis only |
-| `test` | Unit tests |
-| `verify` | “Am I good to push?” (doctor + lint + test) |
-| `quality` | Local CI approximation (doctor + auto-format + ./gradlew clean check) |
-| `bootstrap` | First-time setup (hooks + doctor + quality) |
+| Target      | Meaning                                                               |
+| ----------- | --------------------------------------------------------------------- |
+| `lint`      | Static analysis only                                                  |
+| `test`      | Unit tests                                                            |
+| `verify`    | “Am I good to push?” (doctor + lint + test)                           |
+| `quality`   | Local CI approximation (doctor + auto-format + ./gradlew clean check) |
+| `bootstrap` | First-time setup (hooks + doctor + quality)                           |
 
 Design principles:
 

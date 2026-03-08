@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, db]
+description:  "Flyway Migrations: What's Actually Going On"
+---
 # Flyway Migrations: What's Actually Going On
 
 If you've wondered why all the tables are in one file, what happens if
@@ -51,13 +60,13 @@ A Phase 2 contributor adds business logic, not new tables.
 
 ## Flyway versioning rules
 
-| Rule | Detail |
-| --- | --- |
+| Rule            | Detail                                           |
+| --------------- | ------------------------------------------------ |
 | Filename format | `V{number}__{description}.sql` (two underscores) |
-| Version number | Integers only — `V2`, `V3`, not `V1.1` |
-| Order | Applied in ascending version order |
-| Immutability | **Never edit a migration that has already run** |
-| Idempotency | Each file runs exactly once per database |
+| Version number  | Integers only — `V2`, `V3`, not `V1.1`           |
+| Order           | Applied in ascending version order               |
+| Immutability    | **Never edit a migration that has already run**  |
+| Idempotency     | Each file runs exactly once per database         |
 
 Version numbers do not need to be sequential. `V2`, `V10`, `V100` all
 work — Flyway sorts numerically.

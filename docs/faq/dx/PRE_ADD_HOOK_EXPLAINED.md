@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, dx]
+description:  "How does the pre-add hook work?"
+---
 # How does the pre-add hook work?
 
 This article explains the shell-level `git add` wrapper that runs lint and
@@ -20,11 +29,11 @@ at `git add` time — so formatting is applied before a commit is even attempted
 
 ## What it checks
 
-| Files staged | Check | Behavior |
-| --- | --- | --- |
-| `*.md` | markdownlint-cli2 | Aborts on error — fix violations, then re-run `git add` |
-| `*.java`, `*.gradle` | Spotless (`make format`) | Auto-fixes in place — just re-run `git add` |
-| `scripts/`, `.githooks/`, `*.sh` | Exec-bits (`make exec-bits`) | Auto-fixes `chmod +x` and stages the mode change |
+| Files staged                     | Check                        | Behavior                                                |
+| -------------------------------- | ---------------------------- | ------------------------------------------------------- |
+| `*.md`                           | markdownlint-cli2            | Aborts on error — fix violations, then re-run `git add` |
+| `*.java`, `*.gradle`             | Spotless (`make format`)     | Auto-fixes in place — just re-run `git add`             |
+| `scripts/`, `.githooks/`, `*.sh` | Exec-bits (`make exec-bits`) | Auto-fixes `chmod +x` and stages the mode change        |
 
 The key design principle: **only staged files are checked**. If you run
 `git add src/Main.java`, markdownlint never fires. If you run

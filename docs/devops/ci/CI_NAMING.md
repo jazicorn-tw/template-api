@@ -1,7 +1,12 @@
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD033 -->
-<!-- markdownlint-disable MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops, ci]
+description:  "CI & Workflow Naming Conventions"
+---
 # CI & Workflow Naming Conventions
 
 This document defines **naming rules for GitHub Actions workflows** in this repository.
@@ -23,14 +28,14 @@ Names should answer one question immediately:
 
 ## Current Workflow Inventory
 
-| File | Name | Purpose |
-| --- | --- | --- |
-| `ci.yml` | `CI` | Validate correctness — tests, quality, lint |
-| `release.yml` | `Release` | Release lifecycle — Docker build, Helm lint, semantic-release, publish |
-| `security.yml` | `Security` | CodeQL static security analysis |
-| `changelog-guard.yml` | `Changelog Guard` | Prevent manual edits to `CHANGELOG.md` |
-| `pr-helper.yml` | `PR Helper` | Post diagnostic comment on CI failure |
-| `doctor.yml` | `Doctor` | Environment snapshot and validation |
+| File                  | Name              | Purpose                                                                |
+| --------------------- | ----------------- | ---------------------------------------------------------------------- |
+| `ci.yml`              | `CI`              | Validate correctness — tests, quality, lint                            |
+| `release.yml`         | `Release`         | Release lifecycle — Docker build, Helm lint, semantic-release, publish |
+| `security.yml`        | `Security`        | CodeQL static security analysis                                        |
+| `changelog-guard.yml` | `Changelog Guard` | Prevent manual edits to `CHANGELOG.md`                                 |
+| `pr-helper.yml`       | `PR Helper`       | Post diagnostic comment on CI failure                                  |
+| `doctor.yml`          | `Doctor`          | Environment snapshot and validation                                    |
 
 ---
 

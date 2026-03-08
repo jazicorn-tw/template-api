@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, dx]
+description:  "Executable Bits: What’s Actually Going On"
+---
 # Executable Bits: What’s Actually Going On
 
 This document clarifies a common point of confusion when working with scripts, Git, and local tooling in this repository.
@@ -47,10 +56,10 @@ Git separately tracks whether a file *should be executable* when checked out.
 
 Git file modes:
 
-| Mode | Meaning |
-| --- | --- |
+| Mode     | Meaning        |
+| -------- | -------------- |
 | `100644` | Not executable |
-| `100755` | Executable |
+| `100755` | Executable     |
 
 You can inspect this with:
 
@@ -158,12 +167,12 @@ After the commit:
 
 Think of it like this:
 
-| Responsibility | Tool |
-| --- | --- |
-| Fix my machine right now | Bootstrap scripts |
-| Define repo guarantees | Git commit |
-| Enforce correctness | `check-executable-bits.sh` |
-| Decide what fails | CI |
+| Responsibility           | Tool                       |
+| ------------------------ | -------------------------- |
+| Fix my machine right now | Bootstrap scripts          |
+| Define repo guarantees   | Git commit                 |
+| Enforce correctness      | `check-executable-bits.sh` |
+| Decide what fails        | CI                         |
 
 Each layer does **one job**.
 

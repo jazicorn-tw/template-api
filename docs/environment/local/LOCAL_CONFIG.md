@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD060 -->
-<!-- markdownlint-disable-file MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [env, local]
+description:  "Local Configuration"
+---
 # 🌱 Local Configuration
 
 This document explains the **required local environment files** for this repository
@@ -13,11 +19,11 @@ development, CI simulation, and tooling such as `doctor`.
 
 ## ✅ Required files
 
-| File | Location | Committed? | Purpose |
-| --- | --- | --- | --- |
-| `.env` | Project root | No | Local runtime configuration |
-| `.actrc` | `$HOME/.actrc` | No | Configuration for `act` (local GitHub Actions runner) |
-| `.config/local-settings.json` | Project root | Yes | Tooling defaults (Colima, doctor, DB, postgres image) |
+| File                          | Location       | Committed? | Purpose                                               |
+| ----------------------------- | -------------- | ---------- | ----------------------------------------------------- |
+| `.env`                        | Project root   | No         | Local runtime configuration                           |
+| `.actrc`                      | `$HOME/.actrc` | No         | Configuration for `act` (local GitHub Actions runner) |
+| `.config/local-settings.json` | Project root   | Yes        | Tooling defaults (Colima, doctor, DB, postgres image) |
 
 ---
 
@@ -25,7 +31,7 @@ development, CI simulation, and tooling such as `doctor`.
 
 The `.env` file contains **local-only environment variables** used during development.
 
-### Create the file
+### Create the `.env` file
 
 ```bash
 cp .env.example .env
@@ -66,7 +72,7 @@ DEBUG=false
 The `.actrc` file configures [`act`](https://github.com/nektos/act), which is used
 to run GitHub Actions workflows locally.
 
-### Create the file
+### Create the `.actrc` file
 
 If this repository provides an example file:
 
@@ -79,24 +85,6 @@ Otherwise, create it manually:
 ```bash
 touch ~/.actrc
 ```
-
-### Required contents
-
-```text
--P ubuntu-latest=catthehacker/ubuntu:full-latest
---container-architecture linux/amd64
---container-daemon-socket /var/run/docker.sock
-```
-
-### Required permissions
-
-For security reasons, `.actrc` **must** have strict permissions:
-
-```bash
-chmod 600 ~/.actrc
-```
-
-Your `doctor` checks will fail if permissions are more permissive.
 
 ### Required contents
 

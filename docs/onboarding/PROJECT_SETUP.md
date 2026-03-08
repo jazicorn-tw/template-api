@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [onboarding]
+description:  "Project Setup"
+---
 # Project Setup
 
 This is the **single reference** for setting up this project from scratch.
@@ -9,14 +18,14 @@ Work through the sections in order — each one assumes the previous is complete
 
 Install these tools before anything else:
 
-| Tool | Required version | Check |
-| --- | --- | --- |
-| Java | 21 | `java -version` |
-| Docker Desktop or Colima | Any recent | `docker ps` |
-| Node.js | 20+ | `node --version` |
-| Git | Any | `git --version` |
-| make | Any | `make --version` |
-| jq | Any | `jq --version` |
+| Tool                     | Required version | Check            |
+| ------------------------ | ---------------- | ---------------- |
+| Java                     | 21               | `java -version`  |
+| Docker Desktop or Colima | Any recent       | `docker ps`      |
+| Node.js                  | 20+              | `node --version` |
+| Git                      | Any              | `git --version`  |
+| make                     | Any              | `make --version` |
+| jq                       | Any              | `jq --version`   |
 
 Verify all at once:
 
@@ -51,11 +60,11 @@ There are two kinds of placeholders:
 
 ### Static tokens
 
-| Token | Replace with | Example |
-| --- | --- | --- |
-| `{{project-name}}` | Repo / CI pipeline name | `my-api` |
-| `your-org` | GitHub org or username | `acme` |
-| `com.example` | Your Java base package | `com.acme` |
+| Token              | Replace with            | Example    |
+| ------------------ | ----------------------- | ---------- |
+| `{{project-name}}` | Repo / CI pipeline name | `my-api`   |
+| `your-org`         | GitHub org or username  | `acme`     |
+| `com.example`      | Your Java base package  | `com.acme` |
 
 **Quick option (recommended):** use the init-project script to replace the first two tokens
 across all key files at once:
@@ -206,17 +215,17 @@ Go to your GitHub repo → **Settings → Secrets and variables → Actions**.
 
 ### Secrets (required for release pipeline)
 
-| Secret | Description |
-| --- | --- |
-| `GH_APP_ID` | GitHub App ID |
+| Secret               | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
+| `GH_APP_ID`          | GitHub App ID                                                     |
 | `GH_APP_PRIVATE_KEY` | Full contents of the `.pem` file (paste as-is, multiline is fine) |
 
 ### Repository variables (required for CI gate and release)
 
-| Variable | Example value |
-| --- | --- |
-| `ENABLE_SEMANTIC_RELEASE` | `true` |
-| `CANONICAL_REPOSITORY` | `acme/my-api` |
+| Variable                  | Example value |
+| ------------------------- | ------------- |
+| `ENABLE_SEMANTIC_RELEASE` | `true`        |
+| `CANONICAL_REPOSITORY`    | `acme/my-api` |
 
 > The `ci` workflow works without secrets.
 > Only the `release` workflow's release job requires the GitHub App credentials.

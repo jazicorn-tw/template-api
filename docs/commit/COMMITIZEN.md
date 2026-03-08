@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [commit]
+description:  "Commit Messages & Commitizen"
+---
 # 🧾 Commit Messages & Commitizen
 
 This project enforces **Conventional Commits** to ensure:
@@ -29,16 +38,16 @@ All commit messages must follow this format:
 
 ### Common types
 
-| Type | Purpose |
-| --- | --- |
-| `feat` | New feature (minor version signal) |
-| `fix` | Bug fix (patch signal) |
+| Type       | Purpose                             |
+| ---------- | ----------------------------------- |
+| `feat`     | New feature (minor version signal)  |
+| `fix`      | Bug fix (patch signal)              |
 | `refactor` | Code change with no behavior change |
-| `test` | Tests only |
-| `docs` | Documentation only |
-| `chore` | Tooling, config, housekeeping |
-| `build` | Build system or dependency changes |
-| `ci` | CI configuration changes |
+| `test`     | Tests only                          |
+| `docs`     | Documentation only                  |
+| `chore`    | Tooling, config, housekeeping       |
+| `build`    | Build system or dependency changes  |
+| `ci`       | CI configuration changes            |
 
 ### Breaking changes (pre-1.0)
 

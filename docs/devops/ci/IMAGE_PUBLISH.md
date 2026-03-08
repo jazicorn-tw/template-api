@@ -1,5 +1,12 @@
-<!-- markdownlint-disable-file MD033 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops, ci]
+description:  "Publish Docker Image (Release Tags Only)"
+---
 # 🐳 Publish Docker Image (Release Tags Only)
 
 This repository publishes a Docker image to **GitHub Container Registry (GHCR)** only when
@@ -59,11 +66,11 @@ publishing is allowed.
 This job relies on GitHub **Repository variables**
 (Settings → Secrets and variables → Actions → Variables):
 
-| Variable | Example value | Purpose |
-| --- | --- | --- |
-| `PUBLISH_DOCKER_IMAGE` | `true` or `false` | Global "on/off" switch (defaults to `false` when missing). |
-| `PUBLISH_HELM_CHART` | `true` or `false` | Controls Helm OCI push independently. |
-| `CANONICAL_REPOSITORY` | `owner/repo` | Prevents publishing from non-canonical repos (hardens against forks). |
+| Variable               | Example value     | Purpose                                                               |
+| ---------------------- | ----------------- | --------------------------------------------------------------------- |
+| `PUBLISH_DOCKER_IMAGE` | `true` or `false` | Global "on/off" switch (defaults to `false` when missing).            |
+| `PUBLISH_HELM_CHART`   | `true` or `false` | Controls Helm OCI push independently.                                 |
+| `CANONICAL_REPOSITORY` | `owner/repo`      | Prevents publishing from non-canonical repos (hardens against forks). |
 
 ### Gate rules
 
@@ -97,7 +104,7 @@ Tags are derived from the Git tag (SemVer):
 Configured via `docker/metadata-action`:
 
 ```yaml
-tags: |
+tags:         []
   type=semver,pattern={{version}}
   type=semver,pattern={{major}}.{{minor}}
   type=semver,pattern={{major}}
@@ -184,10 +191,10 @@ malicious publishing from a fork where variables might differ.
 
 ## 🔁 Relationship to other workflows
 
-| Workflow / Job | Responsibility |
-| --- | --- |
-| `release.yml` / **`docker-build`** | CI validation (Docker build), no push |
-| `release.yml` / **`helm-lint`** | CI validation (Helm chart), no deploy |
-| `release.yml` / **`release`** | semantic-release — version bump and tag |
-| `publish.yml` / **`docker`** | Build + push Docker image to GHCR |
-| `publish.yml` / **`helm`** | Package + push Helm chart to GHCR |
+| Workflow / Job                     | Responsibility                          |
+| ---------------------------------- | --------------------------------------- |
+| `release.yml` / **`docker-build`** | CI validation (Docker build), no push   |
+| `release.yml` / **`helm-lint`**    | CI validation (Helm chart), no deploy   |
+| `release.yml` / **`release`**      | semantic-release — version bump and tag |
+| `publish.yml` / **`docker`**       | Build + push Docker image to GHCR       |
+| `publish.yml` / **`helm`**         | Package + push Helm chart to GHCR       |

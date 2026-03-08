@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops]
+description:  "Releases (semantic-release)"
+---
 <!-- markdownlint-disable-file MD036 -->
 <!-- markdownlint-disable-file MD060 -->
 
@@ -61,11 +70,11 @@ Then push your branch normally. The `pre-push` hook will warn you if you forget.
 
 After the baseline is in place, versioning works as expected:
 
-| Commit type | Next version |
-| --- | --- |
-| `fix:` | `v0.0.1` |
-| `feat:` | `v0.1.0` |
-| `BREAKING CHANGE:` | `v1.0.0` |
+| Commit type        | Next version |
+| ------------------ | ------------ |
+| `fix:`             | `v0.0.1`     |
+| `feat:`            | `v0.1.0`     |
+| `BREAKING CHANGE:` | `v1.0.0`     |
 
 ---
 
@@ -107,24 +116,24 @@ semantic-release reacts only to **commit types**, not scopes.
 
 ### Releasable types
 
-| Type | Result |
-| --- | --- |
-| `feat` | Minor release |
-| `fix` | Patch release |
-| `perf` | Patch release |
+| Type              | Result        |
+| ----------------- | ------------- |
+| `feat`            | Minor release |
+| `fix`             | Patch release |
+| `perf`            | Patch release |
 | `BREAKING CHANGE` | Major release |
 
 ### Non-releasing types
 
-| Type | Result |
-| --- | --- |
-| `docs` | No release |
-| `chore` | No release |
-| `test` | No release |
-| `ci` | No release |
+| Type       | Result     |
+| ---------- | ---------- |
+| `docs`     | No release |
+| `chore`    | No release |
+| `test`     | No release |
+| `ci`       | No release |
 | `refactor` | No release |
-| `style` | No release |
-| `build` | No release |
+| `style`    | No release |
+| `build`    | No release |
 
 Unknown or missing types are grouped under **🧩 Other** in release notes.
 
@@ -274,11 +283,11 @@ by convention.
 
 ### Version format
 
-| Branch | Commit | Version |
-| --- | --- | --- |
-| `canary` | `feat:` | `v0.1.0-canary.1` |
-| `canary` | `BREAKING CHANGE:` | `v1.0.0-canary.1` |
-| `main` | merge from canary | `v0.1.0` or `v1.0.0` |
+| Branch   | Commit             | Version              |
+| -------- | ------------------ | -------------------- |
+| `canary` | `feat:`            | `v0.1.0-canary.1`    |
+| `canary` | `BREAKING CHANGE:` | `v1.0.0-canary.1`    |
+| `main`   | merge from canary  | `v0.1.0` or `v1.0.0` |
 
 ### Docker image
 
@@ -331,11 +340,11 @@ git push origin v0.0.0
 
 After that, versioning works as expected:
 
-| Commit type | Next version |
-| --- | --- |
-| `fix:` | `v0.0.1` |
-| `feat:` | `v0.1.0` |
-| `BREAKING CHANGE:` | `v1.0.0` |
+| Commit type        | Next version |
+| ------------------ | ------------ |
+| `fix:`             | `v0.0.1`     |
+| `feat:`            | `v0.1.0`     |
+| `BREAKING CHANGE:` | `v1.0.0`     |
 
 The `pre-push` hook warns you before pushing to `main` or `canary` if no
 baseline tag exists, with the exact commands to run.

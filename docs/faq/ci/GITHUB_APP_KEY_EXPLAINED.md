@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, ci]
+description:  "How do I set up the GitHub App private key?"
+---
 # How do I set up the GitHub App private key?
 
 This article explains what the GitHub App private key is, why two different
@@ -7,10 +16,10 @@ formats exist (raw PEM vs Base64), and exactly what to put where.
 
 ## The short answer
 
-| Where | Format | Why |
-| --- | --- | --- |
-| GitHub Actions secret (`GH_APP_PRIVATE_KEY`) | Raw PEM — paste the `.pem` file as-is | GitHub Secrets support multiline values |
-| Local `.secrets` file (for `act`) | Base64 single-line | `act` does not support multiline secret values |
+| Where                                        | Format                                | Why                                            |
+| -------------------------------------------- | ------------------------------------- | ---------------------------------------------- |
+| GitHub Actions secret (`GH_APP_PRIVATE_KEY`) | Raw PEM — paste the `.pem` file as-is | GitHub Secrets support multiline values        |
+| Local `.secrets` file (for `act`)            | Base64 single-line                    | `act` does not support multiline secret values |
 
 ---
 
@@ -82,11 +91,11 @@ make act-release
 
 The "Generate GitHub App token" step should succeed. If it fails, check:
 
-| Error | Cause |
-| --- | --- |
+| Error                                        | Cause                                                    |
+| -------------------------------------------- | -------------------------------------------------------- |
 | `Could not create installation access token` | `GH_APP_ID` or `GH_APP_PRIVATE_KEY` missing or malformed |
-| `Could not retrieve installation` (404) | App not installed on the repository |
-| Token generated but push fails | App not in the `main` ruleset bypass list |
+| `Could not retrieve installation` (404)      | App not installed on the repository                      |
+| Token generated but push fails               | App not in the `main` ruleset bypass list                |
 
 ---
 

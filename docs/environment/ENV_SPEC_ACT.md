@@ -1,5 +1,13 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [env]
+description:  "`act` — Environment Variables Reference"
+---
 <!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD060 -->
 
 # 🧪 `act` — Environment Variables Reference
 
@@ -70,16 +78,16 @@ vars.ENABLE_SEMANTIC_RELEASE
 
 ## ⚙️ Built-in `act` Environment Variables
 
-| Variable | Description |
-| --- | --- |
-| `ACT` | Always `true` when running under act |
-| `GITHUB_ACTIONS` | `true` (CI parity) |
-| `CI` | `true` |
-| `RUNNER_OS` | Typically `Linux` |
-| `RUNNER_ARCH` | `X64` |
-| `GITHUB_EVENT_NAME` | Event triggering the workflow |
-| `GITHUB_REF_NAME` | Branch or tag name |
-| `GITHUB_SHA` | Commit SHA |
+| Variable            | Description                          |
+| ------------------- | ------------------------------------ |
+| `ACT`               | Always `true` when running under act |
+| `GITHUB_ACTIONS`    | `true` (CI parity)                   |
+| `CI`                | `true`                               |
+| `RUNNER_OS`         | Typically `Linux`                    |
+| `RUNNER_ARCH`       | `X64`                                |
+| `GITHUB_EVENT_NAME` | Event triggering the workflow        |
+| `GITHUB_REF_NAME`   | Branch or tag name                   |
+| `GITHUB_SHA`        | Commit SHA                           |
 
 ---
 

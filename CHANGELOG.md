@@ -1,4 +1,55 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-08
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       draft
+tags:         []
+description:  ""
+---
 # 📦 Release History
+
+## 📦 Release 0.1.2
+
+### 🐛 Fixes
+
+- **ci:** allow canary releases in changelog-guard and fix stale commit regex (c2422de)
+- **scripts:** correct analyzeCommits argument order in semantic-release-impact.mjs (c9ec471)
+
+### 🧹 Chores
+
+- removed unused pr helper script (77435f6)
+
+### 💄 Style
+
+- **pre-add:** move ✅ inline with exec-bits step header (0afd577)
+
+### 📝 Docs
+
+- add frontmatter, align tables, and fix all markdownlint errors (cb5a775)
+- **branching:** add four-tier branch strategy and update onboarding (c62d872)
+
+
+
+## 0.1.2
+
+### 🐛 Fixes
+
+- **ci:** allow canary releases in changelog-guard and fix stale commit regex
+- **scripts:** correct analyzeCommits argument order in semantic-release-impact.mjs
+
+### 🧹 Chores
+
+- removed unused pr helper script
+
+### 💄 Style
+
+- **pre-add:** move ✅ inline with exec-bits step header
+
+### 📝 Docs
+
+- add frontmatter, align tables, and fix all markdownlint errors
+- **branching:** add four-tier branch strategy and update onboarding
 
 ## 📦 Release 0.1.1
 

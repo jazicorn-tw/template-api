@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [phases]
+description:  "Phase 0.3 — Quality Gates, Make System & Local Developer Experience"
+---
 # 🔰 Phase 0.3 — Quality Gates, Make System & Local Developer Experience
 
 > Part of [Phase 0](PHASE_0.md). Covers the local developer toolchain: quality gates,
@@ -30,11 +39,11 @@ make quality
 
 Both run identical checks. CI and local environments are the same gate (ADR-000).
 
-| Tool | What it checks |
-| --- | --- |
-| **Spotless** | Code formatting (Google Java Format) — fails on any diff |
-| **Checkstyle** | Style rules (method names, Javadoc placement, structure) |
-| **PMD** | Static analysis (complexity, test assertions, log guarding) |
+| Tool             | What it checks                                                    |
+| ---------------- | ----------------------------------------------------------------- |
+| **Spotless**     | Code formatting (Google Java Format) — fails on any diff          |
+| **Checkstyle**   | Style rules (method names, Javadoc placement, structure)          |
+| **PMD**          | Static analysis (complexity, test assertions, log guarding)       |
 | **markdownlint** | All `*.md` files in the repo (120-char line limit, heading rules) |
 
 ---
@@ -49,10 +58,10 @@ make hooks
 ./scripts/bootstrap/install-hooks.sh
 ```
 
-| Hook | Enforces |
-| --- | --- |
+| Hook         | Enforces                                                                     |
+| ------------ | ---------------------------------------------------------------------------- |
 | `commit-msg` | Conventional Commits format (via commitizen); prompts to reformat if invalid |
-| `pre-commit` | Executable bits on all scripts in `scripts/` and `.githooks/` |
+| `pre-commit` | Executable bits on all scripts in `scripts/` and `.githooks/`                |
 
 Write commits using commitizen for automatic format compliance:
 
@@ -68,18 +77,18 @@ git commit
 
 The `Makefile` delegates to modular `.mk` files in `make/` (decade-based naming):
 
-| File | Responsibility |
-| --- | --- |
-| `10-env.mk` | Variable declarations and shared constants |
-| `20-help.mk` | `make help` role-based output |
-| `30-bootstrap.mk` | First-time contributor setup |
-| `40-preconditions.mk` | Environment checks (`check-env`, `check-all`) |
-| `50-library.mk` | Shared macros, `doctor`, `exec-bits`, `hooks` |
-| `60-build.mk` | Gradle build and test targets |
-| `70-runtime.mk` | Database targets (`db-flyway-clean`, `db-seed`) |
+| File                      | Responsibility                                  |
+| ------------------------- | ----------------------------------------------- |
+| `10-env.mk`               | Variable declarations and shared constants      |
+| `20-help.mk`              | `make help` role-based output                   |
+| `30-bootstrap.mk`         | First-time contributor setup                    |
+| `40-preconditions.mk`     | Environment checks (`check-env`, `check-all`)   |
+| `50-library.mk`           | Shared macros, `doctor`, `exec-bits`, `hooks`   |
+| `60-build.mk`             | Gradle build and test targets                   |
+| `70-runtime.mk`           | Database targets (`db-flyway-clean`, `db-seed`) |
 | `71-runtime-lifecycle.mk` | `env-up`, `env-down`, `env-check`, `env-status` |
-| `80-simulation.mk` | `act` local CI simulation targets |
-| `90-release.mk` | `release-dry-run` |
+| `80-simulation.mk`        | `act` local CI simulation targets               |
+| `90-release.mk`           | `release-dry-run`                               |
 
 **Key entry points:**
 
@@ -101,14 +110,14 @@ make release-dry-run # preview next semantic-release version
 
 Scripts are organised into subfolders under `scripts/`:
 
-| Folder | Scripts |
-| --- | --- |
-| `scripts/bootstrap/` | `bootstrap-macos.sh`, `bootstrap-linux.sh`, `bootstrap-common.sh`, `install-hooks.sh` |
-| `scripts/check/` | `check-all.sh`, `check-required-files.sh`, `check-executable-bits.sh`, `check-colima.sh`, `check-required-files-act.sh` |
-| `scripts/db/` | `clean-db-flyway.sh`, `seed-db.sh` |
-| `scripts/dev/` | `start-dev.sh`, `stop-dev.sh` |
-| `scripts/lib/` | `shell-utils.sh`, `colima-utils.sh`, `doctor-check-utils.sh`, `validators.sh` |
-| `scripts/` | `doctor.sh` |
+| Folder               | Scripts                                                                                                                 |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `scripts/bootstrap/` | `bootstrap-macos.sh`, `bootstrap-linux.sh`, `bootstrap-common.sh`, `install-hooks.sh`                                   |
+| `scripts/check/`     | `check-all.sh`, `check-required-files.sh`, `check-executable-bits.sh`, `check-colima.sh`, `check-required-files-act.sh` |
+| `scripts/db/`        | `clean-db-flyway.sh`, `seed-db.sh`                                                                                      |
+| `scripts/dev/`       | `start-dev.sh`, `stop-dev.sh`                                                                                           |
+| `scripts/lib/`       | `shell-utils.sh`, `colima-utils.sh`, `doctor-check-utils.sh`, `validators.sh`                                           |
+| `scripts/`           | `doctor.sh`                                                                                                             |
 
 ### `scripts/doctor.sh`
 

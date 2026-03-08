@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD033 MD036 -->
-<!-- markdownlint-disable-file MD033 MD060 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         []
+description:  "Documentation Guide — {{project-name}}"
+---
 # 📚 Documentation Guide — {{project-name}}
 
 This folder contains the **authoritative documentation** for the {{project-name}}.
@@ -212,16 +218,16 @@ If the question starts with:
 
 Use this decision table:
 
-| Question | Put it in |
-| --- | --- |
-| Why was a technical decision made? | `adr/` |
-| How do I get started or unstuck? | `onboarding/` |
-| How do I use local tooling? | `tooling/` |
-| How does CI / deploy work? | `devops/` |
-| Why did tests fail? | `testing/` |
-| What phase are we in? | `phases/` |
-| Why is this repo opinionated? | `quality/` |
-| Why is this weird? | `faq/` |
+| Question                           | Put it in     |
+| ---------------------------------- | ------------- |
+| Why was a technical decision made? | `adr/`        |
+| How do I get started or unstuck?   | `onboarding/` |
+| How do I use local tooling?        | `tooling/`    |
+| How does CI / deploy work?         | `devops/`     |
+| Why did tests fail?                | `testing/`    |
+| What phase are we in?              | `phases/`     |
+| Why is this repo opinionated?      | `quality/`    |
+| Why is this weird?                 | `faq/`        |
 
 If in doubt:
 

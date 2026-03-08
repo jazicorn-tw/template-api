@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [commit]
+description:  "Conventional Commits Cheat Sheet (1 page)"
+---
 # ✅ Conventional Commits Cheat Sheet (1 page)
 
 Use this project’s commit format:
@@ -47,18 +56,18 @@ VSCode's Source Control panel (`⌃⇧G`) also lets you stage individual files o
 
 ## ✅ Types (what to use)
 
-| Type | When to use it | Release signal |
-| --- | --- | --- |
-| `feat` | New user-facing capability | **minor** |
-| `fix` | Bug fix | **patch** |
-| `docs` | Docs only | none |
-| `test` | Tests only | none |
-| `refactor` | No behavior change | none |
-| `perf` | Performance improvement | patch/minor* |
-| `build` | Build tooling / dependencies | none |
-| `ci` | GitHub Actions / CI changes | none |
-| `chore` | Maintenance / housekeeping | none |
-| `revert` | Revert a commit | depends |
+| Type       | When to use it               | Release signal |
+| ---------- | ---------------------------- | -------------- |
+| `feat`     | New user-facing capability   | **minor**      |
+| `fix`      | Bug fix                      | **patch**      |
+| `docs`     | Docs only                    | none           |
+| `test`     | Tests only                   | none           |
+| `refactor` | No behavior change           | none           |
+| `perf`     | Performance improvement      | patch/minor*   |
+| `build`    | Build tooling / dependencies | none           |
+| `ci`       | GitHub Actions / CI changes  | none           |
+| `chore`    | Maintenance / housekeeping   | none           |
+| `revert`   | Revert a commit              | depends        |
 
 \* depends on analyzer rules; default is usually patch if it’s a fix-like change.
 

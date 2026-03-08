@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [onboarding]
+description:  "Day-0 / Machine Setup"
+---
 # Day-0 / Machine Setup
 
 This is the **pre-clone checklist** — tools and shell configuration to put in
@@ -9,14 +18,14 @@ Day-1 assumes everything here is done. If `make doctor` fails, come back here fi
 
 ## 1. Required tools
 
-| Tool | Required version | Check |
-| --- | --- | --- |
-| Java | 21 | `java -version` |
-| Git | any recent | `git --version` |
-| Docker | Desktop or Colima | `docker ps` |
-| Node.js | 20+ | `node --version` |
-| make | any | `make --version` |
-| jq | any | `jq --version` |
+| Tool    | Required version  | Check            |
+| ------- | ----------------- | ---------------- |
+| Java    | 21                | `java -version`  |
+| Git     | any recent        | `git --version`  |
+| Docker  | Desktop or Colima | `docker ps`      |
+| Node.js | 20+               | `node --version` |
+| make    | any               | `make --version` |
+| jq      | any               | `jq --version`   |
 
 ### Installing missing tools (macOS)
 

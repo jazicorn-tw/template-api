@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, ci]
+description:  "Why didn't my commit create a release?"
+---
 # Why didn't my commit create a release?
 
 This article explains why semantic-release may not produce a new version after
@@ -43,24 +52,24 @@ semantic-release only bumps the version for specific commit types.
 
 ### Releasable (trigger a version bump)
 
-| Commit type | Version bump |
-| --- | --- |
-| `feat:` | Minor (`0.1.0` → `0.2.0`) |
-| `fix:` | Patch (`0.1.0` → `0.1.1`) |
-| `perf:` | Patch (`0.1.0` → `0.1.1`) |
+| Commit type               | Version bump              |
+| ------------------------- | ------------------------- |
+| `feat:`                   | Minor (`0.1.0` → `0.2.0`) |
+| `fix:`                    | Patch (`0.1.0` → `0.1.1`) |
+| `perf:`                   | Patch (`0.1.0` → `0.1.1`) |
 | `BREAKING CHANGE:` footer | Major (`0.1.0` → `1.0.0`) |
 
 ### Non-releasable (no version bump)
 
-| Commit type | Result |
-| --- | --- |
-| `docs:` | No release |
-| `chore:` | No release |
+| Commit type | Result     |
+| ----------- | ---------- |
+| `docs:`     | No release |
+| `chore:`    | No release |
 | `refactor:` | No release |
-| `test:` | No release |
-| `ci:` | No release |
-| `style:` | No release |
-| `build:` | No release |
+| `test:`     | No release |
+| `ci:`       | No release |
+| `style:`    | No release |
+| `build:`    | No release |
 
 **The most common miss:** squash-merging a PR and leaving the squash commit
 message as `feat: my feature (#42)` is correct. But if the squash defaults to

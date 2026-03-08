@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling, make]
+description:  "Makefile Inspection (`inspect-mk`)"
+---
 # 🔍 Makefile Inspection (`inspect-mk`)
 
 This document explains the **Makefile inspection tooling** provided by the
@@ -28,18 +37,18 @@ As the Makefile system grows, it becomes harder to answer questions like:
 
 This repository uses a **numeric decade convention** for Make modules:
 
-| Decade | Purpose |
-| --- | --- |
-| 00s | Kernel / Make bootstrapping |
-| 10s | Presentation (UX, colors, formatting) |
-| 20s | Configuration & feature flags |
-| 30s | Public interface (help, categories, roles) |
-| 40s | Preconditions & environment checks |
-| 50s | Libraries & shared helpers |
-| 60s | Verification & quality gates |
-| 70s | Runtime orchestration |
-| 80s | Simulation / automation |
-| 90s | Delivery / release |
+| Decade | Purpose                                    |
+| ------ | ------------------------------------------ |
+| 00s    | Kernel / Make bootstrapping                |
+| 10s    | Presentation (UX, colors, formatting)      |
+| 20s    | Configuration & feature flags              |
+| 30s    | Public interface (help, categories, roles) |
+| 40s    | Preconditions & environment checks         |
+| 50s    | Libraries & shared helpers                 |
+| 60s    | Verification & quality gates               |
+| 70s    | Runtime orchestration                      |
+| 80s    | Simulation / automation                    |
+| 90s    | Delivery / release                         |
 
 `inspect-mk` uses the **first digit** of the filename to determine the decade
 (e.g. `52-commit.mk` → **50s**).

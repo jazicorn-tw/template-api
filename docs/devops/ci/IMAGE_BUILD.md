@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD033 -->
-<!-- markdownlint-disable MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops, ci]
+description:  "️ Docker Build Check (CI – No Push)"
+---
 # 🏗️ Docker Build Check (CI – No Push)
 
 The `docker-build` job in the `release.yml` workflow builds the Docker image
@@ -84,7 +90,7 @@ Key points:
 
 ## ⎈ Helm lint (CI only)
 
-### Purpose
+### Helm lint Purpose
 
 The `helm-lint` job (parallel to `docker-build`) validates Kubernetes manifests
 **without deploying anything**.
@@ -95,7 +101,7 @@ It checks:
 - Template rendering
 - Common Helm anti-patterns and errors
 
-### Configuration
+### Helm lint Configuration
 
 ```yaml
 - name: Helm lint
@@ -128,11 +134,11 @@ which runs **only on release tags or after semantic-release produces a version**
 
 ## 🔁 Relationship to other jobs in `release.yml`
 
-| Job | Responsibility |
-| --- | --- |
-| **`docker-build`** | CI validation (Docker build), no push |
-| **`helm-lint`** | CI validation (Helm chart), no deploy |
-| **`release`** | semantic-release — version bump and tag |
-| **`publish`** | Build + push Docker image and Helm chart to GHCR |
+| Job                | Responsibility                                   |
+| ------------------ | ------------------------------------------------ |
+| **`docker-build`** | CI validation (Docker build), no push            |
+| **`helm-lint`**    | CI validation (Helm chart), no deploy            |
+| **`release`**      | semantic-release — version bump and tag          |
+| **`publish`**      | Build + push Docker image and Helm chart to GHCR |
 
 This separation keeps CI **fast, safe, and predictable**.

@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [phases]
+description:  "Phase 0 — Project Skeleton & DX Infrastructure (v0.0.1)"
+---
 # 🔰 Phase 0 — Project Skeleton & DX Infrastructure (v0.0.1)
 
 > Goal: establish a **production-realistic Spring Boot baseline** with a full developer
@@ -35,10 +44,10 @@ By the end of Phase 0 you will have:
 
 ## 📄 Sub-documents
 
-| Doc | Covers |
-| --- | --- |
-| [`PHASE_0_1.md`](PHASE_0_1.md) | Spring Boot skeleton — ping, health, Testcontainers, config, runbook |
-| [`PHASE_0_2.md`](PHASE_0_2.md) | CI/CD pipelines, semantic-release, Docker image publishing, Helm |
+| Doc                            | Covers                                                                |
+| ------------------------------ | --------------------------------------------------------------------- |
+| [`PHASE_0_1.md`](PHASE_0_1.md) | Spring Boot skeleton — ping, health, Testcontainers, config, runbook  |
+| [`PHASE_0_2.md`](PHASE_0_2.md) | CI/CD pipelines, semantic-release, Docker image publishing, Helm      |
 | [`PHASE_0_3.md`](PHASE_0_3.md) | Quality gates, Make system, developer scripts, local DX (act, Colima) |
 
 ---

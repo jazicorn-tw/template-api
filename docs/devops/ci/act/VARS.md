@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD060 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops, ci, act]
+description:  "`.vars` — Repository Variables"
+---
 # 🔧 `.vars` — Repository Variables
 
 This document explains the purpose and usage of the `.vars` file in this repository.
@@ -31,10 +37,10 @@ It is designed to mirror **GitHub Repository Variables** (`Settings → Variable
 
 ## 📂 Files
 
-| File | Purpose |
-| --- | --- |
+| File            | Purpose                                      |
+| --------------- | -------------------------------------------- |
 | `.vars.example` | Template documenting all supported variables |
-| `.vars` | Local developer override (gitignored) |
+| `.vars`         | Local developer override (gitignored)        |
 
 ---
 
@@ -62,32 +68,32 @@ vars.PUBLISH_DOCKER_IMAGE
 
 ### Release & publishing (disabled by default — must opt in)
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `ENABLE_SEMANTIC_RELEASE` | `false` | Gate semantic-release execution |
-| `PUBLISH_DOCKER_IMAGE` | `false` | Allow Docker image publishing |
-| `PUBLISH_HELM_CHART` | `false` | Allow Helm chart publishing |
-| `CANONICAL_REPOSITORY` | _(unset)_ | `owner/repo` allowed to publish artifacts |
+| Variable                  | Default   | Description                               |
+| ------------------------- | --------- | ----------------------------------------- |
+| `ENABLE_SEMANTIC_RELEASE` | `false`   | Gate semantic-release execution           |
+| `PUBLISH_DOCKER_IMAGE`    | `false`   | Allow Docker image publishing             |
+| `PUBLISH_HELM_CHART`      | `false`   | Allow Helm chart publishing               |
+| `CANONICAL_REPOSITORY`    | _(unset)_ | `owner/repo` allowed to publish artifacts |
 
 ### Release artifact guard (enabled by default — opt out with `false`)
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `GUARD_RELEASE_ARTIFACTS` | `true` | Enforce release artifact rules (CHANGELOG.md guard) |
+| Variable                  | Default | Description                                         |
+| ------------------------- | ------- | --------------------------------------------------- |
+| `GUARD_RELEASE_ARTIFACTS` | `true`  | Enforce release artifact rules (CHANGELOG.md guard) |
 
 ### CI job/step feature flags (enabled by default — opt out with `false`)
 
-| Variable | Default | Description |
-| --- | --- | --- |
+| Variable                 | Default | Description                                |
+| ------------------------ | ------- | ------------------------------------------ |
 | `ENABLE_STATIC_ANALYSIS` | enabled | Checkstyle/PMD/SpotBugs step in CI Quality |
-| `ENABLE_SONAR` | enabled | Sonar cache + analysis steps in CI Quality |
-| `ENABLE_MD_LINT` | enabled | Markdown-lint job in CI Quality |
-| `ENABLE_DOCTOR_SNAPSHOT` | enabled | Doctor snapshot job |
+| `ENABLE_SONAR`           | enabled | Sonar cache + analysis steps in CI Quality |
+| `ENABLE_MD_LINT`         | enabled | Markdown-lint job in CI Quality            |
+| `ENABLE_DOCTOR_SNAPSHOT` | enabled | Doctor snapshot job                        |
 
 ### Future / reserved
 
-| Variable | Default | Description |
-| --- | --- | --- |
+| Variable         | Default | Description               |
+| ---------------- | ------- | ------------------------- |
 | `DEPLOY_ENABLED` | `false` | Global deploy kill-switch |
 
 ---

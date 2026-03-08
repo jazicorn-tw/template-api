@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, ci]
+description:  "Quality Gate FAQ"
+---
 # Quality Gate FAQ
 
 Error messages from the quality gate explained — with exact fixes.
@@ -324,11 +333,11 @@ Some output here
 
 ## Quick-reference suppression patterns
 
-| Tool | Suppression syntax |
-| --- | --- |
-| PMD | `@SuppressWarnings("PMD.RuleName")` on the class |
+| Tool       | Suppression syntax                                       |
+| ---------- | -------------------------------------------------------- |
+| PMD        | `@SuppressWarnings("PMD.RuleName")` on the class         |
 | Checkstyle | `@SuppressWarnings("checkstyle:RuleName")` on the method |
-| SpotBugs | Covered by global exclusions for DTOs/models/config |
+| SpotBugs   | Covered by global exclusions for DTOs/models/config      |
 
 When in doubt, fix the root cause rather than suppress.
 Suppressions in production code (outside `src/test/`) require justification.

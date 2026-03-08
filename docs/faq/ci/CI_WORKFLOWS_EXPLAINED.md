@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, ci]
+description:  "What does each CI workflow do?"
+---
 # What does each CI workflow do?
 
 This article describes every GitHub Actions workflow in this project — when it
@@ -7,15 +16,15 @@ runs, what it checks, and what can skip or gate it.
 
 ## Workflow overview
 
-| Workflow file | Name | Trigger |
-| --- | --- | --- |
-| `ci.yml` | CI | All PRs, push to `main`/`staging`, manual |
-| `release.yml` | Release | All PRs and pushes to `main`/`staging`/`canary`, tag push, manual |
-| `publish.yml` | Publish | Tag push `v*.*.*` |
-| `security.yml` | Security | All PRs, push to `main`/`staging`, weekly schedule, manual |
-| `changelog-guard.yml` | Changelog Guard | All PRs and pushes |
-| `pr-helper.yml` | PR Helper | After CI run completes with failure |
-| `doctor.yml` | Doctor | All PRs, push to `main`, manual |
+| Workflow file         | Name            | Trigger                                                           |
+| --------------------- | --------------- | ----------------------------------------------------------------- |
+| `ci.yml`              | CI              | All PRs, push to `main`/`staging`, manual                         |
+| `release.yml`         | Release         | All PRs and pushes to `main`/`staging`/`canary`, tag push, manual |
+| `publish.yml`         | Publish         | Tag push `v*.*.*`                                                 |
+| `security.yml`        | Security        | All PRs, push to `main`/`staging`, weekly schedule, manual        |
+| `changelog-guard.yml` | Changelog Guard | All PRs and pushes                                                |
+| `pr-helper.yml`       | PR Helper       | After CI run completes with failure                               |
+| `doctor.yml`          | Doctor          | All PRs, push to `main`, manual                                   |
 
 ---
 
@@ -181,17 +190,17 @@ optional steps. See
 [`docs/environment/ci/CI_FEATURE_FLAGS.md`](../../environment/ci/CI_FEATURE_FLAGS.md)
 for the complete list.
 
-| Variable | Default | Controls |
-| --- | --- | --- |
-| `ENABLE_CODEQL` | on | CodeQL analysis job in `security` |
-| `ENABLE_STATIC_ANALYSIS` | on | Checkstyle/PMD/SpotBugs in `ci` |
-| `ENABLE_SONAR` | on | SonarCloud analysis in `ci` |
-| `ENABLE_MD_LINT` | on | markdownlint job in `ci` |
-| `ENABLE_SEMANTIC_RELEASE` | off | Release job in `release` |
-| `PUBLISH_DOCKER_IMAGE` | off | Docker publish in `publish` |
-| `PUBLISH_HELM_CHART` | off | Helm publish in `publish` |
-| `GUARD_RELEASE_ARTIFACTS` | on | CHANGELOG guard in `changelog-guard` |
-| `ENABLE_DOCTOR_SNAPSHOT` | on | `doctor` workflow |
+| Variable                  | Default | Controls                             |
+| ------------------------- | ------- | ------------------------------------ |
+| `ENABLE_CODEQL`           | on      | CodeQL analysis job in `security`    |
+| `ENABLE_STATIC_ANALYSIS`  | on      | Checkstyle/PMD/SpotBugs in `ci`      |
+| `ENABLE_SONAR`            | on      | SonarCloud analysis in `ci`          |
+| `ENABLE_MD_LINT`          | on      | markdownlint job in `ci`             |
+| `ENABLE_SEMANTIC_RELEASE` | off     | Release job in `release`             |
+| `PUBLISH_DOCKER_IMAGE`    | off     | Docker publish in `publish`          |
+| `PUBLISH_HELM_CHART`      | off     | Helm publish in `publish`            |
+| `GUARD_RELEASE_ARTIFACTS` | on      | CHANGELOG guard in `changelog-guard` |
+| `ENABLE_DOCTOR_SNAPSHOT`  | on      | `doctor` workflow                    |
 
 ---
 

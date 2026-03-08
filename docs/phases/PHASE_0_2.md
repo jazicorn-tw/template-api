@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [phases]
+description:  "Phase 0.2 — CI/CD, Release Automation & Container Publishing"
+---
 # 🔰 Phase 0.2 — CI/CD, Release Automation & Container Publishing
 
 > Part of [Phase 0](PHASE_0.md). Covers the delivery pipeline: GitHub Actions,
@@ -20,14 +29,14 @@ Phase 0.2 wires the full delivery pipeline before domain work begins:
 
 Six GitHub Actions workflows live in `.github/workflows/`:
 
-| Workflow | Trigger | Purpose |
-| --- | --- | --- |
-| `ci` | push / PR | Compile, tests, Spotless, static analysis, SonarCloud, markdown lint |
-| `release` | push / PR / tag push | Docker build check, Helm lint, semantic-release, Docker + Helm publish |
-| `security` | push / PR / weekly | CodeQL static security analysis |
-| `changelog-guard` | push / PR | Prevent manual edits to `CHANGELOG.md` |
-| `pr-helper` | after CI failure on PR | Post helper comment linking to smoke test checklist |
-| `doctor` | push to `main` / PR | Environment snapshot and validation |
+| Workflow          | Trigger                | Purpose                                                                |
+| ----------------- | ---------------------- | ---------------------------------------------------------------------- |
+| `ci`              | push / PR              | Compile, tests, Spotless, static analysis, SonarCloud, markdown lint   |
+| `release`         | push / PR / tag push   | Docker build check, Helm lint, semantic-release, Docker + Helm publish |
+| `security`        | push / PR / weekly     | CodeQL static security analysis                                        |
+| `changelog-guard` | push / PR              | Prevent manual edits to `CHANGELOG.md`                                 |
+| `pr-helper`       | after CI failure on PR | Post helper comment linking to smoke test checklist                    |
+| `doctor`          | push to `main` / PR    | Environment snapshot and validation                                    |
 
 **Gradle caching** is handled by `gradle/actions/setup-gradle@v4`.
 `act` is detected via `github.actor != 'nektos/act'` to skip caching steps when
@@ -87,12 +96,12 @@ PR and branch push to catch `Dockerfile` issues before a release tag is created.
 
 The `helm/` directory provides a production-ready Kubernetes deployment:
 
-| Template | Purpose |
-| --- | --- |
-| `deployment.yaml` | `Deployment` with configurable replicas and resource limits |
-| `service.yaml` | `ClusterIP` / `LoadBalancer` service |
-| `hpa.yaml` | `HorizontalPodAutoscaler` |
-| `serviceaccount.yaml` | `ServiceAccount` with RBAC annotations |
+| Template              | Purpose                                                     |
+| --------------------- | ----------------------------------------------------------- |
+| `deployment.yaml`     | `Deployment` with configurable replicas and resource limits |
+| `service.yaml`        | `ClusterIP` / `LoadBalancer` service                        |
+| `hpa.yaml`            | `HorizontalPodAutoscaler`                                   |
+| `serviceaccount.yaml` | `ServiceAccount` with RBAC annotations                      |
 
 Liveness and readiness probes are wired to `/actuator/health`.
 

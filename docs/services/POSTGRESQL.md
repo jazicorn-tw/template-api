@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD036 MD041 -->
-<!-- markdownlint-disable-file MD036 MD060 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [services]
+description:  "PostgreSQL (Service)"
+---
 # 🐘 PostgreSQL (Service)
 
 This project **standardizes on PostgreSQL everywhere** — local development, CI, and production-like environments.
@@ -22,13 +28,13 @@ This document explains:
 
 ## 🧩 Service overview
 
-| Item | Value |
-| --- | --- |
-| Service name (Docker Compose) | `postgres` |
-| Default port | `5432` |
-| Database name | Defined in `.env` |
-| Persistence | Docker volume |
-| CI usage | Testcontainers |
+| Item                          | Value             |
+| ----------------------------- | ----------------- |
+| Service name (Docker Compose) | `postgres`        |
+| Default port                  | `5432`            |
+| Database name                 | Defined in `.env` |
+| Persistence                   | Docker volume     |
+| CI usage                      | Testcontainers    |
 
 > In CI and tests, PostgreSQL is **not shared** — each run uses an isolated container.
 

@@ -1,5 +1,12 @@
-<!-- markdownlint-disable MD036 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling, make]
+description:  "Where Does This Make Target Go?"
+---
 # Where Does This Make Target Go?
 
 Use this decision tree when adding a new target or deciding which `XX-*.mk` file should own it.
@@ -96,11 +103,11 @@ Examples
 
 ### 7) Is it presentation or CLI interface?
 
-**Presentation (10s)**
+Presentation (10s):
 
 - colors, log formatting, group/step output helpers
 
-**Interface (30s)**
+Interface (30s):
 
 - help output, categories, role mapping, discoverability
 

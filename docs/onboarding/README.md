@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [onboarding]
+description:  "Onboarding"
+---
 # Onboarding
 
 Welcome! 👋
@@ -78,13 +87,13 @@ Onboarding docs are intentionally **progressive**. You don’t need to read ever
 
 ### Day-based flow
 
-| When | What to read |
-| --- | --- |
-| First time | [`PROJECT_SETUP.md`](./PROJECT_SETUP.md) — **single setup checklist** (template → running app) |
-| Day 0 | [`DAY_0_MACHINE_SETUP.md`](./DAY_0_MACHINE_SETUP.md) — machine prerequisites, shell setup |
-| Day 1 | [`DAY_1_ONBOARDING.md`](./DAY_1_ONBOARDING.md) — local setup, expectations |
-| Day 2 | [`DAY_2_FIRST_PR.md`](./DAY_2_FIRST_PR.md) — first PR, CI, review flow |
-| Day 3 | [`DAY_3_GOING_DEEPER.md`](./DAY_3_GOING_DEEPER.md) — local CI with act, releases, test patterns |
+| When       | What to read                                                                                    |
+| ---------- | ----------------------------------------------------------------------------------------------- |
+| First time | [`PROJECT_SETUP.md`](./PROJECT_SETUP.md) — **single setup checklist** (template → running app)  |
+| Day 0      | [`DAY_0_MACHINE_SETUP.md`](./DAY_0_MACHINE_SETUP.md) — machine prerequisites, shell setup       |
+| Day 1      | [`DAY_1_ONBOARDING.md`](./DAY_1_ONBOARDING.md) — local setup, expectations                      |
+| Day 2      | [`DAY_2_FIRST_PR.md`](./DAY_2_FIRST_PR.md) — first PR, CI, review flow                          |
+| Day 3      | [`DAY_3_GOING_DEEPER.md`](./DAY_3_GOING_DEEPER.md) — local CI with act, releases, test patterns |
 
 ---
 

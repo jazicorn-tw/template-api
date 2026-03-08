@@ -1,7 +1,12 @@
-<!-- markdownlint-disable-file MD060 -->
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         []
+description:  "Variables & Environment Configuration"
+---
 # ✅ Variables & Environment Configuration
 
 This document defines **CI feature flags** and **runtime environment variables**
@@ -55,25 +60,23 @@ MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED  # optional
 
 Legend: ✅ required, ⚪ optional, — not applicable
 
-| Variable | Local | CI | Prod (Platform A) | Prod (Platform B) | Notes |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `SPRING_PROFILES_ACTIVE` | ✅ | ✅ | ✅ | ✅ |  |
-| `SERVER_PORT` | ⚪ | — | ⚪ | ⚪ |  |
-| `SPRING_DATASOURCE_URL` | ✅ | ✅ | ✅ | ✅ |  |
-| `SPRING_DATASOURCE_USERNAME` | ✅ | ✅ | ✅ | ✅ |  |
-| `SPRING_DATASOURCE_PASSWORD` | ✅ | ✅ | ✅ | ✅ | secret |
-| `JWT_SECRET` | ✅ | ✅ | ✅ | ✅ | secret |
-| `JWT_EXPIRATION_SECONDS` | ⚪ | ⚪ | ⚪ | ⚪ |  |
-| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ⚪ | ⚪ | ⚪ | ⚪ |  |
-| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ⚪ | ⚪ | ⚪ | ✅ |  |
+| Variable                                    | Local |  CI | Prod (Platform A) | Prod (Platform B) |  Notes |
+| ------------------------------------------- | ----: | --: | ----------------: | ----------------: | -----: |
+| `SPRING_PROFILES_ACTIVE`                    |    ✅ |  ✅ |                ✅ |                ✅ |        |
+| `SERVER_PORT`                               |    ⚪ |   — |                ⚪ |                ⚪ |        |
+| `SPRING_DATASOURCE_URL`                     |    ✅ |  ✅ |                ✅ |                ✅ |        |
+| `SPRING_DATASOURCE_USERNAME`                |    ✅ |  ✅ |                ✅ |                ✅ |        |
+| `SPRING_DATASOURCE_PASSWORD`                |    ✅ |  ✅ |                ✅ |                ✅ | secret |
+| `JWT_SECRET`                                |    ✅ |  ✅ |                ✅ |                ✅ | secret |
+| `JWT_EXPIRATION_SECONDS`                    |    ⚪ |  ⚪ |                ⚪ |                ⚪ |        |
+| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` |    ⚪ |  ⚪ |                ⚪ |                ⚪ |        |
+| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` |    ⚪ |  ⚪ |                ⚪ |                ✅ |        |
 
 ---
 
-## 🔀 CI Feature Flags (GitHub Actions)
+## 🔀 CI Feature Flags — Configuration
 
-Create these under:
-
-**Settings → Secrets and variables → Actions → Variables**
+Create these under **Settings → Secrets and variables → Actions → Variables**.
 
 ### Docker image publishing
 
@@ -95,32 +98,32 @@ Used by:
 
 ### Application runtime
 
-| Variable | Required | Description |
-| --- | ---: | --- |
-| `SPRING_PROFILES_ACTIVE` | ✅ | Active profile |
-| `SERVER_PORT` | ❌ | Port override |
+| Variable                 | Required | Description    |
+| ------------------------ | -------: | -------------- |
+| `SPRING_PROFILES_ACTIVE` |       ✅ | Active profile |
+| `SERVER_PORT`            |       ❌ | Port override  |
 
 ### Database
 
-| Variable | Required | Description |
-| --- | ---: | --- |
-| `SPRING_DATASOURCE_URL` | ✅ | JDBC URL |
-| `SPRING_DATASOURCE_USERNAME` | ✅ | DB user |
-| `SPRING_DATASOURCE_PASSWORD` | ✅ | DB password (secret) |
+| Variable                     | Required | Description          |
+| ---------------------------- | -------: | -------------------- |
+| `SPRING_DATASOURCE_URL`      |       ✅ | JDBC URL             |
+| `SPRING_DATASOURCE_USERNAME` |       ✅ | DB user              |
+| `SPRING_DATASOURCE_PASSWORD` |       ✅ | DB password (secret) |
 
 ### Security
 
-| Variable | Required | Description |
-| --- | ---: | --- |
-| `JWT_SECRET` | ✅ | JWT signing secret (secret) |
-| `JWT_EXPIRATION_SECONDS` | ❌ | Token lifetime override |
+| Variable                 | Required | Description                 |
+| ------------------------ | -------: | --------------------------- |
+| `JWT_SECRET`             |       ✅ | JWT signing secret (secret) |
+| `JWT_EXPIRATION_SECONDS` |       ❌ | Token lifetime override     |
 
 ### Observability
 
-| Variable | Required | Description |
-| --- | ---: | --- |
-| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ❌ | Exposed actuator endpoints |
-| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ❌ | readiness/liveness probes |
+| Variable                                    | Required | Description                |
+| ------------------------------------------- | -------: | -------------------------- |
+| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` |       ❌ | Exposed actuator endpoints |
+| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` |       ❌ | readiness/liveness probes  |
 
 ---
 

@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops]
+description:  "Release Commit Scope Policy"
+---
 <!-- markdownlint-disable-file MD036 -->
 
 # 🚫 Release Commit Scope Policy
@@ -31,13 +40,13 @@ action. Version bumps, tags, GitHub Releases, and changelog commits are created
 
 ## What to use instead
 
-| Intent | Commit pattern |
-| --- | --- |
-| CI / workflow wiring | `chore(ci): ...` |
+| Intent                         | Commit pattern             |
+| ------------------------------ | -------------------------- |
+| CI / workflow wiring           | `chore(ci): ...`           |
 | Release documentation / policy | `docs(release-notes): ...` |
-| Internal refactors | `refactor: ...` |
-| Bug fixes | `fix: ...` |
-| Features | `feat: ...` |
+| Internal refactors             | `refactor: ...`            |
+| Bug fixes                      | `fix: ...`                 |
+| Features                       | `feat: ...`                |
 
 ---
 

@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-08
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [adr]
+description:  "ADR-012: Branching Strategy"
+---
 # ADR-012: Branching Strategy
 
 - **Status:** Accepted
@@ -30,13 +39,13 @@ fix/<name>      ──┘
 
 ### Branch roles
 
-| Branch | Role | Releases | Who pushes |
-| ------ | ---- | -------- | ---------- |
-| `main` | Production-ready code. Source of stable releases. | `v1.2.3` | CI only (via canary PR) |
-| `canary` | Pre-release preview. Canary artifacts published and validated here. | `v1.2.3-canary.1` | PRs from staging |
-| `staging` | Integration layer. Fast CI feedback before promoting to canary. | None | PRs from feature/fix branches |
-| `feature/<name>` | New functionality. One concern per branch. | None | Developer |
-| `fix/<name>` | Bug fixes and corrections. One concern per branch. | None | Developer |
+| Branch           | Role                                                                | Releases          | Who pushes                    |
+| ---------------- | ------------------------------------------------------------------- | ----------------- | ----------------------------- |
+| `main`           | Production-ready code. Source of stable releases.                   | `v1.2.3`          | CI only (via canary PR)       |
+| `canary`         | Pre-release preview. Canary artifacts published and validated here. | `v1.2.3-canary.1` | PRs from staging              |
+| `staging`        | Integration layer. Fast CI feedback before promoting to canary.     | None              | PRs from feature/fix branches |
+| `feature/<name>` | New functionality. One concern per branch.                          | None              | Developer                     |
+| `fix/<name>`     | Bug fixes and corrections. One concern per branch.                  | None              | Developer                     |
 
 ### Branch naming
 
@@ -59,10 +68,10 @@ Rules:
 
 ### Releases
 
-| Branch | Release type | Example tag | Docker tag |
-| ------ | ------------ | ----------- | ---------- |
-| `canary` | Pre-release (canary channel) | `v1.2.3-canary.1` | `:canary` |
-| `main` | Stable | `v1.2.3` | `:latest`, `:1.2.3`, `:1.2`, `:1` |
+| Branch   | Release type                 | Example tag       | Docker tag                        |
+| -------- | ---------------------------- | ----------------- | --------------------------------- |
+| `canary` | Pre-release (canary channel) | `v1.2.3-canary.1` | `:canary`                         |
+| `main`   | Stable                       | `v1.2.3`          | `:latest`, `:1.2.3`, `:1.2`, `:1` |
 
 - semantic-release runs on both `canary` and `main` (when `ENABLE_SEMANTIC_RELEASE=true`)
 - Merging to `staging` does **not** trigger a release
@@ -88,14 +97,14 @@ Before opening a `canary → main` PR:
 
 ## CI behavior by branch
 
-| Workflow | `feature/*` / `fix/*` PRs | `staging` push | `canary` push | `main` push |
-| -------- | ------------------------- | -------------- | ------------- | ----------- |
-| CI | ✅ | ✅ | ✅ | ✅ |
-| Doctor | ✅ | ✅ | ✅ | ✅ |
-| Security | ✗ | ✅ | ✅ | ✅ |
-| Release (build) | ✅ (PR) | ✅ | ✅ | ✅ |
-| semantic-release | ✗ | ✗ | ✅ (canary tag) | ✅ (stable tag) |
-| Publish | ✗ | ✗ | ✅ (`:canary` image) | ✅ (`:latest` image) |
+| Workflow         | `feature/*` / `fix/*` PRs | `staging` push | `canary` push        | `main` push          |
+| ---------------- | ------------------------- | -------------- | -------------------- | -------------------- |
+| CI               | ✅                        | ✅             | ✅                   | ✅                   |
+| Doctor           | ✅                        | ✅             | ✅                   | ✅                   |
+| Security         | ✗                         | ✅             | ✅                   | ✅                   |
+| Release (build)  | ✅ (PR)                   | ✅             | ✅                   | ✅                   |
+| semantic-release | ✗                         | ✗              | ✅ (canary tag)      | ✅ (stable tag)      |
+| Publish          | ✗                         | ✗              | ✅ (`:canary` image) | ✅ (`:latest` image) |
 
 ---
 

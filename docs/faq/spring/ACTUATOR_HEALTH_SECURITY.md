@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-07
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, spring]
+description:  "Why `management.endpoint.health.show-details=when-authorized`"
+---
 # Why `management.endpoint.health.show-details=when-authorized`
 
 This article explains what the `show-details` setting controls, what Spring Boot exposes
@@ -10,11 +19,11 @@ at each level, and why this template uses `when-authorized` instead of `always`.
 The `management.endpoint.health.show-details` property determines how much information
 the `/actuator/health` endpoint returns to callers.
 
-| Value | Who sees details |
-| --- | --- |
-| `never` | No one — always returns `{"status":"UP"}` only |
-| `when-authorized` | Only authenticated + authorized users |
-| `always` | Everyone, including unauthenticated callers |
+| Value             | Who sees details                               |
+| ----------------- | ---------------------------------------------- |
+| `never`           | No one — always returns `{"status":"UP"}` only |
+| `when-authorized` | Only authenticated + authorized users          |
+| `always`          | Everyone, including unauthenticated callers    |
 
 Spring Boot's default is `never`. This template uses `when-authorized` to enable details
 for authorized users (Phase 7+) while keeping them hidden from the public.

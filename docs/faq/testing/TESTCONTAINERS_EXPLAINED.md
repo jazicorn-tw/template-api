@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [faq, test]
+description:  "Testcontainers: What's Actually Going On"
+---
 # Testcontainers: What's Actually Going On
 
 If you've wondered why tests require Docker, why the first run takes
@@ -125,13 +134,13 @@ shared lifecycle guarantee.
 
 ## Allowed and banned patterns
 
-| Pattern | Status | Reason |
-| --- | --- | --- |
-| `static PostgreSQLContainer<?>` field | ✅ Allowed | Deterministic shared lifecycle |
-| `@DynamicPropertySource` | ✅ Allowed | Required for datasource wiring |
-| `extends BaseIntegrationTest` | ✅ Required | All integration tests must use it |
-| `@ServiceConnection` | ❌ Banned | Opaque lifecycle, harder to debug |
-| Mixing container strategies | ❌ Banned | Creates conflicting property sources |
+| Pattern                               | Status      | Reason                               |
+| ------------------------------------- | ----------- | ------------------------------------ |
+| `static PostgreSQLContainer<?>` field | ✅ Allowed  | Deterministic shared lifecycle       |
+| `@DynamicPropertySource`              | ✅ Allowed  | Required for datasource wiring       |
+| `extends BaseIntegrationTest`         | ✅ Required | All integration tests must use it    |
+| `@ServiceConnection`                  | ❌ Banned   | Opaque lifecycle, harder to debug    |
+| Mixing container strategies           | ❌ Banned   | Creates conflicting property sources |
 
 ---
 
@@ -160,12 +169,12 @@ running the full suite in parallel.
 The container image and credentials are configurable via environment
 variables — useful in CI or when you need a specific Postgres version:
 
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `TEST_DATASOURCE_IMAGE` | `postgres:16-alpine` | PostgreSQL image tag |
-| `TEST_DATASOURCE_DB` | `{{app-name}}_test` | Database name |
-| `TEST_DATASOURCE_USER` | `test` | Database user |
-| `TEST_DATASOURCE_PASSWORD` | `test` | Database password |
+| Variable                   | Default              | Purpose              |
+| -------------------------- | -------------------- | -------------------- |
+| `TEST_DATASOURCE_IMAGE`    | `postgres:16-alpine` | PostgreSQL image tag |
+| `TEST_DATASOURCE_DB`       | `{{app-name}}_test`  | Database name        |
+| `TEST_DATASOURCE_USER`     | `test`               | Database user        |
+| `TEST_DATASOURCE_PASSWORD` | `test`               | Database password    |
 
 ---
 

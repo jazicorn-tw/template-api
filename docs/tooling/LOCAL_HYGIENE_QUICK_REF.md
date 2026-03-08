@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling]
+description:  "Local Hygiene — Quick Reference"
+---
 # 🧼 Local Hygiene — Quick Reference
 
 > This is a **developer quick reference**, not required configuration.  
@@ -33,13 +39,13 @@ ACT_COLIMA_PROFILE=default
 
 ### Behavior
 
-| Setting | Effect |
-| --- | --- |
-| `ACT_GRADLE_CACHE_REMOVE=false` | Never remove cache (default, safest) |
-| `ACT_GRADLE_CACHE_REMOVE=true` | Always remove cache |
-| `ACT_GRADLE_CACHE_REMOVE=auto` | Remove only when Colima containerd is under pressure |
-| `ACT_GRADLE_CACHE_DRY_RUN=true` | Show what *would* be deleted |
-| `ACT_GRADLE_CACHE_WARN_GB` | Warn if cache exceeds this size |
+| Setting                         | Effect                                               |
+| ------------------------------- | ---------------------------------------------------- |
+| `ACT_GRADLE_CACHE_REMOVE=false` | Never remove cache (default, safest)                 |
+| `ACT_GRADLE_CACHE_REMOVE=true`  | Always remove cache                                  |
+| `ACT_GRADLE_CACHE_REMOVE=auto`  | Remove only when Colima containerd is under pressure |
+| `ACT_GRADLE_CACHE_DRY_RUN=true` | Show what *would* be deleted                         |
+| `ACT_GRADLE_CACHE_WARN_GB`      | Warn if cache exceeds this size                      |
 
 ### Common usage
 
@@ -69,7 +75,7 @@ Controls pruning of Docker **images, containers, networks, and build cache**.
 
 ⚠️ **Docker volumes are data, not cache.** They are never automatic.
 
-### Knobs
+### Docker Knobs
 
 ```text
 CLEAN_DOCKER_MODE=false|true|auto
@@ -80,20 +86,20 @@ CLEAN_DOCKER_AUTO_MIN_FREE_INODES=5000
 CLEAN_DOCKER_COLIMA_PROFILE=default
 ```
 
-### Behavior
+### Docker Behavior
 
-| Setting | Effect |
-| --- | --- |
-| `CLEAN_DOCKER_MODE=false` | Do nothing (default) |
-| `CLEAN_DOCKER_MODE=true` | Always prune docker cache |
-| `CLEAN_DOCKER_MODE=auto` | Prune only under containerd disk/inode pressure |
-| `CLEAN_DOCKER_VOLUMES=true` | **Delete named volumes (destructive)** |
-| `CLEAN_DOCKER_VERBOSE=true` | Print detailed prune actions |
+| Setting                     | Effect                                          |
+| --------------------------- | ----------------------------------------------- |
+| `CLEAN_DOCKER_MODE=false`   | Do nothing (default)                            |
+| `CLEAN_DOCKER_MODE=true`    | Always prune docker cache                       |
+| `CLEAN_DOCKER_MODE=auto`    | Prune only under containerd disk/inode pressure |
+| `CLEAN_DOCKER_VOLUMES=true` | **Delete named volumes (destructive)**          |
+| `CLEAN_DOCKER_VERBOSE=true` | Print detailed prune actions                    |
 
 🚫 `CLEAN_DOCKER_VOLUMES` does **not** support `auto`.  
 Volumes contain data and require explicit consent.
 
-### Common usage
+### Docker Common usage
 
 Auto prune cache only:
 
@@ -120,7 +126,7 @@ Colima reset **destroys the VM** and deletes:
 
 This is **never automatic** and is intentionally excluded from `clean-local`.
 
-### Knobs
+### Colima Knobs
 
 ```text
 CLEAN_COLIMA_RESET=false|true
@@ -164,10 +170,10 @@ All `ACT_*` and `CLEAN_DOCKER_*` knobs apply.
 
 ## 🧠 Decision guide
 
-| Symptom | Start with |
-| --- | --- |
-| act fails with `no space left on device` | `make clean-local CLEAN_DOCKER_MODE=auto` |
-| Docker disk usage keeps growing | `make clean-docker CLEAN_DOCKER_MODE=true` |
+| Symptom                                     | Start with                                  |
+| ------------------------------------------- | ------------------------------------------- |
+| act fails with `no space left on device`    | `make clean-local CLEAN_DOCKER_MODE=auto`   |
+| Docker disk usage keeps growing             | `make clean-docker CLEAN_DOCKER_MODE=true`  |
 | Everything is broken / containerd corrupted | `make clean-colima CLEAN_COLIMA_RESET=true` |
 
 ---

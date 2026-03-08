@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling]
+description:  "Pre-add Lint Check"
+---
 # Pre-add Lint Check
 
 Runs **markdownlint** (for `.md` files) and **Spotless** (for `.java` /
@@ -39,12 +48,12 @@ exists in the repo root. Other repos are unaffected.
 
 Settings are resolved in this order (highest priority first):
 
-| Priority | Mechanism | Scope |
-| --- | --- | --- |
-| 1 | `SKIP_PRE_ADD_LINT=1` env var | This invocation only |
-| 2 | `git config --local hooks.pre-add-lint` | Your machine, not committed |
-| 3 | `.config/local-settings.json` `.git.preAddLint.*` | Committed project defaults |
-| 4 | Hard defaults (`enabled=true`, `spotless=true`) | Fallback |
+| Priority | Mechanism                                         | Scope                       |
+| -------- | ------------------------------------------------- | --------------------------- |
+| 1        | `SKIP_PRE_ADD_LINT=1` env var                     | This invocation only        |
+| 2        | `git config --local hooks.pre-add-lint`           | Your machine, not committed |
+| 3        | `.config/local-settings.json` `.git.preAddLint.*` | Committed project defaults  |
+| 4        | Hard defaults (`enabled=true`, `spotless=true`)   | Fallback                    |
 
 ---
 
@@ -78,19 +87,19 @@ Gradle check for all developers.
 
 ## One-off overrides (env vars)
 
-| Command | Effect |
-| --- | --- |
-| `SKIP_PRE_ADD_LINT=1 git add <file>` | Skip all checks this invocation |
+| Command                                 | Effect                                 |
+| --------------------------------------- | -------------------------------------- |
+| `SKIP_PRE_ADD_LINT=1 git add <file>`    | Skip all checks this invocation        |
 | `SKIP_SPOTLESS_ON_ADD=1 git add <file>` | Skip Spotless only (no Gradle startup) |
 
 ---
 
 ## What runs and when
 
-| Files being added | Check | Tool |
-| --- | --- | --- |
-| `*.md` | markdownlint | `markdownlint-cli2` (fast, per-file) |
-| `*.java` / `*.gradle` | Spotless formatting | `./gradlew spotlessCheck` |
+| Files being added     | Check               | Tool                                 |
+| --------------------- | ------------------- | ------------------------------------ |
+| `*.md`                | markdownlint        | `markdownlint-cli2` (fast, per-file) |
+| `*.java` / `*.gradle` | Spotless formatting | `./gradlew spotlessCheck`            |
 
 > **Spotless note:** Gradle startup adds roughly 10–15 seconds per `git add`
 > of a Java file. Use `SKIP_SPOTLESS_ON_ADD=1` when you want a fast stage and
@@ -105,10 +114,10 @@ static analysis on staged Java files. Pre-add lint catches violations one step
 earlier — before the file is even staged — giving faster feedback on markdown
 files in particular.
 
-| Timing | Hook | Checks |
-| --- | --- | --- |
-| Before `git add` | Shell wrapper → `scripts/git/pre-add.sh` | markdownlint, Spotless |
-| Before `git commit` | `.githooks/pre-commit` | Spotless, Checkstyle, PMD, SpotBugs |
+| Timing              | Hook                                     | Checks                              |
+| ------------------- | ---------------------------------------- | ----------------------------------- |
+| Before `git add`    | Shell wrapper → `scripts/git/pre-add.sh` | markdownlint, Spotless              |
+| Before `git commit` | `.githooks/pre-commit`                   | Spotless, Checkstyle, PMD, SpotBugs |
 
 ---
 

@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops]
+description:  "`/ping` vs `/health` (Actuator) — What’s the Difference?"
+---
 <!-- markdownlint-disable-file MD024 -->
 # `/ping` vs `/health` (Actuator) — What’s the Difference?
 
@@ -8,10 +17,10 @@ and how they should be wired in a **Spring Boot 4** application.
 
 ## High-level overview
 
-| Endpoint | Purpose | Dependencies | Intended audience |
-| --- | --- | --- | --- |
-| `/ping` | “Is the process alive?” | **None** | Load balancers, CI smoke tests |
-| `/health` | “Is the app healthy?” | **Many** (DB, disk, etc.) | Ops, monitoring, SRE |
+| Endpoint  | Purpose                 | Dependencies              | Intended audience              |
+| --------- | ----------------------- | ------------------------- | ------------------------------ |
+| `/ping`   | “Is the process alive?” | **None**                  | Load balancers, CI smoke tests |
+| `/health` | “Is the app healthy?”   | **Many** (DB, disk, etc.) | Ops, monitoring, SRE           |
 
 Think of it as:
 
@@ -144,15 +153,15 @@ GET /actuator/health
 
 ## Why you should use BOTH
 
-| Scenario | Endpoint |
-| --- | --- |
-| App is running? | `/ping` |
+| Scenario                      | Endpoint  |
+| ----------------------------- | --------- |
+| App is running?               | `/ping`   |
 | App ready to receive traffic? | `/health` |
-| Load balancer check | `/ping` |
-| CI smoke test | `/ping` |
-| Monitoring & alerting | `/health` |
-| Kubernetes liveness probe | `/ping` |
-| Kubernetes readiness probe | `/health` |
+| Load balancer check           | `/ping`   |
+| CI smoke test                 | `/ping`   |
+| Monitoring & alerting         | `/health` |
+| Kubernetes liveness probe     | `/ping`   |
+| Kubernetes readiness probe    | `/health` |
 
 Using only one leads to **false positives** or **false negatives**.
 
@@ -245,12 +254,12 @@ Cloudflare Pages and edge platforms:
 
 ## TL;DR
 
-| Question | Answer |
-| --- | --- |
-| Do I need both? | **Yes** |
-| Is `/ping` redundant? | **No** |
-| Should `/ping` touch DB? | **Never** |
-| Should `/health` touch DB? | **Yes** |
+| Question                                | Answer    |
+| --------------------------------------- | --------- |
+| Do I need both?                         | **Yes**   |
+| Is `/ping` redundant?                   | **No**    |
+| Should `/ping` touch DB?                | **Never** |
+| Should `/health` touch DB?              | **Yes**   |
 | Which endpoint can fail during outages? | `/health` |
 
 ---

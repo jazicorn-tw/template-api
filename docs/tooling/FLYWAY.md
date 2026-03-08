@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling]
+description:  "Database Migration Troubleshooting Guide"
+---
 # 🛠 Database Migration Troubleshooting Guide
 
 This document covers the resolution for `NoClassDefFoundError: JavaPluginConvention` and other Gradle-specific failures
@@ -87,9 +96,9 @@ and inaccessible to your host machine.
 
 ## 4. Summary Table: Plugin vs. CLI
 
-| Feature | Gradle Plugin | Flyway CLI |
-| --- | --- | --- |
-| **Dependency** | Managed in `build.gradle` | Installed on OS (`brew`) |
-| **Compatibility** | Subject to Gradle API changes | Independent of Java/Gradle versions |
-| **Use Case** | CI/CD pipelines, automated builds | Local dev, emergency maintenance |
-| **Configuration** | Uses `System.getProperty` or `flyway {}` | Uses CLI flags or `flyway.conf` |
+| Feature           | Gradle Plugin                            | Flyway CLI                          |
+| ----------------- | ---------------------------------------- | ----------------------------------- |
+| **Dependency**    | Managed in `build.gradle`                | Installed on OS (`brew`)            |
+| **Compatibility** | Subject to Gradle API changes            | Independent of Java/Gradle versions |
+| **Use Case**      | CI/CD pipelines, automated builds        | Local dev, emergency maintenance    |
+| **Configuration** | Uses `System.getProperty` or `flyway {}` | Uses CLI flags or `flyway.conf`     |

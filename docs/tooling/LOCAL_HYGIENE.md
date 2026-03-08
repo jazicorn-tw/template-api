@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [tooling]
+description:  "Local hygiene (disk cleanup)"
+---
 # 🧼 Local hygiene (disk cleanup)
 
 This repo includes **safe-by-default** cleanup helpers to prevent local `act` runs
@@ -84,12 +90,12 @@ make clean-act ACT_GRADLE_CACHE_REMOVE=true ACT_GRADLE_CACHE_DRY_RUN=true
 
 ## 🐳 Docker hygiene
 
-### Targets
+### Docker Targets
 
 - `make docker-cache-info` — show docker context + disk usage
 - `make clean-docker` — prune docker caches (gated)
 
-### Knobs
+### Docker Knobs
 
 ```text
 CLEAN_DOCKER_PRUNE=false|true
@@ -97,7 +103,7 @@ CLEAN_DOCKER_VOLUMES=false|true
 CLEAN_DOCKER_VERBOSE=false|true
 ```
 
-### Examples
+### Docker Examples
 
 Prune caches (images/containers/networks/build cache):
 
@@ -123,12 +129,12 @@ make clean-docker CLEAN_DOCKER_PRUNE=true CLEAN_DOCKER_VERBOSE=true
 
 ## 🧊 Colima hygiene
 
-### Targets
+### Colima Targets
 
 - `make colima-info` — show Colima status
 - `make clean-colima` — reset Colima VM (gated)
 
-### Knobs
+### Colima Knobs
 
 ```text
 CLEAN_COLIMA_RESET=false|true
@@ -155,12 +161,12 @@ make clean-colima CLEAN_COLIMA_RESET=true CLEAN_COLIMA_DISK_GB=120
 
 ## 🧼 One-button local cleanup
 
-### Targets
+### Cleanup Targets
 
 - `make clean-local-info` — quick snapshot (act + docker + colima)
 - `make clean-local` — run act clean + docker clean (Colima reset is separate)
 
-### Knobs
+### Cleanup Knobs
 
 `clean-local` respects the same knobs as the underlying components:
 
@@ -168,7 +174,7 @@ make clean-colima CLEAN_COLIMA_RESET=true CLEAN_COLIMA_DISK_GB=120
 - docker knobs (`CLEAN_DOCKER_*`)
 - colima knobs (`CLEAN_COLIMA_*`)
 
-### Examples
+### Cleanup Examples
 
 Clean act + docker (non-destructive default gates stay off):
 

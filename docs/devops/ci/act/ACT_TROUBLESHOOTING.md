@@ -1,6 +1,12 @@
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [devops, ci, act]
+description:  "act Troubleshooting (macOS + Colima)"
+---
 # 🧪 act Troubleshooting (macOS + Colima)
 
 This document covers common `act` failure modes on macOS, especially when using **Colima**.
@@ -101,12 +107,12 @@ Our Make wrapper already enforces this.
 - `exec format error`
 - Images pull successfully but jobs crash immediately
 
-### Cause
+### Architecture Cause
 
 On Apple Silicon, your host is **arm64**, but GitHub Actions runners are
 **linux/amd64**.
 
-### Fix (repo standard)
+### Architecture Fix
 
 We intentionally run CI simulation as **linux/amd64** to match GitHub:
 
@@ -118,13 +124,13 @@ This avoids local/CI drift.
 
 ## ⚠️ "pip running as root" warning
 
-### Symptom
+### pip Symptom
 
 ```text
 WARNING: Running pip as the 'root' user can result in broken permissions
 ```
 
-### Cause
+### pip Cause
 
 Some workflows install lightweight validation tools using `pip` inside
 ephemeral CI containers that run as root.
@@ -146,17 +152,17 @@ If you want cleaner logs:
 
 ## ❌ Helm setup fails with EPERM chmod
 
-### Symptom
+### Helm Symptom
 
 ```text
 Error: EPERM: operation not permitted, chmod '/opt/hostedtoolcache/helm/...'
 ```
 
-### Cause
+### Helm Cause
 
 `azure/setup-helm` assumes GitHub-hosted runner toolcache behavior.
 
-### Fix (repo standard)
+### Helm Fix
 
 Split setup logic using `env.ACT`:
 
@@ -167,17 +173,17 @@ Split setup logic using `env.ACT`:
 
 ## ❌ Release workflow fails: missing app_id / secrets
 
-### Symptom
+### Release Symptom
 
 ```text
 Input required and not supplied: app_id
 ```
 
-### Cause
+### Release Cause
 
 Local `act` runs do not have access to GitHub secrets unless explicitly provided.
 
-### Fix
+### Release Fix
 
 Run CI-focused workflows locally:
 

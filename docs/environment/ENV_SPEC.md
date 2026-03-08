@@ -1,7 +1,12 @@
-<!-- markdownlint-disable-file MD060 -->
-<!-- markdownlint-disable-file MD036 -->
-<!-- markdownlint-disable-file MD024 -->
-
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [env]
+description:  "ENV Spec - Environment Configuration"
+---
 # ✅ ENV Spec - Environment Configuration
 
 This document defines **feature flags** and **runtime environment variables**
@@ -54,7 +59,7 @@ SPRING_MAIN_BANNER_MODE  # optional — off|console|log — reduce noise in CI
 ### 🗄️ Database (PostgreSQL)
 
 **Purpose:** Configure database connectivity for the application and Flyway migrations.  
-🔗 See details: **[Database (PostgreSQL)](#️-database-postgresql-1)**
+🔗 See details: **[Database — Configuration](#️-database--configuration)**
 
 ```text
 SPRING_DATASOURCE_URL         # required — JDBC connection URL (may include SSL params)
@@ -133,54 +138,52 @@ Legend: ✅ required, ⚪ optional, — not used / not applicable
 
 ### Runtime variables
 
-| Variable | Local (dev) | CI (tests) | Render (prod) | K8s (prod) | Notes |
-| --- | ---: | ---: | ---: | ---: | --- |
-| `SPRING_PROFILES_ACTIVE` | ✅ | ✅ | ✅ | ✅ | Usually `dev` / `test` / `prod` |
-| `SERVER_PORT` | ⚪ | — | ⚪ | ⚪ | Often provided by platform; override only if needed |
-| `APP_NAME` | ⚪ | ⚪ | ⚪ | ⚪ | Useful for logs/metrics |
-| `SPRING_MAIN_BANNER_MODE` | ⚪ | ✅ | ⚪ | ⚪ | Often `off` in CI |
-| `SPRING_DATASOURCE_URL` | ✅ | ✅ | ✅ | ✅ | JDBC URL (may include SSL params) |
-| `SPRING_DATASOURCE_USERNAME` | ✅ | ✅ | ✅ | ✅ | DB user |
-| `SPRING_DATASOURCE_PASSWORD` | ✅ | ✅ | ✅ | ✅ | **Secret** |
-| `SPRING_DATASOURCE_DRIVER_CLASS_NAME` | — | — | ⚪ | ⚪ | Rarely needed |
-| `SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE` | ⚪ | ⚪ | ⚪ | ⚪ | Pool tuning matters in prod |
-| `SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE` | ⚪ | ⚪ | ⚪ | ⚪ | Pool tuning matters in prod |
-| `SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT` | ⚪ | ⚪ | ⚪ | ⚪ | Pool tuning matters in prod |
-| `SPRING_FLYWAY_ENABLED` | ⚪ | ⚪ | ⚪ | ⚪ | Sometimes `false` if migrations run separately |
-| `SPRING_FLYWAY_BASELINE_ON_MIGRATE` | ⚪ | — | ⚪ | ⚪ | Only if needed |
-| `SPRING_FLYWAY_LOCATIONS` | ⚪ | — | ⚪ | ⚪ | Only if you override defaults |
-| `JWT_SECRET` | ✅ | ✅ | ✅ | ✅ | **Secret**; use a CI-only value in tests |
-| `JWT_EXPIRATION_SECONDS` | ⚪ | ⚪ | ⚪ | ⚪ | Optional override |
-| `JWT_ISSUER` | ⚪ | ⚪ | ⚪ | ⚪ | Becomes ✅ if enforced |
-| `JWT_AUDIENCE` | ⚪ | ⚪ | ⚪ | ⚪ | Becomes ✅ if enforced |
-| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ⚪ | ⚪ | ⚪ | ⚪ | Often set to `health,info` |
-| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ⚪ | ⚪ | ⚪ | ✅ | Typically `true` in K8s |
-| `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS` | ⚪ | ⚪ | ✅ | ✅ | Usually `never` or `when_authorized` |
-| `MANAGEMENT_SERVER_PORT` | — | — | ⚪ | ⚪ | Separate actuator port if desired |
-| `MANAGEMENT_HEALTH_DB_ENABLED` | ⚪ | ⚪ | ⚪ | ⚪ | Toggle DB checks if too strict |
-| `LOGGING_LEVEL_ROOT` | ⚪ | ⚪ | ⚪ | ⚪ | Environment-specific verbosity |
-| `LOGGING_LEVEL_COM_EXAMPLE` | ⚪ | ⚪ | ⚪ | ⚪ | Package override (example) |
-| `LOGGING_PATTERN_CONSOLE` | ⚪ | ⚪ | ⚪ | ⚪ | Formatting override |
+| Variable                                      | Local (dev) | CI (tests) | Render (prod) | K8s (prod) | Notes                                               |
+| --------------------------------------------- | ----------: | ---------: | ------------: | ---------: | --------------------------------------------------- |
+| `SPRING_PROFILES_ACTIVE`                      |          ✅ |         ✅ |            ✅ |         ✅ | Usually `dev` / `test` / `prod`                     |
+| `SERVER_PORT`                                 |          ⚪ |          — |            ⚪ |         ⚪ | Often provided by platform; override only if needed |
+| `APP_NAME`                                    |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Useful for logs/metrics                             |
+| `SPRING_MAIN_BANNER_MODE`                     |          ⚪ |         ✅ |            ⚪ |         ⚪ | Often `off` in CI                                   |
+| `SPRING_DATASOURCE_URL`                       |          ✅ |         ✅ |            ✅ |         ✅ | JDBC URL (may include SSL params)                   |
+| `SPRING_DATASOURCE_USERNAME`                  |          ✅ |         ✅ |            ✅ |         ✅ | DB user                                             |
+| `SPRING_DATASOURCE_PASSWORD`                  |          ✅ |         ✅ |            ✅ |         ✅ | **Secret**                                          |
+| `SPRING_DATASOURCE_DRIVER_CLASS_NAME`         |           — |          — |            ⚪ |         ⚪ | Rarely needed                                       |
+| `SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE`  |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Pool tuning matters in prod                         |
+| `SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE`       |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Pool tuning matters in prod                         |
+| `SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT` |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Pool tuning matters in prod                         |
+| `SPRING_FLYWAY_ENABLED`                       |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Sometimes `false` if migrations run separately      |
+| `SPRING_FLYWAY_BASELINE_ON_MIGRATE`           |          ⚪ |          — |            ⚪ |         ⚪ | Only if needed                                      |
+| `SPRING_FLYWAY_LOCATIONS`                     |          ⚪ |          — |            ⚪ |         ⚪ | Only if you override defaults                       |
+| `JWT_SECRET`                                  |          ✅ |         ✅ |            ✅ |         ✅ | **Secret**; use a CI-only value in tests            |
+| `JWT_EXPIRATION_SECONDS`                      |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Optional override                                   |
+| `JWT_ISSUER`                                  |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Becomes ✅ if enforced                              |
+| `JWT_AUDIENCE`                                |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Becomes ✅ if enforced                              |
+| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE`   |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Often set to `health,info`                          |
+| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED`   |          ⚪ |         ⚪ |            ⚪ |         ✅ | Typically `true` in K8s                             |
+| `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS`     |          ⚪ |         ⚪ |            ✅ |         ✅ | Usually `never` or `when_authorized`                |
+| `MANAGEMENT_SERVER_PORT`                      |           — |          — |            ⚪ |         ⚪ | Separate actuator port if desired                   |
+| `MANAGEMENT_HEALTH_DB_ENABLED`                |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Toggle DB checks if too strict                      |
+| `LOGGING_LEVEL_ROOT`                          |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Environment-specific verbosity                      |
+| `LOGGING_LEVEL_COM_EXAMPLE`                   |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Package override (example)                          |
+| `LOGGING_PATTERN_CONSOLE`                     |          ⚪ |         ⚪ |            ⚪ |         ⚪ | Formatting override                                 |
 
 ### CI feature flags (workflow-level)
 
-| Variable | Local | CI | Render | K8s | Notes |
-| --- | ---: | ---: | ---: | ---: | --- |
-| `PUBLISH_DOCKER_IMAGE` | — | ⚪ | — | — | GitHub Actions Variable |
-| `CANONICAL_REPOSITORY` | — | ✅* | — | — | Required only when publishing is enabled |
-| `PUBLISH_HELM_CHART` | — | ⚪ | — | — | Reserved |
-| `DEPLOY_ENABLED` | — | ⚪ | — | — | Reserved kill switch |
-| `ENABLE_SEMANTIC_RELEASE` | — | ⚪ | — | — | Release gate |
+| Variable                  | Local |  CI | Render | K8s | Notes                                    |
+| ------------------------- | ----: | --: | -----: | --: | ---------------------------------------- |
+| `PUBLISH_DOCKER_IMAGE`    |     — |  ⚪ |      — |   — | GitHub Actions Variable                  |
+| `CANONICAL_REPOSITORY`    |     — | ✅* |      — |   — | Required only when publishing is enabled |
+| `PUBLISH_HELM_CHART`      |     — |  ⚪ |      — |   — | Reserved                                 |
+| `DEPLOY_ENABLED`          |     — |  ⚪ |      — |   — | Reserved kill switch                     |
+| `ENABLE_SEMANTIC_RELEASE` |     — |  ⚪ |      — |   — | Release gate                             |
 
 \* Required only when publishing is enabled
 
 ---
 
-## 🔀 CI Feature Flags (GitHub Actions)
+## 🔀 CI Feature Flags — Configuration
 
-Create these under:
-
-**Settings → Secrets and variables → Actions → Variables**
+Create these under **Settings → Secrets and variables → Actions → Variables**.
 
 ### Docker image publishing
 
@@ -324,34 +327,34 @@ The same variable names are used across **local**, **Render**, and **Kubernetes*
 These variables control **application behavior**, not delivery.
 They are stable across local dev, CI, Render, and Kubernetes.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `SPRING_PROFILES_ACTIVE` | ✅ | Active Spring profile (`dev`, `test`, `prod`) |
-| `SERVER_PORT` | ❌ | Override default server port (often injected by platform) |
-| `APP_NAME` | ❌ | App identity used in logs/metrics |
-| `SPRING_MAIN_BANNER_MODE` | ❌ | Banner mode: `off`, `console`, `log` (often `off` in CI) |
+| Variable                  | Required | Description                                               |
+| ------------------------- | -------- | --------------------------------------------------------- |
+| `SPRING_PROFILES_ACTIVE`  | ✅       | Active Spring profile (`dev`, `test`, `prod`)             |
+| `SERVER_PORT`             | ❌       | Override default server port (often injected by platform) |
+| `APP_NAME`                | ❌       | App identity used in logs/metrics                         |
+| `SPRING_MAIN_BANNER_MODE` | ❌       | Banner mode: `off`, `console`, `log` (often `off` in CI)  |
 
 ---
 
-## 🗄️ Database (PostgreSQL)
+## 🗄️ Database — Configuration
 
 Used by the application and Flyway migrations in **all environments**.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `SPRING_DATASOURCE_URL` | ✅ | JDBC connection URL |
-| `SPRING_DATASOURCE_USERNAME` | ✅ | Database username |
-| `SPRING_DATASOURCE_PASSWORD` | ✅ | Database password (**secret**) |
+| Variable                     | Required | Description                    |
+| ---------------------------- | -------- | ------------------------------ |
+| `SPRING_DATASOURCE_URL`      | ✅       | JDBC connection URL            |
+| `SPRING_DATASOURCE_USERNAME` | ✅       | Database username              |
+| `SPRING_DATASOURCE_PASSWORD` | ✅       | Database password (**secret**) |
 
 ### Pooling (HikariCP)
 
 Connection pool tuning knobs. Defaults are usually fine for dev/test.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE` | ❌ | Upper bound on DB connections |
-| `SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE` | ❌ | Idle connections to keep |
-| `SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT` | ❌ | How long to wait for a connection |
+| Variable                                      | Required | Description                       |
+| --------------------------------------------- | -------- | --------------------------------- |
+| `SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE`  | ❌       | Upper bound on DB connections     |
+| `SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE`       | ❌       | Idle connections to keep          |
+| `SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT` | ❌       | How long to wait for a connection |
 
 Notes:
 
@@ -371,15 +374,15 @@ Common approaches:
 
 ---
 
-## 🧭 Flyway (Migrations)
+## 🧭 Flyway — Configuration
 
 Controls schema migration behavior per environment.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `SPRING_FLYWAY_ENABLED` | ❌ | Enable/disable migrations at startup |
-| `SPRING_FLYWAY_BASELINE_ON_MIGRATE` | ❌ | Baseline existing schema before migrate |
-| `SPRING_FLYWAY_LOCATIONS` | ❌ | Override migration locations |
+| Variable                            | Required | Description                             |
+| ----------------------------------- | -------- | --------------------------------------- |
+| `SPRING_FLYWAY_ENABLED`             | ❌       | Enable/disable migrations at startup    |
+| `SPRING_FLYWAY_BASELINE_ON_MIGRATE` | ❌       | Baseline existing schema before migrate |
+| `SPRING_FLYWAY_LOCATIONS`           | ❌       | Override migration locations            |
 
 Notes:
 
@@ -388,16 +391,16 @@ Notes:
 
 ---
 
-## 🔐 Security / Authentication
+## 🔐 Security — Configuration
 
 JWT configuration for authentication.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `JWT_SECRET` | ✅ | Secret used to sign JWTs |
-| `JWT_EXPIRATION_SECONDS` | ❌ | Token lifetime override |
-| `JWT_ISSUER` | ❌ | Expected issuer (if validated) |
-| `JWT_AUDIENCE` | ❌ | Expected audience (if validated) |
+| Variable                 | Required | Description                      |
+| ------------------------ | -------- | -------------------------------- |
+| `JWT_SECRET`             | ✅       | Secret used to sign JWTs         |
+| `JWT_EXPIRATION_SECONDS` | ❌       | Token lifetime override          |
+| `JWT_ISSUER`             | ❌       | Expected issuer (if validated)   |
+| `JWT_AUDIENCE`           | ❌       | Expected audience (if validated) |
 
 Notes:
 
@@ -407,17 +410,17 @@ Notes:
 
 ---
 
-## 🩺 Observability / Health
+## 🩺 Observability — Configuration
 
 Used by platforms and orchestrators for health checks.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ❌ | Actuator endpoints to expose |
-| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ❌ | Enable readiness/liveness probes |
-| `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS` | ❌ | Health details: `never`, `when_authorized`, `always` |
-| `MANAGEMENT_SERVER_PORT` | ❌ | Run actuator on a dedicated port |
-| `MANAGEMENT_HEALTH_DB_ENABLED` | ❌ | Toggle DB health contributor |
+| Variable                                    | Required | Description                                          |
+| ------------------------------------------- | -------- | ---------------------------------------------------- |
+| `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE` | ❌       | Actuator endpoints to expose                         |
+| `MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED` | ❌       | Enable readiness/liveness probes                     |
+| `MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS`   | ❌       | Health details: `never`, `when_authorized`, `always` |
+| `MANAGEMENT_SERVER_PORT`                    | ❌       | Run actuator on a dedicated port                     |
+| `MANAGEMENT_HEALTH_DB_ENABLED`              | ❌       | Toggle DB health contributor                         |
 
 Used by:
 
@@ -426,15 +429,15 @@ Used by:
 
 ---
 
-## 🧾 Logging
+## 🧾 Logging — Configuration
 
 Logging behavior tuning without rebuilds.
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `LOGGING_LEVEL_ROOT` | ❌ | Root log level |
-| `LOGGING_LEVEL_COM_EXAMPLE` | ❌ | Package-level override (example) |
-| `LOGGING_PATTERN_CONSOLE` | ❌ | Customize console output |
+| Variable                    | Required | Description                      |
+| --------------------------- | -------- | -------------------------------- |
+| `LOGGING_LEVEL_ROOT`        | ❌       | Root log level                   |
+| `LOGGING_LEVEL_COM_EXAMPLE` | ❌       | Package-level override (example) |
+| `LOGGING_PATTERN_CONSOLE`   | ❌       | Customize console output         |
 
 Notes:
 
@@ -495,7 +498,7 @@ See:
 
 ---
 
-## Summary
+## Key Takeaways
 
 - CI feature flags control **when releases and publishing occur**
 - Publishing is **job-level gated**, canonical-repo enforced, and fork-safe

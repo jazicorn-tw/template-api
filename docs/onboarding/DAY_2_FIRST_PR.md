@@ -1,3 +1,12 @@
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [onboarding]
+description:  "Day-2 / First PR Checklist"
+---
 # Day-2 / First PR Checklist
 
 This checklist ensures your **first contribution** follows the project’s
@@ -39,7 +48,7 @@ You do **not** need to memorize them — just know *where* decisions live.
 Choose the branch type based on the nature of your change:
 
 | Type    | Pattern          | When to use            |
-|---------|------------------|------------------------|
+| ------- | ---------------- | ---------------------- |
 | Feature | `feature/<name>` | New functionality      |
 | Fix     | `fix/<name>`     | Bug fixes, corrections |
 

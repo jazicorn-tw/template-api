@@ -130,6 +130,105 @@ _rule
 printf '  %s\n' "$_label"
 _rule
 
+# ── Frontmatter auto-patch ────────────────────────────────────────────────────
+# Injects or refreshes YAML frontmatter in staged .md files.
+# created_by / created_date are written once (never overwritten).
+# updated_by / updated_date are refreshed on every git add.
+# status / tags / description are left untouched once written.
+if [[ ${#md_files[@]} -gt 0 ]]; then
+  _fm_author=$(git config user.name 2>/dev/null \
+    || git config user.email 2>/dev/null \
+    || echo "unknown")
+  _fm_date=$(date +%Y-%m-%d)
+  _fm_patched=0
+
+  for _f in "${md_files[@]}"; do
+    _fp="$REPO_ROOT/$_f"
+    [[ -f "$_fp" ]] || _fp="$_f"
+
+    if head -1 "$_fp" | grep -q '^---$'; then
+      # Has frontmatter — refresh updated_by and updated_date only
+      sed -i '' \
+        -e "s/^updated_by:.*$/updated_by:   $_fm_author/" \
+        -e "s/^updated_date:.*$/updated_date: $_fm_date/" \
+        "$_fp"
+    else
+      # No frontmatter — prepend full block (new files start as draft)
+      _tmp=$(mktemp)
+      {
+        echo '---'
+        printf 'created_by:   %s\n' "$_fm_author"
+        printf 'created_date: %s\n' "$_fm_date"
+        printf 'updated_by:   %s\n' "$_fm_author"
+        printf 'updated_date: %s\n' "$_fm_date"
+        echo 'status:       draft'
+        echo 'tags:         []'
+        echo 'description:  ""'
+        echo '---'
+        cat "$_fp"
+      } > "$_tmp" && mv "$_tmp" "$_fp"
+    fi
+
+    git add "$_f"
+    _fm_patched=$(( _fm_patched + 1 ))
+  done
+
+  _pass "frontmatter (${_fm_patched} file(s) patched)"
+fi
+
+# ── Tag validation ────────────────────────────────────────────────────────────
+# Enforces the canonical tag vocabulary defined in .config/tags.yml [tags:].
+# Empty tags: [] is always valid. Hard-fails on unknown tags.
+if [[ ${#md_files[@]} -gt 0 ]]; then
+  _TAGS_FILE="$REPO_ROOT/.config/tags.yml"
+  _ALLOWED_TAGS=()
+  if [[ -f "$_TAGS_FILE" ]]; then
+    # Parse the `tags:` section: collect `- value` lines until the next top-level key
+    while IFS= read -r _line; do
+      _ALLOWED_TAGS+=("$_line")
+    done < <(awk '/^tags:/{p=1;next} /^[[:alpha:]]/{p=0} p && /^  - /{sub(/^  - /,""); print}' "$_TAGS_FILE")
+  else
+    printf '  ⚠️   validate-tags — .config/tags.yml not found, skipping\n'
+  fi
+  _tag_errors=()
+
+  for _f in "${md_files[@]}"; do
+    [[ ${#_ALLOWED_TAGS[@]} -eq 0 ]] && break   # no tags file — skip validation
+    _fp="$REPO_ROOT/$_f"
+    [[ -f "$_fp" ]] || _fp="$_f"
+
+    _tags_line=$(grep '^tags:' "$_fp" 2>/dev/null | head -1)
+    # Strip "tags:", brackets, split on commas
+    _tags_raw=$(printf '%s' "$_tags_line" \
+      | sed 's/^tags:[[:space:]]*//' \
+      | tr -d '[]' \
+      | tr ',' '\n')
+
+    while IFS= read -r _tag; do
+      _tag=$(printf '%s' "$_tag" | xargs)   # trim whitespace
+      [[ -z "$_tag" ]] && continue
+      _found=0
+      for _allowed in "${_ALLOWED_TAGS[@]}"; do
+        [[ "$_tag" == "$_allowed" ]] && { _found=1; break; }
+      done
+      [[ $_found -eq 0 ]] && _tag_errors+=("\"$_tag\" in $_f")
+    done <<< "$_tags_raw"
+  done
+
+  if [[ ${#_ALLOWED_TAGS[@]} -eq 0 ]]; then
+    : # skipped — no tags file
+  elif [[ ${#_tag_errors[@]} -eq 0 ]]; then
+    _pass "validate-tags (${#md_files[@]} file(s))"
+  else
+    _fail "validate-tags — unknown tag(s):"
+    for _e in "${_tag_errors[@]}"; do
+      printf '    %s\n' "$_e"
+    done
+    printf '    Allowed tags:\n'
+    printf '      %-12s  %-12s  %-12s  %-12s  %-12s\n' "${_ALLOWED_TAGS[@]}"
+  fi
+fi
+
 # ── Markdown lint (markdownlint-cli2 on staged files only) ───────────────────
 # Runs only on the .md files being added — not the full repo — so unrelated
 # markdown violations never block an unrelated git add.

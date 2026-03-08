@@ -1,4 +1,12 @@
-<!-- markdownlint-disable-file MD041 -->
+---
+created_by:   jazicorn-tw
+created_date: 2026-03-05
+updated_by:   jazicorn-tw
+updated_date: 2026-03-08
+status:       active
+tags:         [adr]
+description:  "ADR-000: Establish Formatting, Linting, and Static Analysis First"
+---
 <!-- markdownlint-disable-file MD036 -->
 
 # ADR-000: Establish Formatting, Linting, and Static Analysis First
