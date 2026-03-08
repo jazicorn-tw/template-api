@@ -1,5 +1,21 @@
 # 📦 Release History
 
+## 📦 Release 0.1.1
+
+### 🐛 Fixes
+
+- **ci:** remove [skip ci] from release commit so tag pushes trigger publish.yml (1e37f61)
+- **ci:** restore extraheader unset so App token tag pushes trigger publish.yml (b104904)
+
+
+
+## 0.1.1
+
+### 🐛 Fixes
+
+- **ci:** remove [skip ci] from release commit so tag pushes trigger publish.yml
+- **ci:** restore extraheader unset so App token tag pushes trigger publish.yml
+
 ## 📦 Release 0.1.0
 
 ### ✨ Features
