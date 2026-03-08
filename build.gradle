@@ -167,6 +167,20 @@ sonar {
     property 'sonar.organization', 'your-org'
     property 'sonar.host.url', 'https://sonarcloud.io'
     property 'sonar.coverage.jacoco.xmlReportPaths', 'build/reports/jacoco/test/jacocoTestReport.xml'
+    // Exclude generated/boilerplate code from coverage and duplication analysis
+    property 'sonar.coverage.exclusions', [
+      '**/dto/**',
+      '**/*Request.java',
+      '**/*Response.java',
+      '**/exception/**',
+      '**/config/**',
+      '**/db/migration/**',
+    ].join(',')
+    property 'sonar.cpd.exclusions', [
+      '**/dto/**',
+      '**/*Request.java',
+      '**/*Response.java',
+    ].join(',')
   }
 }
 
@@ -177,3 +191,18 @@ jacocoTestReport {
     html.required = false
   }
 }
+
+jacocoTestCoverageVerification {
+  dependsOn jacocoTestReport
+  violationRules {
+    rule {
+      limit {
+        counter = 'LINE'
+        value = 'COVEREDRATIO'
+        minimum = 0.70  // 70% line coverage minimum — raise as the codebase matures
+      }
+    }
+  }
+}
+
+tasks.named("check") { dependsOn("jacocoTestCoverageVerification") }
