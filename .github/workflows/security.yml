@@ -3,7 +3,7 @@ name: Security
 on:
   pull_request:
   push:
-    branches: [ main, staging ]
+    branches: [ main, staging, canary ]
   schedule:
     # Weekly scan on Monday at 03:00 UTC — catches new CVEs between pushes
     - cron: '0 3 * * 1'

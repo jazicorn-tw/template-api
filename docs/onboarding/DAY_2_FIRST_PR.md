@@ -34,14 +34,24 @@ You do **not** need to memorize them — just know *where* decisions live.
 
 ---
 
-## 2. Create a Feature Branch
+## 2. Create a Branch
+
+Choose the branch type based on the nature of your change:
+
+| Type    | Pattern          | When to use            |
+|---------|------------------|------------------------|
+| Feature | `feature/<name>` | New functionality      |
+| Fix     | `fix/<name>`     | Bug fixes, corrections |
 
 ```bash
 git checkout -b feature/<short-description>
+# or
+git checkout -b fix/<short-description>
 ```
 
 Rules:
 
+* Branch **from `staging`**, not `main`
 * One concern per branch
 * No refactors unless explicitly required
 
@@ -161,9 +171,23 @@ Avoid:
 
 ## 8. Open the Pull Request
 
+**Branch flow:**
+
+```text
+feature/<name>  ──┐
+                  ├──► staging ──► canary ──► main
+fix/<name>      ──┘
+```
+
+* `feature/*` and `fix/*` → PR targets **`staging`**
+* `staging` → PR targets **`canary`** (after integration CI passes)
+* `canary` → PR targets **`main`** (after canary artifacts are validated)
+* Canary releases publish a `:canary` Docker image for smoke testing
+* Stable releases are cut **only from `main`** by CI
+
 Ensure your PR:
 
-* Targets the correct base branch
+* Targets **`staging`** as the base branch
 * References the current phase
 * Explains **what** changed and **why**
 * Mentions any ADRs touched or relied on
@@ -203,7 +227,8 @@ Before requesting review, confirm:
 
 ## What *Not* To Do
 
-* ❌ Don’t push directly to main
+* ❌ Don’t push directly to `main` or `staging`
+* ❌ Don’t open PRs against `main` for feature/fix work
 * ❌ Don’t disable tests
 * ❌ Don’t bypass architecture layers
 * ❌ Don’t "fix" unrelated things

@@ -31,7 +31,14 @@
 
 - [ ] Git installed (`git --version`)
 - [ ] Repo cloned successfully
+- [ ] Git hooks installed:
+
+  ```bash
+  ./scripts/bootstrap/install-hooks.sh
+  ```
+
 - [ ] I can create and switch branches
+- [ ] I understand the branch flow: `feature/*` / `fix/*` → `staging` → `main`
 
 ---
 
