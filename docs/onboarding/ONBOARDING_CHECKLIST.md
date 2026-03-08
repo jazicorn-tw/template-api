@@ -38,7 +38,7 @@
   ```
 
 - [ ] I can create and switch branches
-- [ ] I understand the branch flow: `feature/*` / `fix/*` → `staging` → `main`
+- [ ] I understand the branch flow: `feature/*` / `fix/*` → `staging` → `canary` → `main`
 
 ---
 

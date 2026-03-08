@@ -75,13 +75,13 @@ jobs:
           # PRs: never allowed
           if [[ "$EVENT_NAME" == "pull_request" ]]; then
             echo "❌ PRs may not modify release artifacts."
-            echo "   Releases are handled by semantic-release on main."
+            echo "   Releases are handled by semantic-release on main (stable) and canary (pre-release)."
             exit 1
           fi
 
-          # Pushes: only allow on main
-          if [[ "$REF_NAME" != "main" ]]; then
-            echo "❌ Release artifacts may only be modified on main."
+          # Pushes: only allow on release branches (main = stable, canary = pre-release)
+          if [[ "$REF_NAME" != "main" && "$REF_NAME" != "canary" ]]; then
+            echo "❌ Release artifacts may only be modified on main or canary."
             exit 1
           fi
 
@@ -103,10 +103,10 @@ jobs:
             echo "  name=$AUTHOR_NAME"
             echo "  email=$AUTHOR_EMAIL"
 
-            # Allow only: "chore(release): X.Y.Z [skip ci]"
-            if ! grep -Eq '^chore\(release\): [0-9]+\.[0-9]+\.[0-9]+ \[skip ci\]$' <<< "$HEAD_FIRST_LINE"; then
-              echo "❌ CHANGELOG.md updates on main must be authored by semantic-release."
-              echo "   Expected: chore(release): X.Y.Z [skip ci]"
+            # Allow only: "chore(release): X.Y.Z" or "chore(release): X.Y.Z-<pre-release>"
+            if ! grep -Eq '^chore\(release\): [0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9.]+)?$' <<< "$HEAD_FIRST_LINE"; then
+              echo "❌ CHANGELOG.md updates must be authored by semantic-release."
+              echo "   Expected: chore(release): X.Y.Z  or  chore(release): X.Y.Z-canary.N"
               exit 1
             fi
 
